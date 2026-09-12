@@ -1,0 +1,23 @@
+{
+  "o3_limit": 67.0,
+  "baseline_peak_o3": 95.75170619454816,
+  "budget": 40,
+  "horizon": 12,
+  "seed": 1,
+  "arms": [
+    {
+      "arm": "puct_heuristic",
+      "value": -44.0936355965234,
+      "box_calls": 464,
+      "seconds": 210.73247360000096,
+      "plan_len": 2,
+      "vnet_ready": false,
+      "vnet_samples": 0,
+      "policy_ready": true,
+      "policy_fits": 1,
+      "calls_vs_first": 1.0,
+      "quality_ratio_abs": 1.0
+    }
+  ],
+  "note": "真 CB05;阈值取基准日峰 0.7 以制造信号;计划零动作补足到 horizon。"
+}

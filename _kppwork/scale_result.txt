@@ -1,0 +1,64 @@
+==============================================================================
+A) CALIBRATION at n=12   (oracle = exact 4096-point table)
+==============================================================================
+  scen          B     runs  err(true)     spread err/spread
+  r_sat        64       64      5.63%     13.08%      0.43
+  r_sat       128      128      3.52%      8.31%      0.42
+  r_sat       256      256      1.44%      4.20%      0.34
+  r_lim1       64       64      1.99%      3.70%      0.54
+  r_lim1      128      128      1.72%      3.92%      0.44
+  r_lim1      256      256      1.07%      2.59%      0.41
+
+==============================================================================
+B) n=24   (3 sectors x 8 three-hour windows, 16.7M coalitions)
+==============================================================================
+  r_sat: 3485 coalition values collected
+  B        runs/seed     spread est.err (map)  sector(8-run)
+  64             70     14.04%        6.04%
+  128           139      7.68%        3.25%
+  256           274      5.38%        1.85%
+    top-6 players at n=24 (mean over seeds, ppb):
+      NOx  3h-window #7 [18-21 h)  phi =  +13.92
+      NOx  3h-window #6 [15-18 h)  phi =  +11.32
+      NOx  3h-window #3 [06-09 h)  phi =   +4.03
+      NOx  3h-window #8 [21-24 h)  phi =   +3.92
+      VOC  3h-window #3 [06-09 h)  phi =   -3.17
+      VOC  3h-window #5 [12-15 h)  phi =   -2.59
+    within-6h split (the two 3h halves of each 6h block):
+      NOx  block W1 [00-06 h): half1  +2.44  half2  +1.72   |ratio| = 1.42  (half1 dominates)
+      NOx  block W2 [06-12 h): half1  +4.03  half2  +0.27   |ratio| = 14.85  (half1 dominates)
+      NOx  block W3 [12-18 h): half1  -1.60  half2 +11.32   |ratio| = 7.05  (half2 dominates)
+      NOx  block W4 [18-24 h): half1 +13.92  half2  +3.92   |ratio| = 3.55  (half1 dominates)
+      VOC  block W1 [00-06 h): half1  -0.75  half2  -1.00   |ratio| = 1.32  (half2 dominates)
+      VOC  block W2 [06-12 h): half1  -3.17  half2  -1.02   |ratio| = 3.11  (half1 dominates)
+      VOC  block W3 [12-18 h): half1  -2.59  half2  -1.78   |ratio| = 1.46  (half1 dominates)
+      VOC  block W4 [18-24 h): half1  -1.93  half2  -0.89   |ratio| = 2.17  (half1 dominates)
+      CO   block W1 [00-06 h): half1  -0.04  half2  -0.05   |ratio| = 1.18  (half2 dominates)
+      CO   block W2 [06-12 h): half1  -0.05  half2  -0.04   |ratio| = 1.23  (half1 dominates)
+      CO   block W3 [12-18 h): half1  -0.13  half2  -0.04   |ratio| = 3.27  (half1 dominates)
+      CO   block W4 [18-24 h): half1  -0.03  half2  -0.04   |ratio| = 1.14  (half2 dominates)
+  r_lim1: 3485 coalition values collected
+  B        runs/seed     spread est.err (map)  sector(8-run)
+  64             70      9.53%        5.14%
+  128           139      3.07%        1.35%
+  256           274      3.29%        1.36%
+    top-6 players at n=24 (mean over seeds, ppb):
+      NOx  3h-window #7 [18-21 h)  phi =  +10.12
+      NOx  3h-window #6 [15-18 h)  phi =   +6.52
+      NOx  3h-window #5 [12-15 h)  phi =   -4.09
+      VOC  3h-window #3 [06-09 h)  phi =   -3.54
+      NOx  3h-window #8 [21-24 h)  phi =   +2.78
+      VOC  3h-window #5 [12-15 h)  phi =   -2.58
+    within-6h split (the two 3h halves of each 6h block):
+      NOx  block W1 [00-06 h): half1  +1.42  half2  +0.50   |ratio| = 2.83  (half1 dominates)
+      NOx  block W2 [06-12 h): half1  -0.68  half2  -1.03   |ratio| = 1.51  (half2 dominates)
+      NOx  block W3 [12-18 h): half1  -4.09  half2  +6.52   |ratio| = 1.59  (half2 dominates)
+      NOx  block W4 [18-24 h): half1 +10.12  half2  +2.78   |ratio| = 3.64  (half1 dominates)
+      VOC  block W1 [00-06 h): half1  -0.84  half2  -1.09   |ratio| = 1.29  (half2 dominates)
+      VOC  block W2 [06-12 h): half1  -3.54  half2  -0.83   |ratio| = 4.25  (half1 dominates)
+      VOC  block W3 [12-18 h): half1  -2.58  half2  -2.22   |ratio| = 1.16  (half1 dominates)
+      VOC  block W4 [18-24 h): half1  -1.96  half2  -0.82   |ratio| = 2.38  (half1 dominates)
+      CO   block W1 [00-06 h): half1  -0.05  half2  -0.05   |ratio| = 1.19  (half2 dominates)
+      CO   block W2 [06-12 h): half1  -0.05  half2  -0.03   |ratio| = 1.77  (half1 dominates)
+      CO   block W3 [12-18 h): half1  -0.08  half2  -0.03   |ratio| = 3.01  (half1 dominates)
+      CO   block W4 [18-24 h): half1  -0.04  half2  -0.04   |ratio| = 1.20  (half2 dominates)

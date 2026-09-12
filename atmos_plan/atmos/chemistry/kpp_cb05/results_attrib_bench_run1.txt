@@ -1,0 +1,38 @@
+Coalition-sampling benchmark, n=8, oracle = full enumeration
+  error metric : max_i |est-true| / max_i |true|, median over 50 seeds
+  budget       : distinct coalition evaluations (= chemistry runs)
+
+target = phi   (max|true| = 16.6644 ppb)
+  strat/active cells = 64; the marginal estimator is exactly unbiased from B >= 64
+  rollouts to reach median error <= eps:
+    arm              20%      10%       5%       2%
+    kernelshap        48      128     >128     >128
+    strat             96      128     >128     >128
+    active            96      128     >128     >128
+    perm              16       64     >128     >128
+    best baseline (non-active): 20%=16 10%=64 5%=>128 2%=>128
+
+target = psi   (max|true| = 17.8626 ppb)
+  strat/active cells = 48; the marginal estimator is exactly unbiased from B >= 48
+  rollouts to reach median error <= eps:
+    arm              20%      10%       5%       2%
+    strat             48       96     >128     >128
+    active            48     >128     >128     >128
+    perm              16       32       64       96
+    best baseline (non-active): 20%=16 10%=32 5%=64 2%=96
+
+DECISION (pre-registered)
+  phi  eps=10%  active=128  best baseline=64  -> FAIL
+  phi  eps= 5%  active=>128  best baseline=>128  -> FAIL
+  psi  eps=10%  active=>128  best baseline=32  -> FAIL
+  psi  eps= 5%  active=>128  best baseline=64  -> FAIL
+  VERDICT: FAIL (no 2x reduction)
+
+BIAS CHECK at B=128 (seed-mean signed error, need |bias| <= 2 SE):
+  phi  kernelshap bias=-0.03331  2SE=0.02911  BIASED
+  phi  strat      bias=-0.03252  2SE=0.02445  BIASED
+  phi  active     bias=-0.03690  2SE=0.03027  BIASED
+  phi  perm       bias=+0.01005  2SE=0.02177  ok
+  psi  strat      bias=-0.08874  2SE=0.00205  BIASED
+  psi  active     bias=-0.08740  2SE=0.02799  BIASED
+  psi  perm       bias=+0.00025  2SE=0.00174  ok

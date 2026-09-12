@@ -1,0 +1,16 @@
+=== BUILD ===
+0
+=== RUN ===
+RUN_RC=0
+true_failures(IERR<0)=0
+success_notes(IERR=1 not counted)= DONE
+=== G3 ===
+S: 191 equations x 97 variable species, nnz=501
+rank(S)=73  dim null(S^T)=118
+integer-valued conservation vectors in basis: 0/118
+RCONST assignments in Rates: 217  (matches NREACT=191: False)
+Traceback (most recent call last):
+  File "/root/kpp2/g3_check.py", line 130, in <module>
+    a = float(z @ v0)
+              ~~^~~~
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 97 is different from 191)

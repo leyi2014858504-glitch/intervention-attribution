@@ -1,0 +1,4 @@
+L1_rtol1e-3 steps=49 fails=0 wall_s=0 meanO3_ppb=211.7368 lastO3_ppb=235.1837
+L2_rtol1e-4 steps=49 fails=0 wall_s=0 meanO3_ppb=211.7359 lastO3_ppb=235.1837
+L3_rtol1e-6 steps=49 fails=0 wall_s=0 meanO3_ppb=211.7359 lastO3_ppb=235.1837
+LADDER_DONE

@@ -1,0 +1,23 @@
+G4 results, backend=dummy, wall=14s
+
+EKMA grid: MDA8 ppb, rows=nox_factor, cols=voc_factor
+             0.2     0.4     0.6     0.8     1.0     1.5
+  0.20      55.2    59.8    62.3    64.1    65.5    68.4
+  0.40      49.4    56.1    63.9    70.0    74.0    79.9
+  0.60      44.5    49.3    55.5    63.0    70.9    84.7
+  0.80      38.1    43.0    48.5    54.9    62.0    80.7
+  1.00      31.8    36.2    41.5    47.5    54.1    72.3
+  1.50      21.4    23.9    27.1    31.1    35.9    51.3
+
+slopes dMDA8/dNOx per VOC level:
+  voc=0.20:    -28.9    -24.9    -31.6    -31.6    -20.8
+  voc=0.40:    -18.5    -34.1    -31.4    -33.8    -24.6
+  voc=0.60:     +8.0    -42.4    -34.6    -35.2    -28.8
+  voc=0.80:    +29.2    -34.7    -40.7    -36.7    -32.8
+  voc=1.00:    +42.5    -15.8    -44.5    -39.1    -36.5
+  voc=1.50:    +57.7    +24.0    -20.1    -41.7    -42.1
+
+G4a EKMA curvature (both signs present): PASS
+G4b reduce-NOx-only worsens at voc=1.5 : PASS
+G4c weekend positive anomaly (d3 max)  : PASS
+VERDICT G4: PASS

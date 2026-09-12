@@ -1,0 +1,150 @@
+﻿[cfg] budget=60 warmup=25 horizon=12
+python : **PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\parse.py:385:UserWarnin
+g:
+At line:15 char:5337
++ ... pgrep\bin'; python -u -m atmos.experiments.exp_gate_cb05 --budget 60  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (**PYKPP:C:\User...85:UserWarning::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  Ignoring EMISSION
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+[probe] 基准日峰 O3 = 95.8 ppb (9.2s)  → o3_limit = 67.0
+[run] 纯 rollout 臂 ...
+  -> value=-51.8736 calls=690 406.0s plan_len=2
+[run] value-net 臂(w=1) ...
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\sklearn\neural_network\_multilayer_per
+ceptron.py:606:ConvergenceWarning:
+  lbfgs failed to converge after 500 iteration(s) (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT
+
+Increase the number of iterations to improve the convergence (max_iter=500).
+You might also want to scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\sklearn\neural_network\_multilayer_per
+ceptron.py:606:ConvergenceWarning:
+  lbfgs failed to converge after 500 iteration(s) (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT
+
+Increase the number of iterations to improve the convergence (max_iter=500).
+You might also want to scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\sklearn\neural_network\_multilayer_per
+ceptron.py:606:ConvergenceWarning:
+  lbfgs failed to converge after 500 iteration(s) (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT
+
+Increase the number of iterations to improve the convergence (max_iter=500).
+You might also want to scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\parse.py:385:UserWarning:
+  Ignoring EMISSION
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:694:UserWarning:
+  Assuming current year 2026
+**PYKPP:C:\Users\20148\AppData\Local\Programs\Python\Python314\Lib\site-packages\pykpp\mech.py:1240:ODEintWarning:
+  Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative info
+rmation.
+  -> value=-92.3799 calls=421 244.8s plan_len=2 ready=True n=34
+[done] calls=61% of baseline | |value|=178% of baseline
+-> D:\atmos\atmos_plan\atmos\experiments\..\..\results\gate\gate_cb05.json
