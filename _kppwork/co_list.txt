@@ -1,0 +1,2 @@
+r_sat CO12
+r_lim1 CO12

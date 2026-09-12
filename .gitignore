@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------- python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ------------------------------------------------- KPP / Fortran build output
+*.mod
+*.o
+*.exe
+cb05.nml
+
+# ------------------------------------------------------- simulation artifacts
+# run logs, trajectories, state dumps (regenerable; pulled back from the WSL
+# build dirs /root/kpp{2,4,5,6,7})
+*.traj
+*.state
+*.dat
+
+# ------------------------------------------------- coalitions: generated bulk
+# 19.5k namelists written by gen_scen_sweep.py / gen_co_sweep.py /
+# gen_scale_masks.py.  Fully regenerable -- do not version.
+_kppwork/nmldir/
+_kppwork/nmldir_scen/
+_kppwork/nmldir_co/
+_kppwork/nmldir_scale/
+_kppwork/g4runs/
+
+# ------------------------------------------- sweep bookkeeping / partials
+# per-worker shards are merged into the single truth tables that ARE kept
+# (scen_v.csv, co_v.csv, scale_v.csv)
+_kppwork/chunk_*.txt
+_kppwork/*_chunk_*.txt
+_kppwork/done_*.txt
+_kppwork/*_done_*.txt
+_kppwork/*_files.txt
+_kppwork/*_prog_*.txt
+_kppwork/co_progress.txt
+_kppwork/scen_progress.txt
+_kppwork/isop_probe_progress.txt
+_kppwork/co_watch.txt
+_kppwork/worker_*.out
+_kppwork/*_worker_*.out
+_kppwork/co_v_*.csv
+_kppwork/scale_v_*.csv
+_kppwork/nmldir_co.zip
+
+# ---------------------------------------------- scratch probe output (root)
+# ~177 throwaway *_ps12.txt style files from interactive debugging
+/_*.txt
+/_*.html
+/_*.out
+/_*.log
+
+# scratch probe output inside the working dir (tooling *.sh is kept)
+_kppwork/_*.txt
+_kppwork/_*.out
+_kppwork/_*.log
+_kppwork/_*.err
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store
