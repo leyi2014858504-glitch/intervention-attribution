@@ -43,6 +43,7 @@ _kppwork/worker_*.out
 _kppwork/*_worker_*.out
 _kppwork/co_v_*.csv
 _kppwork/scale_v_*.csv
+_kppwork/sham_v_*.csv
 _kppwork/nmldir_co.zip
 
 # ---------------------------------------------- scratch probe output (root)
