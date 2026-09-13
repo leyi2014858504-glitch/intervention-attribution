@@ -9,14 +9,23 @@
 
 | # | 断言 | 证据 | 承载图 |
 |---|---|---|---|
-| ① | 低阶截断不成立，谱必须实测 | 预注册 n=8 pilot 判 STOP；受限侧低阶只解释 R²=0.26 | Fig. 2 |
+| ① | 低阶截断**不只是有地板，而是非单调、会发散** | 全枚举 n=8/12/16 实测：n=12 时截断误差随阶数**升高**到 1033%（q≤6）；谱质量从 n=8 的随阶衰减变为 n≥12 的峰在 k≈8（16× 一阶） | Fig. 2 + Table 6 |
 | ② | 全谱枚举是 2ⁿ，不可承受 | n=24 精确需 16,777,216 次 | Fig. 4 |
-| ③ | 采样器代价对 n 几乎平坦 | n=12→24 仅 1.07×（1.5% 精度，274 次）；KernelSHAP 的 6–8× | Fig. 4 |
+| ③ | 采样器代价**远低于枚举，但并非与 n 无关**；且**小 n 时枚举反而更便宜** | 全枚举 n=8/12/16 实测：同等预算下误差 1.6–1.8×/倍 n ⇒ 同精度约 2.5–3×；枚举 16×/256×。交叉点在 n=8–12 之间 | Fig. 4 + Table 5 |
 | ④ | 全谱才暴露的结构 | 块内符号翻转；配额最优随 regime 翻转；CO 弱玩家稳健性 | Fig. 5–7 + Table 3 |
 | ⑤ | 整条链路可验（L1/L2 封死） | sham 已知零（1.07e-14）；V-门 6 个冻结值逐位复现 | Table 1 |
 | ⑥ | 局地方法结构上看不见 ④，且**只在无关紧要的玩家上精确** | 相邻 3h 窗：局地同号、有限关停反号（−0.42 vs +6.98 ppb）；CO 精确到 2% 但总效应仅 0.14 ppb | Fig. 6 + Table 2 |
 
 **注意 ⑥ 的位置**：它既是发现，又是定位武器。前五条说"我们造了什么、它是对的"，⑥ 说"不这么做会错"。
+
+**贡献分层（重要，别混）**
+
+| 层 | 内容 | 状态 |
+|---|---|---|
+| **架构层 = 本文贡献** | ① 干预的**有限**博弈表述（部门 × 时间窗开关）② Möbius/Walsh **全谱**作为研究对象 ③ Shapley/Owen 是谱的**已知线性泛函** ④ 四层验证框架（L1/L2 可验、L3 公理选择、L4 外部效度）⑤ 诊断：截断发散、局地导数失效、regime 依赖 | 全部有实测支撑 |
+| **实现层 ≠ 贡献** | 用哪个采样器估计谱 | 实测 n=16 上 `perm_anti`（标准、结构盲）**优于** hub-分层主动采样 4–6×（差距随 n 扩大），故**直接采用 `perm_anti`**，不再声称"结构感知主动采样"是方法贡献 |
+
+采样器是可替换件：换掉它，架构一分钱不损。原"OURS"臂的失败应写入 Discussion，作为"分层粒度随 n 线性增长、收益不增长"的教训。
 
 ---
 
@@ -38,14 +47,28 @@ We recast the problem as a cooperative game over (sector × time-window) players
 compute the full Möbius/Walsh interaction spectrum, of which Shapley and Owen values
 are known linear functionals. Three things follow.
 
-First, low-order truncation fails, so the spectrum has to be measured rather than
-assumed: a pre-registered eight-player pilot stops on its own criterion, and a
-low-order truncation explains only R² = 0.26 of the response on the NOx-limited side.
+First, low-order truncation does not merely have a floor — it is NON-MONOTONE and can
+diverge, so the spectrum has to be measured rather than assumed. Fully enumerating
+n = 8, 12 and 16 lets the truncation error be computed exactly at every order. On the
+NOx-saturated case, the best achievable q-th-order model still leaves 34 % (q=1) and 6.7 %
+(q=3) at n = 8 — but at n = 12 the error RISES with order, to 80 % (q=4) and 1033 % (q=6),
+and at n = 16 it bottoms at 8.9 % (q=2) before climbing back to 42 % (q=6). The reason is
+visible in the spectrum itself: the interaction mass Σ_{|A|=k}|m(A)|/|A| decays with k at
+n = 8 but peaks near k = 8 — 16× the first-order mass — at n = 12 and n = 16. High-order
+terms are individually large and cancel; truncating away the cancellation is what destroys
+the estimate. A pre-registered eight-player pilot had already stopped on its own criterion.
 
-Second, measuring the spectrum is a 2ⁿ problem, and we give a permutation-with-duality
-sampler whose cost is essentially flat in the number of players — 274 runs reach ~1.5 %
-precision at n = 24, 1.07× the n = 12 cost, against 16,777,216 runs for enumeration, and
-6–8× more efficient than KernelSHAP on the same value function.
+Second, measuring the spectrum is a 2ⁿ problem, and we use a STANDARD permutation-with-
+antithetic estimator, characterising its cost rather than claiming it. Its cost grows far
+more slowly than enumeration but is NOT independent of n.
+Fully enumerating n = 8, 12 and 16 (256, 4096 and 65536 box runs) gives a measured,
+oracle-backed scaling curve rather than an extrapolation: doubling the player count —
+whether by refining the time axis (n = 8 → 16, sectors held at 2) or by adding a sector
+(n = 8 → 12, windows held at 4) — raises the error at equal run count by 1.6–1.8×, so
+equal precision costs roughly 2.5–3× more, against 16× and 256× for enumeration. The sampler
+only overtakes enumeration between n = 8 and n = 12; above that its margin grows with n.
+The residual growth is the combinatorial weight C(n−1, k−1) carried by order-k Möbius
+terms, only partly cancelled by the decay of the spectrum.
 
 Third, the spectrum exposes structure that a local method cannot represent. Inside a
 single six-hour block, NOx reductions in [12,15) and [15,18) are both predicted by the
@@ -83,11 +106,23 @@ winter periods from them.
 - **承载**：入口定义（不承载结果，但决定读者怎么读全文）
 - **素材**：手绘/矢量图；代码依据 `_kppwork/exp_mobius.py`、`_kppwork/attrib_samplers.py`
 
-### Fig. 2 — 低阶截断失效 ①
-- **画什么**：截断阶数 k 对 R²（两条曲线：饱和侧 / 受限侧）。受限侧 0.26 是断点。
-- **承载**：①；也是"必须实测全谱"的全部理由
-- **素材**：`_kppwork/exp_mobius.py`、`mobius_results_dummy.txt`；pilot 的预注册判定在 spec 文档"⚠️ n=8 Möbius pilot"节
-- **必须写进图注**：这是**预注册**判定 STOP，不是事后挑出来的
+### Fig. 2 — 低阶截断**非单调且会发散** ①
+- **画什么**：双面板。(a) 截断误差 vs 阶数 q，n=8/12/16 三条线（同一 scenario）——n=12 那条**随 q 升高**是主视觉；(b) 谱质量 `Σ_{|A|=k}|m(A)|/|A|` 按 k 分布（以 k=1 归一），显示 n=8 单调衰减 vs n≥12 峰在 k≈8。
+- **实测（r_sat，全枚举 oracle）**：
+
+  | q | n=8 | n=12 | n=16 |
+  |---|---|---|---|
+  | ≤1 | 34.4% | 35.7% | 39.8% |
+  | ≤2 | 17.7% | 18.5% | **8.9%** |
+  | ≤3 | **6.7%** | 26.7% | 13.2% |
+  | ≤4 | 8.7% | 79.7% | 16.1% |
+  | ≤6 | 5.7% | **1032.9%** | 41.9% |
+
+  r_lim1 同结构（n=16 时 q≤3 最低 2.0%，q≤6 回升到 32.7%）。
+- **机制句（必须写）**：高阶 Möbius 项**各自很大但相互抵消**；截断掉的是抵消，不是小量。所以误差不降反升。
+- **承载**：① ——"必须实测全谱、不能假设低阶"的全部理由；这是**架构**主张而非采样器主张
+- **素材**：`_kppwork/_n16_spectrum.py`、`_kppwork/spectrum_orders.txt`、`_kppwork/exp_mobius.py`、`mobius_results_dummy.txt`；预注册判定在 spec 文档"⚠️ n=8 Möbius pilot"节
+- **图注要点**：n=8 的 6.7% 与 n=12 的 1033% 是**同一断言的两种强度**，后者强得多，别只引 n=8
 
 ### Fig. 3 — 谱的形态（n=12 与 n=24 两格）
 - **画什么**：Möbius 系数按阶分布（重尾、不稀疏）；两种 regime 分列，显示"饱和侧低阶主导 / 受限侧高阶主导"。
@@ -95,10 +130,28 @@ winter periods from them.
 - **素材**：`results_co12.txt`、`co_v.csv`、`results_scale.txt`、`scale_v.csv`
 
 ### Fig. 4 — 采样代价 vs n ③②
-- **画什么**：横轴 n（8,12,24），纵轴运行次数（对数）。三条线：精确枚举（2ⁿ）、我们的采样器（达 ~1.5% 精度）、KernelSHAP。
-- **关键数字**：枚举 4096 → 16,777,216（4096×）；我们 256 → 274（**1.07×**）
+- **画什么**：横轴 n（8, 12, **16**, 24），纵轴"达到归一化精度 X% 所需运行次数"（双对数）。两条线：精确枚举（2ⁿ）、我们的采样器。n=8/12/16 三点**全枚举、有真 oracle**；n=24 只有 spread。
+- **实测（r_sat，`err(run)` = 单次运行误差，全部对真 oracle）**：
+
+  | B | runs (n=8/16) | n=8 | n=16 | 比值 |
+  |---|---|---|---|---|
+  | 64 | 65 / 75 | 7.304% | 11.536% | 1.58× |
+  | 128 | 132 / 137 | 4.463% | 7.642% | 1.71× |
+  | 256 | 256 / 267 | 1.108%（**饱和**） | 4.894% | — |
+  | 1024 | — / 1030 | — | 2.183% | — |
+
+  部门增加（n=8→12）：B=64 7.304%→12.133%（1.66×），B=128 4.463%→8.186%（1.83×）。
+- **两条干净阶梯**（**重要**：n=12 与 n=16 不嵌套，不可直接比）
+  - 时间细化 n=8（2×4）→ n=16（2×8），部门固定
+  - 部门增加 n=8（2×4）→ n=12（3×4），窗数固定
+- **关键数字**：两种机制同等预算下误差都涨 **1.6–1.8×** ⇒ 同精度约 **3×**；枚举涨 16×（n=8→12）/ 256×（n=8→16）
+- **交叉点（反直觉，值得单独一句）**：达到 1.5% 误差，n=8 需枚举 256 次 vs 采样 ~620 次 ⇒ **小 n 时枚举更便宜**；n=12 是 4096 vs ~1370，n=16 是 65536 vs ~1850 ⇒ 采样器优势随 n 增长
+- **⚠️ 口径警告（必须写进图注）**
+  1. n=8 的 B=256 是**全域饱和**（2⁸=256），误差被人为压低，**不可用于外推**
+  2. n=24 的误差是 `spread × (err/spread 来自 n=12)` **映射**的，不是实测。实测的时间细化惩罚（1.6–1.8×）**大于**映射值（1.28×）⇒ 映射确实偏乐观
+- **修正记录**：① 早期"274 次达 1.5%，仅 1.07×"——那是拿 1.44% 的价钱与 1.85% 的价钱相比，口径不等价，**作废**；② 中期"×1.28 ⇒ 1.8×"基于映射值，已被实测取代，**作废**
 - **承载**：②③。这张图是方法贡献的主图
-- **素材**：`_kppwork/exp_scale.py`、`results_scale.txt`、`attrib_bench.txt`
+- **素材**：`_kppwork/exp_n16.py`（实测，主）、`_kppwork/scaling_n16.txt`、`_kppwork/gen_n16.py`、`_kppwork/sweep_n16.sh`；`_kppwork/exp_scale.py` + `results_scale.txt`（映射版，保留作对照）
 
 ### Fig. 5 — 块内符号翻转（发现的主图）④
 - **画什么**：8 个 3 小时窗的有限关停效应 Δ_off（柱状），按小时排列。12–15h 一根负柱紧邻 15–18h 一根正柱。
@@ -140,6 +193,30 @@ winter periods from them.
 - **引用**：Geyer & Stutz 2004（0-D 箱在 NBL 不足）；Wang et al. 2026 Sci Adv（0-D 箱排除 NOx > 50 ppb 的冬季时段）；Lu et al. 2017（2 天 spin-up + 风速缩放稀释率）
 - **素材**：`results_kdil.txt`、`_blh_to_kdil.py`、`results_obs_dallas_2016w_cb05.txt`
 
+### Table 5 — 采样的实测缩放曲线（n=8/12/16 全枚举，真 oracle）③
+- **列**：n | B（预算） | runs（实际化学次数） | err(run)（单次运行误差） | spread | 备注
+- **行**：r_sat 的 n=8（3 点）、n=12（5 点）、n=16（5 点）；r_lim1 同结构
+- **必带的两个注**
+  1. `err(run) = mean over seeds of max_i |est_i − true_i| / max|φ|`，测的是"**跑一次**离真值多远"，不是"多 seed 均值的偏差"（后者测无偏性，不随预算单调，用它会读出错误的缩放律）
+  2. n=8 的 B=256 是全域饱和，需在图/表中标出或剔除
+- **另附**：Möbius 快速实现的交叉校验 `max|fast − exp_scale| = 1.6e-14`（n=8）；两个冻结锚点 `m00000 → 21.182293`、`m00012 → 27.371391` 逐位复现
+- **素材**：`_kppwork/scaling_n16.txt`、`_kppwork/n16_exact_shapley.json`、`_kppwork/exp_n16.py`
+
+### Table 6 — 截断地板与谱质量（全枚举 n=8/12/16）①
+- **列**：n | max\|φ\| | trunc(q≤1..8) | 谱质量 `Σ_{|A|=k}|m(A)|/|A|` 按 k（k=1 归一）
+- **行**：r_sat 与 r_lim1 各 3 个 n
+- **必带的机制句**：高阶项各自大、相互抵消；截断破坏抵消 ⇒ 误差非单调、可发散
+- **与 Table 5 的区分**：Table 5 是**采样器**的代价（实现层），本表是**谱结构**的性质（架构层）——两者不可混引
+- **素材**：`_kppwork/spectrum_orders.txt`、`_kppwork/_n16_spectrum.py`
+
+### Table 7 — 两个 n=8 benchmark 在 n=16 oracle 上重跑（讨论用）
+- **动机**：两个 benchmark 原都在 n=8，宇宙仅 256、预算达 192（覆盖 75%），**方法无法分离**——与 Table 5 的交叉点（枚举在 n=8 反而便宜）是同一事实。n=16 的预算 64 只覆盖 0.098%。
+- **保真性**：n=8 侧**逐格复现**已发表数字（attribution 20/20 格全中；planning 的 greedy/greedy+ 逐位一致）
+- **归因侧结果（n=16）**：方法确实分离了，但 `perm_anti`（标准、结构盲）在 20%/10% 容差上**胜过** hub-分层主动采样 6×/4×；差距随 n 扩大。机制：分层粒度 = n，覆盖成本随 n 线性增长而收益不增。
+- **规划侧结果（n=16）**：MCTS 在**每一个 k** 上仍是最差臂（R1：k=64 时 greedy+ 0.000 / random 2.783 / **mcts 2.915**）。搜索空间从 256 涨到 65,536（256×）后负结果**依然成立** ⇒ 原判定从"n=8 太小"的嫌疑中解脱，**升级为已验证事实**
+- **素材**：`_kppwork/bench_n16.txt`、`_kppwork/exp_n16_bench.py`、`_kppwork/sweep_n16.sh`
+- **保留**：planning 的 random/mcts 用 50 seed，原文件默认 60，故二者略有偏差（greedy 系确定性、逐位一致）；要严格复现需 60 seed
+
 ---
 
 ## 四、Discussion 必须写的三段（否则会被拒）
@@ -147,6 +224,7 @@ winter periods from them.
 1. **对位 adjoint / DDM / ISAM**（用 Table 2 撑）：局地 vs 全局；无穷小 vs 有限关停；拿不到高阶谱，且有反号反例。
 2. **ISAM 的分摊任意性 = 我们的 L3 的工业级实例**：EPA 文档承认 "fair" 比例分摊产生 non-intuitive 结果（电厂烟羽里出现"生物源 NOx"），为此加了 5 种赋值选项，其中一种直接用 PH₂O₂/PHNO₃（Sillman 1995）作 regime 判据。这说明**归因依赖先验分摊选择**——正是 L3"公理是选择、不可验"。
 3. **局限**：宿主为 0-D 箱、无干沉降、玩家集为手工设计而非清单派生、无真实大气锚定（Table 4 给出可计算的适用域判据，并把夜间明确划到范围外）。
+4. **采样器的教训（诚实披露，用 Table 7）**：hub-位置分层的**开销随 n 线性增长**（层数 = n），而它买到的方差削减不随 n 增长，因此该构造在 n=16 上被**结构盲的**对偶排列采样反超 4–6 倍，且差距随 n 扩大。两个 n=8 benchmark 原本都落在"宇宙 256、覆盖 75%"的退化区，方法无法分离；把它们搬到 n=16 才第一次看清。**我们据此改用对偶排列采样**，不把采样器当贡献——这是架构与实现分离的直接体现。
 
 ---
 
