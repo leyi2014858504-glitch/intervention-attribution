@@ -123,7 +123,7 @@ _kppwork/_ziplook*.sh
 # ------------------------------------------- n=16 enumeration (65536 coalitions)
 # per-worker shards are merged into n16_v_r_sat.csv / n16_v_r_lim1.csv, which ARE
 # versioned (1.6 MB each, the exact oracle behind the paper's Fig. 2 / Table 6)
-/_kppwork/n16_v_*_[0-9].csv
+/_kppwork/n16_v_*_[0-9]*.csv
 /_kppwork/n16_prog_*.txt
 /_kppwork/n16_worker_*.out
 /_kppwork/n16_done_*.txt
