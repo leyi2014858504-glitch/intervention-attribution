@@ -1,0 +1,82 @@
+Measured scaling of the permutation+antithetic sampler in n
+estimator and sampler imported verbatim from exp_scale.py
+error and spread are both normalised by max_i |phi_i|
+
+oracle sizes: n=8 -> 256, n=12 -> 4096, n=16 -> 65536 (all enumerated)
+              n=24 -> none (only spread is available)
+
+n=8  r_sat       256 values (expect 256)
+n=12 r_sat      4096 values (expect 4096)
+n=16 r_sat     65536 values (expect 65536)
+n=8  r_lim1      256 values (expect 256)
+n=12 r_lim1     4096 values (expect 4096)
+n=16 r_lim1    65536 values (expect 65536)
+
+==============================================================================
+scenario r_sat
+==============================================================================
+
+  n=8  max|phi| = 16.664 ppb   oracle = 256 coalitions
+       B    runs    err(run)      spread   err(mean) err*run^.5
+      64      65      7.304%      6.386%      1.252%    0.5889
+     128     132      4.463%      3.148%      0.837%    0.5127
+     256     256      1.108%      0.941%      0.147%    0.1773
+
+
+  n=12  max|phi| = 16.594 ppb   oracle = 4096 coalitions
+       B    runs    err(run)      spread   err(mean) err*run^.5
+      64      66     12.133%      8.679%      2.311%    0.9857
+     128     134      8.186%      6.589%      2.232%    0.9476
+     256     262      4.754%      3.420%      1.572%    0.7695
+     512     514      3.182%      2.311%      0.460%    0.7214
+    1024    1028      1.871%      1.269%      0.392%    0.6000
+
+
+  n=16  max|phi| = 13.892 ppb   oracle = 65536 coalitions
+       B    runs    err(run)      spread   err(mean) err*run^.5
+      64      75     11.536%      9.645%      1.542%    0.9990
+     128     137      7.642%      6.779%      0.858%    0.8945
+     256     267      4.894%      3.615%      0.833%    0.7997
+     512     521      3.576%      3.082%      1.023%    0.8163
+    1024    1030      2.183%      1.891%      0.543%    0.7005
+
+==============================================================================
+scenario r_lim1
+==============================================================================
+
+  n=8  max|phi| = 12.748 ppb   oracle = 256 coalitions
+       B    runs    err(run)      spread   err(mean) err*run^.5
+      64      65      3.945%      2.751%      0.937%    0.3181
+     128     132      2.512%      2.071%      0.651%    0.2886
+     256     256      0.651%      0.500%      0.167%    0.1042
+
+
+  n=12  max|phi| = 12.814 ppb   oracle = 4096 coalitions
+       B    runs    err(run)      spread   err(mean) err*run^.5
+      64      66      4.499%      3.364%      1.048%    0.3655
+     128     134      4.100%      3.177%      1.132%    0.4746
+     256     262      2.558%      2.079%      0.416%    0.4140
+     512     514      1.737%      1.196%      0.400%    0.3937
+    1024    1028      1.227%      0.889%      0.159%    0.3935
+
+
+  n=16  max|phi| = 10.049 ppb   oracle = 65536 coalitions
+       B    runs    err(run)      spread   err(mean) err*run^.5
+      64      75      7.503%      5.314%      1.742%    0.6498
+     128     137      5.043%      3.740%      0.594%    0.5902
+     256     267      2.798%      2.122%      0.314%    0.4572
+     512     521      1.826%      1.467%      0.361%    0.4168
+    1024    1030      1.116%      0.851%      0.248%    0.3582
+
+==============================================================================
+runs needed for a 1.5% normalised error (log-log interpolation)
+==============================================================================
+  scen        n       runs    vs n=12
+  r_sat       8        222        n/a
+  r_sat      12        n/a        n/a
+  r_sat      16        n/a        n/a
+  r_lim1      8        170        n/a
+  r_lim1     12        689      1.00x
+  r_lim1     16        684      0.99x
+
+enumeration for comparison: n=8 256, n=12 4096, n=16 65536, n=24 16777216
