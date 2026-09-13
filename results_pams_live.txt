@@ -1,0 +1,143 @@
+=== sites with an auto-GC / dual-FID PAMS VOC monitor (any date) ===
+  total such sites: 178   still alive in 2016+: 32   dead before 2016: 146
+
+=== STILL ALIVE in 2016+ ===
+  ('48', '245', '0009')  nVOC=342  last=2026-02-28  Beaumont, Texas | Beaumont Downtown
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('25', '009', '2006')  nVOC=340  last=2016-09-03  Lynn, Massachusetts | LYNN WATER TREATMENT PLANT
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+       6L PRESSURIZED CANISTER - PE8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('48', '113', '0069')  nVOC=310  last=2025-02-23  Dallas, Texas | Dallas Hinton
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('48', '439', '1002')  nVOC=291  last=2026-01-31  Fort Worth, Texas | Fort Worth Northwest
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('25', '013', '0008')  nVOC=173  last=2018-08-31  Chicopee, Massachusetts | WESTOVER AFB
+       6L PRESSURIZED CANISTER - PE8700;AUTO GC;SUBAMBIENT-DUAL FID
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('18', '089', '0022')  nVOC=157  last=2016-12-31  Gary, Indiana | Gary-IITRI/ 1219.5 meters east of Tennessee St.- old ammuntion bunker
+       6L PRESSURIZED CANISTER - PE8700;AUTO GC;SUBAMBIENT-DUAL FID
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('06', '111', '3001')  nVOC=134  last=2018-09-29  Not in a City, California | El Rio-Rio Mesa School #2
+       6L AMBIENT CANISTER - DUAL FID - PAMS
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+  ('48', '201', '1035')  nVOC=133  last=2026-02-28  Houston, Texas | Clinton
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('22', '033', '0009')  nVOC=131  last=2026-03-27  Baton Rouge, Louisiana | Capitol
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+  ('06', '111', '2002')  nVOC=119  last=2018-09-29  Simi Valley, California | Simi Valley-Cochran Street
+       6L AMBIENT CANISTER - DUAL FID - PAMS
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+  ('23', '005', '2003')  nVOC=118  last=2022-08-31  Not in a City, Maine | CETL - Cape Elizabeth Two Lights (State Park)
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('22', '033', '0013')  nVOC=114  last=2016-04-30  Not in a City, Louisiana | Pride
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+  ('22', '047', '0009')  nVOC=114  last=2016-04-30  Not in a City, Louisiana | Bayou Plaquemine
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+  ('48', '141', '0044')  nVOC=114  last=2025-12-31  El Paso, Texas | El Paso Chamizal
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('25', '015', '4002')  nVOC=110  last=2016-08-31  Ware (census name for Ware Center), Massachusetts | QUABBIN RES
+       6L PRESSURIZED CANISTER - PE8700;AUTO GC;SUBAMBIENT-DUAL FID
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('22', '005', '0004')  nVOC=108  last=2026-03-27  Not in a City, Louisiana | Dutchtown
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+  ('48', '201', '1039')  nVOC= 62  last=2025-12-31  Deer Park, Texas | Houston Deer Park #2
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('34', '023', '0011')  nVOC= 59  last=2017-08-31  East Brunswick (Township of), New Jersey | Rutgers University
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('36', '005', '0133')  nVOC= 59  last=2025-08-31  New York, New York | PFIZER LAB SITE
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('36', '103', '0044')  nVOC= 58  last=2025-08-31  Old Field, New York | Flax Pond
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('06', '001', '0016')  nVOC= 57  last=2023-11-30  Livermore, California | Livermore Portola
+       PRECONCEN TRAP/THERMAL DESORBER - AUTO GC (PE CLARUS 500 DUAL COL)
+  ('06', '001', '0007')  nVOC= 56  last=2022-11-30  Livermore, California | Livermore
+       PRECONCEN TRAP/THERMAL DESORBER - AUTO GC (PE CLARUS 500 DUAL COL)
+  ('06', '001', '2005')  nVOC= 56  last=2016-11-30  Not in a City, California | Patterson Pass
+       PRECONCEN TRAP/THERMAL DESORBER - AUTO GC (PE CLARUS 500 DUAL COL)
+  ('06', '013', '2007')  nVOC= 56  last=2022-11-09  San Ramon, California | San Ramon
+       PRECONCEN TRAP/THERMAL DESORBER - AUTO GC (PE CLARUS 500 DUAL COL)
+  ('33', '011', '5001')  nVOC= 55  last=2016-08-28  Peterborough (Peterboro), New Hampshire | MILLER STATE PARK
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+  ('33', '015', '0018')  nVOC= 55  last=2016-09-01  Londonderry, New Hampshire | MOOSEHILL SCHOOL
+       6L PRESSURIZED CANISTER - DUAL FID - PAMS
+  ('48', '201', '0026')  nVOC= 55  last=2026-03-31  Channelview, Texas | Channelview
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('25', '009', '4005')  nVOC= 54  last=2016-08-31  Newburyport, Massachusetts | NEWBURYPORT HARBOR ST PARKING LOT
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('48', '245', '1035')  nVOC= 46  last=2026-02-28  Nederland, Texas | Nederland 17th Street
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('27', '003', '1002')  nVOC= 27  last=2025-08-31  Blaine, Minnesota | Anoka County Airport
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+  ('11', '001', '0043')  nVOC=  7  last=2018-08-30  Washington, District Of Columbia | MCMILLAN  NCore-PAMS
+       6L AMBIENT CANISTER - DUAL FID - PAMS
+       PRECONCEN TRAP/THERMAL DESORBER - AUTO GC (PE CLARUS 500 DUAL COL)
+  ('29', '510', '0085')  nVOC=  1  last=2023-08-31  St. Louis, Missouri | Blair Street
+       PRECONCENTRATION TRAP - PE 8700;AUTO GC;SUBAMBIENT-DUAL FID
+
+=== last sample date distribution for those PAMS sites ===
+  1993: 8
+  1994: 11
+  1995: 5
+  1996: 3
+  1997: 5
+  1998: 13
+  1999: 9
+  2000: 17
+  2001: 19
+  2002: 8
+  2003: 2
+  2005: 4
+  2006: 2
+  2007: 5
+  2008: 3
+  2009: 2
+  2010: 3
+  2011: 7
+  2012: 7
+  2013: 2
+  2014: 7
+  2015: 4
+  2016: 9
+  2017: 1
+  2018: 4
+  2022: 3
+  2023: 2
+  2025: 6
+  2026: 7
+
+=== sites with ANY 43xxx/45xxx VOC parameter alive in 2016+: 412 ===
+  (top 30 by parameter count)
+  ('04', '013', '9997')  nVOC=403  last=2025-12-27  Phoenix, Arizona
+  ('25', '009', '2006')  nVOC=308  last=2026-03-27  Lynn, Massachusetts
+  ('51', '087', '0014')  nVOC=298  last=2025-12-27  East Highland Park, Virginia
+  ('42', '101', '0004')  nVOC=284  last=2016-09-27  Philadelphia, Pennsylvania
+  ('44', '007', '1010')  nVOC=262  last=2026-04-26  East Providence, Rhode Island
+  ('48', '201', '1039')  nVOC=237  last=2025-12-31  Deer Park, Texas
+  ('37', '183', '0014')  nVOC=227  last=2025-12-27  Raleigh, North Carolina
+  ('13', '089', '0002')  nVOC=225  last=2025-12-27  Not in a City, Georgia
+  ('04', '021', '8001')  nVOC=224  last=2025-10-27  Queen Valley, Arizona
+  ('08', '001', '0009')  nVOC=221  last=2025-12-31  Brighton, Colorado
+  ('17', '031', '4201')  nVOC=221  last=2025-12-27  Northbrook, Illinois
+  ('49', '011', '0004')  nVOC=209  last=2025-12-31  Bountiful, Utah
+  ('18', '097', '0078')  nVOC=203  last=2026-05-31  Indianapolis (Remainder), Indiana
+  ('42', '101', '0048')  nVOC=203  last=2025-09-27  Philadelphia, Pennsylvania
+  ('18', '089', '0022')  nVOC=200  last=2026-05-26  Gary, Indiana
+  ('34', '023', '0011')  nVOC=197  last=2025-12-27  East Brunswick (Township of), New Jersey
+  ('36', '005', '0133')  nVOC=197  last=2026-03-27  New York, New York
+  ('24', '005', '3001')  nVOC=193  last=2025-12-27  Essex, Maryland
+  ('25', '025', '0042')  nVOC=192  last=2026-03-27  Boston, Massachusetts
+  ('37', '119', '0041')  nVOC=189  last=2025-08-31  Charlotte, North Carolina
+  ('06', '065', '8001')  nVOC=183  last=2026-03-29  Rubidoux, California
+  ('06', '037', '1103')  nVOC=182  last=2026-03-27  Los Angeles, California
+  ('11', '001', '0043')  nVOC=179  last=2026-03-27  Washington, District Of Columbia
+  ('08', '045', '0019')  nVOC=176  last=2025-12-16  Battlement Mesa, Colorado
+  ('08', '045', '0005')  nVOC=173  last=2020-11-05  Parachute, Colorado
+  ('08', '045', '0007')  nVOC=173  last=2017-01-13  Rifle, Colorado
+  ('08', '045', '0023')  nVOC=173  last=2020-12-29  Rifle, Colorado
+  ('51', '670', '0010')  nVOC=173  last=2025-12-27  Hopewell, Virginia
+  ('08', '045', '0009')  nVOC=172  last=2020-12-29  Silt, Colorado
+  ('08', '031', '0002')  nVOC=167  last=2023-10-15  Denver, Colorado

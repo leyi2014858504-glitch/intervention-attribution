@@ -1,0 +1,74 @@
+cutoff: every core gas and the auto-GC VOC must reach 2016-06-01
+live auto-GC VOC sites: 30
+SITES WITH ALL FIVE, LIVE: 14
+
+('22', '033', '0009')  pamsVOC_last=2026-03-27
+    core last-sample-dates: O3=2026-05-31, NO=2026-05-31, NO2=2026-05-31, CO=2026-05-31
+    Baton Rouge, Louisiana | Capitol | 30.461981,-91.179219
+    CBSA=Baton Rouge, LA
+
+('48', '201', '1035')  pamsVOC_last=2026-02-28
+    core last-sample-dates: O3=2026-03-31, NO=2026-03-31, NO2=2026-03-31, CO=2026-03-31
+    Houston, Texas | Clinton | 29.733737,-95.257605
+    CBSA=Houston-The Woodlands-Sugar Land, TX
+
+('48', '245', '1035')  pamsVOC_last=2026-02-28
+    core last-sample-dates: O3=2026-02-28, NO=2026-02-28, NO2=2026-02-28, CO=2018-11-15
+    Nederland, Texas | Nederland 17th Street | 29.979975,-94.004778
+    CBSA=Beaumont-Port Arthur, TX
+
+('48', '141', '0044')  pamsVOC_last=2025-12-31
+    core last-sample-dates: O3=2026-03-31, NO=2026-03-31, NO2=2026-03-31, CO=2026-03-31
+    El Paso, Texas | El Paso Chamizal | 31.765684,-106.455227
+    CBSA=El Paso, TX
+
+('48', '201', '1039')  pamsVOC_last=2025-12-31
+    core last-sample-dates: O3=2026-02-28, NO=2026-02-28, NO2=2026-02-28, CO=2026-02-28
+    Deer Park, Texas | Houston Deer Park #2 | 29.670552,-95.129933
+    CBSA=Houston-The Woodlands-Sugar Land, TX
+
+('27', '003', '1002')  pamsVOC_last=2025-08-31
+    core last-sample-dates: O3=2025-12-31, NO=2025-12-31, NO2=2025-12-31, CO=2025-12-31
+    Blaine, Minnesota | Anoka County Airport | 45.13768,-93.207615
+    CBSA=Minneapolis-St. Paul-Bloomington, MN-WI
+
+('36', '005', '0133')  pamsVOC_last=2025-08-31
+    core last-sample-dates: O3=2026-05-31, NO=2026-04-30, NO2=2026-04-30, CO=2026-01-23
+    New York, New York | PFIZER LAB SITE | 40.8679,-73.87809
+    CBSA=New York-Newark-Jersey City, NY-NJ-PA
+
+('36', '103', '0044')  pamsVOC_last=2025-08-31
+    core last-sample-dates: O3=2026-05-31, NO=2026-04-30, NO2=2026-04-30, CO=2026-05-31
+    Old Field, New York | Flax Pond | 40.961017,-73.139046
+    CBSA=New York-Newark-Jersey City, NY-NJ-PA
+
+('48', '113', '0069')  pamsVOC_last=2025-02-23
+    core last-sample-dates: O3=2025-10-31, NO=2025-10-31, NO2=2025-10-31, CO=2025-10-31
+    Dallas, Texas | Dallas Hinton | 32.820061,-96.860117
+    CBSA=Dallas-Fort Worth-Arlington, TX
+
+('29', '510', '0085')  pamsVOC_last=2023-08-31
+    core last-sample-dates: O3=2026-03-31, NO=2026-03-31, NO2=2026-03-31, CO=2026-03-31
+    St. Louis, Missouri | Blair Street | 38.656429,-90.198348
+    CBSA=St. Louis, MO-IL
+
+('25', '013', '0008')  pamsVOC_last=2018-08-31
+    core last-sample-dates: O3=2026-02-28, NO=2026-02-28, NO2=2026-02-28, CO=2017-12-31
+    Chicopee, Massachusetts | WESTOVER AFB | 42.19438,-72.555112
+    CBSA=Springfield, MA
+
+('11', '001', '0043')  pamsVOC_last=2018-08-30
+    core last-sample-dates: O3=2026-05-31, NO=2026-05-31, NO2=2026-05-31, CO=2026-05-31
+    Washington, District Of Columbia | MCMILLAN  NCore-PAMS | 38.921847,-77.013178
+    CBSA=Washington-Arlington-Alexandria, DC-VA-MD-WV
+
+('25', '009', '2006')  pamsVOC_last=2016-09-03
+    core last-sample-dates: O3=2026-02-28, NO=2026-02-28, NO2=2026-02-28, CO=2017-12-31
+    Lynn, Massachusetts | LYNN WATER TREATMENT PLANT | 42.474642,-70.970816
+    CBSA=Boston-Cambridge-Newton, MA-NH
+
+('33', '015', '0018')  pamsVOC_last=2016-09-01
+    core last-sample-dates: O3=2026-03-31, NO=2026-03-31, NO2=2026-03-31, CO=2026-03-31
+    Londonderry, New Hampshire | MOOSEHILL SCHOOL | 42.862531,-71.38014
+    CBSA=Boston-Cambridge-Newton, MA-NH
+

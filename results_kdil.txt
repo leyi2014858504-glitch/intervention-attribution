@@ -1,0 +1,9 @@
+label             BLH_day  BLH_night  day/night  tau_BLH(s)  suggested KDIL_DAY range
+met_dallas_2016w       583        355        1.6       22880   [2288, 22880]
+met_dallas_2017s      1051        341        3.1       18034   [1803, 18034]
+met_deerpark_2016w     532        388        1.4       25192   [2519, 25192]
+met_deerpark_2017s     940        257        3.7       14829   [1483, 14829]
+met_houston_2016w      532        388        1.4       25192   [2519, 25192]
+met_houston_2017s      940        257        3.7       14829   [1483, 14829]
+met_elpaso_2016w       631        137        4.6       11063   [1106, 11063]
+met_elpaso_2017s      2031        268        7.6       12633   [1263, 12633]

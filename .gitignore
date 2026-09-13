@@ -59,6 +59,60 @@ _kppwork/_*.out
 _kppwork/_*.log
 _kppwork/_*.err
 
+# ------------------------------------------- observation data (AQS / Open-Meteo)
+# 160 MB of AQS metadata plus 22 MB of raw per-site pulls.  Both are re-fetchable
+# with the versioned pullers (_aqs_pull_par.py, _aqs_api.py, _met_pull.py); the
+# compact derived form that IS versioned is obs_*_cb05.csv + met_*.csv.
+/data_aqs/
+/aqs_sites_data/
+/_site_param_cache.json
+# the CEDA Beijing downloader produced five 0-byte shells; keep them out
+/atmos_plan/dataset/
+
+# ------------------------------------- root-level scratch probing (rounds 1-2)
+# Throwaway one-shot scripts from interactive debugging.  The ones that carry a
+# reusable result are deliberately NOT listed here: _aqs_api.py, _aqs_pull_par.py,
+# _aqs_confirm.py, _aqs_pick.py, _aqs_pams_live.py, _aqs_site_params.py,
+# _aqs_screen_final.py, _voc_map.py, _voc_nc.py, _obs_build.py, _obs_cb05.py,
+# _met_pull.py, _blh_to_kdil.py, _fit_anchor.py, _scan_anchor.py, _diag_fit.py,
+# _local_vs_global.py
+/_aqs_probe*.sh
+/_aqs_files*.sh
+/_aqs_pull.sh
+/_aqs_pull2.sh
+/_aqs_runall*.sh
+/_aqs_mon.sh
+/_aqs_prog.sh
+/_aqs_snap.sh
+/_aqs_state.sh
+/_aqs_t.sh
+/_aqs_wait*.sh
+/_aqs_watch.sh
+/_aqs_par.sh
+/_aqs_timing.sh
+/_aqs_sleep.sh
+/_aqs_final.sh
+/_aqs_extract_sites.sh
+/_aqs_index.sh
+/_aqs_hourly_probe.py
+/_aqs_co_*.py
+/_aqs_diag_voc.py
+/_aqs_ktest.py
+/_aqs_signup.py
+/_do_confirm*.sh
+/_env_check.sh
+/_lvg_smoke.py
+/_rate.sh
+/_met_all*.sh
+/_obs_all.sh
+/_met_test.sh
+/_altdata*.sh
+/_ziplook*.sh
+_kppwork/_aqs_probe*.sh
+_kppwork/_altdata*.sh
+_kppwork/_met_test.sh
+_kppwork/_ziplook*.sh
+
 # OS noise
 Thumbs.db
 desktop.ini

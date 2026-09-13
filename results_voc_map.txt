@@ -1,0 +1,429 @@
+===== LA_06-037-1103 : 117 VOC parameters in the inventory =====
+code   cb05  conf name  |  note
+--------------------------------------------------------------------------------------------------------
+43101  -     -    Total hydrocarbons  |  aggregate/diagnostic, not a single species
+43102  -     -    Total NMOC (non-methane organic compound)  |  aggregate/diagnostic, not a single species
+43141  PAR   H    n-Dodecane  |  alkane/cycloalkane carbon bonds
+43201  CH4   H    Methane  |  
+43202  ETHA  H    Ethane  |  CB05 keeps ethane separate
+43203  ETH   H    Ethylene  |  
+43204  PAR   H    Propane  |  reactivity-weighted into PAR
+43205  OLE   H    Propylene  |  
+43206  -     L    Acetylene  |  alkyne: no CB05 species, low reactivity
+43212  PAR   H    n-Butane  |  alkane/cycloalkane carbon bonds
+43214  PAR   H    Isobutane  |  alkane/cycloalkane carbon bonds
+43216  IOLE  H    trans-2-Butene  |  internal double bond
+43217  IOLE  H    cis-2-Butene  |  internal double bond
+43218  OLE   M    1,3-Butadiene  |  no diene in CB05; folded to OLE
+43220  PAR   H    n-Pentane  |  alkane/cycloalkane carbon bonds
+43221  PAR   H    Isopentane  |  alkane/cycloalkane carbon bonds
+43224  OLE   H    1-Pentene  |  terminal double bond
+43226  IOLE  H    trans-2-Pentene  |  internal double bond
+43227  IOLE  H    cis-2-Pentene  |  internal double bond
+43228  IOLE  H    2-Methyl-2-butene  |  internal double bond
+43230  PAR   H    3-Methylpentane  |  alkane/cycloalkane carbon bonds
+43231  PAR   H    n-Hexane  |  alkane/cycloalkane carbon bonds
+43232  PAR   H    n-Heptane  |  alkane/cycloalkane carbon bonds
+43233  PAR   H    n-Octane  |  alkane/cycloalkane carbon bonds
+43235  PAR   H    n-Nonane  |  alkane/cycloalkane carbon bonds
+43238  PAR   H    n-Decane  |  alkane/cycloalkane carbon bonds
+43242  PAR   H    Cyclopentane  |  alkane/cycloalkane carbon bonds
+43243  ISOP  H    Isoprene  |  
+43244  PAR   H    2,2-Dimethylbutane  |  alkane/cycloalkane carbon bonds
+43245  OLE   H    1-Hexene  |  terminal double bond
+43246  OLE   H    2-Methyl-1-pentene  |  terminal double bond
+43247  PAR   H    2,4-Dimethylpentane  |  alkane/cycloalkane carbon bonds
+43248  PAR   H    Cyclohexane  |  alkane/cycloalkane carbon bonds
+43249  PAR   H    3-Methylhexane  |  alkane/cycloalkane carbon bonds
+43250  PAR   H    2,2,4-Trimethylpentane  |  alkane/cycloalkane carbon bonds
+43252  PAR   H    2,3,4-Trimethylpentane  |  alkane/cycloalkane carbon bonds
+43253  PAR   H    3-Methylheptane  |  alkane/cycloalkane carbon bonds
+43256  APIN  H    alpha.-Pinene  |  SORG species
+43257  BPIN  H    beta.-Pinene  |  SORG species
+43261  PAR   H    Methylcyclohexane  |  alkane/cycloalkane carbon bonds
+43262  PAR   H    Methylcyclopentane  |  alkane/cycloalkane carbon bonds
+43263  PAR   H    2-Methylhexane  |  alkane/cycloalkane carbon bonds
+43270  OLE   H    Isobutene  |  terminal double bond
+43280  OLE   H    1-Butene  |  terminal double bond
+43282  OLE   H    3-Methyl-1-butene  |  terminal double bond
+43283  IOLE  H    Cyclopentene  |  internal double bond
+43284  PAR   H    2,3-Dimethylbutane  |  alkane/cycloalkane carbon bonds
+43285  PAR   H    2-Methylpentane  |  alkane/cycloalkane carbon bonds
+43289  IOLE  H    trans-2-Hexene  |  internal double bond
+43290  IOLE  H    cis-2-Hexene  |  internal double bond
+43291  PAR   H    2,3-Dimethylpentane  |  alkane/cycloalkane carbon bonds
+43295  PAR   H    3-Ethylhexane  |  alkane/cycloalkane carbon bonds
+43359  -     X    Chlorodifluoromethane  |  halogenated: no CB05 species; trace at ambient levels
+43372  PAR   L    Methyl tert-butyl ether  |  ester/ether not in CB05; PAR surrogate is a guess
+43391  IOLE  H    4-Methylpentene & 3-methylpentene  |  internal double bond
+43392  PAR   H    2,2,3-Trimethylbutane  |  alkane/cycloalkane carbon bonds
+43393  PAR   H    cis-1,2-Dimethylcyclopentane  |  alkane/cycloalkane carbon bonds
+43394  PAR   H    trans-1,3-Dimethylcyclopentane  |  alkane/cycloalkane carbon bonds
+43395  PAR   H    4-Methylheptane  |  alkane/cycloalkane carbon bonds
+43502  FORM  H    Formaldehyde  |  
+43503  ALD2  H    Acetaldehyde  |  
+43504  ALDX  M    Propionaldehyde  |  C3+ aldehyde lumped surrogate
+43505  ALDX  M    Acrolein - Unverified  |  C3+ aldehyde lumped surrogate
+43509  ALDX  M    Acrolein - Verified  |  C3+ aldehyde lumped surrogate
+43510  ALDX  M    Butyraldehyde  |  C3+ aldehyde lumped surrogate
+43517  ALDX  M    Hexanaldehyde  |  C3+ aldehyde lumped surrogate
+43551  PAR   L    Acetone  |  CB05 has no ketone group; PAR overstates it
+43552  PAR   L    Methyl ethyl ketone  |  CB05 has no ketone group
+43601  PAR   L    Ethylene oxide  |  no CB05 species; PAR surrogate is a guess
+43702  -     L    Acetonitrile  |  no CB05 species; trace
+43704  -     L    Acrylonitrile  |  no CB05 species; trace
+43802  -     X    Dichloromethane  |  halogenated: no CB05 species; trace at ambient levels
+43803  -     X    Chloroform  |  halogenated: no CB05 species; trace at ambient levels
+43804  -     X    Carbon tetrachloride  |  halogenated: no CB05 species; trace at ambient levels
+43811  -     X    Trichlorofluoromethane  |  halogenated: no CB05 species; trace at ambient levels
+43814  -     X    Methyl chloroform  |  halogenated: no CB05 species; trace at ambient levels
+43815  -     X    Ethylene dichloride  |  halogenated: no CB05 species; trace at ambient levels
+43817  -     X    Tetrachloroethylene  |  halogenated: no CB05 species; trace at ambient levels
+43819  -     X    Bromomethane  |  halogenated: no CB05 species; trace at ambient levels
+43821  -     X    1,1,2-Trichloro-1,2,2-trifluoroethane  |  halogenated: no CB05 species; trace at ambient levels
+43823  -     X    Dichlorodifluoromethane  |  halogenated: no CB05 species; trace at ambient levels
+43824  -     X    Trichloroethylene  |  halogenated: no CB05 species; trace at ambient levels
+43827  -     X    Carbon Tetrafluoride  |  halogenated: no CB05 species; trace at ambient levels
+43829  -     X    1,2-Dichloropropane  |  halogenated: no CB05 species; trace at ambient levels
+43830  -     X    trans-1,3-Dichloropropene  |  halogenated: no CB05 species; trace at ambient levels
+43831  -     X    cis-1,3-Dichloropropene  |  halogenated: no CB05 species; trace at ambient levels
+43834  -     X    1,1,1,2,2-Pentafluoroethane  |  halogenated: no CB05 species; trace at ambient levels
+43843  -     X    Ethylene dibromide  |  halogenated: no CB05 species; trace at ambient levels
+43848  -     X    Halocarbon 134a  |  halogenated: no CB05 species; trace at ambient levels
+43854  -     X    1,1-Difluoroethane  |  halogenated: no CB05 species; trace at ambient levels
+43860  -     X    Vinyl chloride  |  halogenated: no CB05 species; trace at ambient levels
+43954  PAR   H    n-Undecane  |  alkane/cycloalkane carbon bonds
+43955  PAR   H    2,5-Dimethylhexane  |  alkane/cycloalkane carbon bonds
+43960  PAR   H    2-Methylheptane  |  alkane/cycloalkane carbon bonds
+45109  XYL   H    m/p Xylene  |  
+45201  TOL   L    Benzene  |  no benzene in CB05; TOL overstates it
+45202  TOL   H    Toluene  |  
+45203  TOL   M    Ethylbenzene  |  CB05 lumps C2-benzenes with TOL
+45204  XYL   H    o-Xylene  |  
+45205  XYL   H    m-Xylene  |  
+45206  XYL   H    p-Xylene  |  
+45207  XYL   M    1,3,5-Trimethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45208  XYL   M    1,2,4-Trimethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45209  XYL   M    n-Propylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45210  XYL   M    Isopropylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45211  XYL   M    o-Ethyltoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+45212  XYL   M    m-Ethyltoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+45213  XYL   M    p-Ethyltoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+45218  XYL   M    m-Diethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45219  XYL   M    p-Diethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45220  OLE   L    Styrene  |  no CB05 species; vinyl group -> OLE
+45225  XYL   M    1,2,3-Trimethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45501  ALDX  M    Benzaldehyde  |  C3+ aldehyde lumped surrogate
+45801  -     X    Chlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45805  -     X    1,2-Dichlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45806  -     X    1,3-Dichlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45807  -     X    1,4-Dichlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+
+  groups: -=30, ALD2=1, ALDX=6, APIN=1, BPIN=1, CH4=1, ETH=1, ETHA=1, FORM=1, IOLE=9, ISOP=1, OLE=9, PAR=38, TOL=3, XYL=14
+  reactive species actually mapped to a CB05 group: 87
+
+===== Charlotte_37-119-0041 : 298 VOC parameters in the inventory =====
+code   cb05  conf name  |  note
+--------------------------------------------------------------------------------------------------------
+43101  -     -    Total hydrocarbons  |  aggregate/diagnostic, not a single species
+43102  -     -    Total NMOC (non-methane organic compound)  |  aggregate/diagnostic, not a single species
+43104  -     -    Volatile organic compounds  |  aggregate/diagnostic, not a single species
+43111  -     -    Isomers of dodecane  |  aggregate/diagnostic, not a single species
+43121  -     -    Isomers of pentene  |  aggregate/diagnostic, not a single species
+43126  OLE   H    Ethylene & acetylene  |  terminal double bond
+43127  OLE   H    Isobutene & 1-butene  |  terminal double bond
+43130  -     X    n-Octane & trans-1,3-dichloropropylene  |  halogenated: no CB05 species; trace at ambient levels
+43131  -     -    Unidentified VOC  |  aggregate/diagnostic, not a single species
+43134  -     -    1,1-Bis(4-chlorophenyl)-2,2-dichloroethane  |  PAH/pesticide/PCB: not in the O3 mechanism
+43136  -     -    2,4-Dichlorophenoxyacetic acid methyl ester  |  PAH/pesticide/PCB: not in the O3 mechanism
+43137  -     -    Lindane  |  PAH/pesticide/PCB: not in the O3 mechanism
+43138  -     -    1,2,3,4,5,6- Hexachlorocyclohexane  |  PAH/pesticide/PCB: not in the O3 mechanism
+43139  PAR   H    1,2,3,4,5,6- Hexachlolocyclohexane, .beta.-  |  alkane/cycloalkane carbon bonds
+43140  -     -    1,2,3,4,5,6- Hexachlorocyclohexane, .delta.-  |  PAH/pesticide/PCB: not in the O3 mechanism
+43141  PAR   H    n-Dodecane  |  alkane/cycloalkane carbon bonds
+43142  OLE   H    Tridecene  |  terminal double bond
+43143  PAR   H    n-Tridecane  |  alkane/cycloalkane carbon bonds
+43144  -     L    Propyne  |  alkyne: no CB05 species
+43145  OLE   H    1-Octene  |  terminal double bond
+43148  IOLE  H    cis/trans-2-Butene  |  internal double bond
+43149  IOLE  H    cis/trans-2-Hexene  |  internal double bond
+43150  IOLE  H    cis/trans-2-Pentene  |  internal double bond
+43151  -     -    Heptachlor epoxide  |  PAH/pesticide/PCB: not in the O3 mechanism
+43152  -     -    Endrin ketone  |  PAH/pesticide/PCB: not in the O3 mechanism
+43153  -     -    Methoxychlor  |  PAH/pesticide/PCB: not in the O3 mechanism
+43154  -     -    Guthion  |  PAH/pesticide/PCB: not in the O3 mechanism
+43155  -     -    Atrazine  |  PAH/pesticide/PCB: not in the O3 mechanism
+43156  -     -    Dacthal  |  PAH/pesticide/PCB: not in the O3 mechanism
+43157  -     -    Endosulfan  |  PAH/pesticide/PCB: not in the O3 mechanism
+43158  -     -    Dursban  |  PAH/pesticide/PCB: not in the O3 mechanism
+43159  -     -    Aldrin  |  PAH/pesticide/PCB: not in the O3 mechanism
+43160  -     -    Methyl Parathion  |  PAH/pesticide/PCB: not in the O3 mechanism
+43161  -     -    Endrin aldehyde  |  PAH/pesticide/PCB: not in the O3 mechanism
+43162  -     -    1,1,1-Trichloro-2,2-bis (p-chlorophenyl) ethane  |  PAH/pesticide/PCB: not in the O3 mechanism
+43163  -     -    Endosulfan 2  |  PAH/pesticide/PCB: not in the O3 mechanism
+43164  -     -    Endrin  |  PAH/pesticide/PCB: not in the O3 mechanism
+43165  -     -    Dieldrin  |  PAH/pesticide/PCB: not in the O3 mechanism
+43166  -     -    1,1-Dichloroethenylidene bis(4-chlorobenzene)  |  PAH/pesticide/PCB: not in the O3 mechanism
+43167  -     -    Phosphorotrithioic acid,S,S,S-tributylester  |  PAH/pesticide/PCB: not in the O3 mechanism
+43168  -     -    Endosulfan sulfate  |  PAH/pesticide/PCB: not in the O3 mechanism
+43169  -     -    Malathion  |  PAH/pesticide/PCB: not in the O3 mechanism
+43170  -     -    Heptachlor  |  PAH/pesticide/PCB: not in the O3 mechanism
+43171  PAR   H    Cyclopentane & 2,3-dimethylbutane  |  alkane/cycloalkane carbon bonds
+43172  PAR   H    2-Methylheptane & 3-Methylheptane  |  alkane/cycloalkane carbon bonds
+43173  OLE   H    1-Hexene & 2-Methyl-1-pentene  |  terminal double bond
+43174  PAR   H    2,3-Dimethylbutane & 2-Methylpentane  |  alkane/cycloalkane carbon bonds
+43188  XYL   M    Pinene & p-ethytoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+43189  XYL   M    beta.Pinene & 1,2,3- trimethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+43201  CH4   H    Methane  |  
+43202  ETHA  H    Ethane  |  CB05 keeps ethane separate
+43203  ETH   H    Ethylene  |  
+43204  PAR   H    Propane  |  reactivity-weighted into PAR
+43205  OLE   H    Propylene  |  
+43206  -     L    Acetylene  |  alkyne: no CB05 species, low reactivity
+43207  -     X    Freon 113  |  halogenated: no CB05 species; trace at ambient levels
+43208  -     X    Freon 114  |  halogenated: no CB05 species; trace at ambient levels
+43209  PAR   L    Ethyl acetate  |  ester/ether not in CB05; PAR surrogate is a guess
+43212  PAR   H    n-Butane  |  alkane/cycloalkane carbon bonds
+43214  PAR   H    Isobutane  |  alkane/cycloalkane carbon bonds
+43216  IOLE  H    trans-2-Butene  |  internal double bond
+43217  IOLE  H    cis-2-Butene  |  internal double bond
+43218  OLE   M    1,3-Butadiene  |  no diene in CB05; folded to OLE
+43220  PAR   H    n-Pentane  |  alkane/cycloalkane carbon bonds
+43221  PAR   H    Isopentane  |  alkane/cycloalkane carbon bonds
+43222  PAR   H    2,2-Dimethylpropane  |  alkane/cycloalkane carbon bonds
+43224  OLE   H    1-Pentene  |  terminal double bond
+43225  OLE   H    2-Methyl-1-butene  |  terminal double bond
+43226  IOLE  H    trans-2-Pentene  |  internal double bond
+43227  IOLE  H    cis-2-Pentene  |  internal double bond
+43228  IOLE  H    2-Methyl-2-butene  |  internal double bond
+43230  PAR   H    3-Methylpentane  |  alkane/cycloalkane carbon bonds
+43231  PAR   H    n-Hexane  |  alkane/cycloalkane carbon bonds
+43232  PAR   H    n-Heptane  |  alkane/cycloalkane carbon bonds
+43233  PAR   H    n-Octane  |  alkane/cycloalkane carbon bonds
+43234  OLE   H    4-Methyl-1-pentene  |  terminal double bond
+43235  PAR   H    n-Nonane  |  alkane/cycloalkane carbon bonds
+43236  OLE   H    2-Ethyl-1-butene  |  terminal double bond
+43237  IOLE  H    2-Methyl-2-pentene  |  internal double bond
+43238  PAR   H    n-Decane  |  alkane/cycloalkane carbon bonds
+43242  PAR   H    Cyclopentane  |  alkane/cycloalkane carbon bonds
+43243  ISOP  H    Isoprene  |  
+43244  PAR   H    2,2-Dimethylbutane  |  alkane/cycloalkane carbon bonds
+43245  OLE   H    1-Hexene  |  terminal double bond
+43246  OLE   H    2-Methyl-1-pentene  |  terminal double bond
+43247  PAR   H    2,4-Dimethylpentane  |  alkane/cycloalkane carbon bonds
+43248  PAR   H    Cyclohexane  |  alkane/cycloalkane carbon bonds
+43249  PAR   H    3-Methylhexane  |  alkane/cycloalkane carbon bonds
+43250  PAR   H    2,2,4-Trimethylpentane  |  alkane/cycloalkane carbon bonds
+43252  PAR   H    2,3,4-Trimethylpentane  |  alkane/cycloalkane carbon bonds
+43253  PAR   H    3-Methylheptane  |  alkane/cycloalkane carbon bonds
+43256  APIN  H    alpha.-Pinene  |  SORG species
+43257  BPIN  H    beta.-Pinene  |  SORG species
+43261  PAR   H    Methylcyclohexane  |  alkane/cycloalkane carbon bonds
+43262  PAR   H    Methylcyclopentane  |  alkane/cycloalkane carbon bonds
+43263  PAR   H    2-Methylhexane  |  alkane/cycloalkane carbon bonds
+43264  PAR   H    Heptane  |  alkane/cycloalkane carbon bonds
+43269  IOLE  H    Cyclohexene  |  internal double bond
+43270  OLE   H    Isobutene  |  terminal double bond
+43274  OLE   H    2,4,4-Trimethyl-1-pentene  |  terminal double bond
+43275  IOLE  H    2,4,4-Trimethyl-2-pentene  |  internal double bond
+43279  OLE   H    1-Nonene  |  terminal double bond
+43280  OLE   H    1-Butene  |  terminal double bond
+43282  OLE   H    3-Methyl-1-butene  |  terminal double bond
+43283  IOLE  H    Cyclopentene  |  internal double bond
+43284  PAR   H    2,3-Dimethylbutane  |  alkane/cycloalkane carbon bonds
+43285  PAR   H    2-Methylpentane  |  alkane/cycloalkane carbon bonds
+43286  IOLE  H    cis-4-Methyl-2-pentene  |  internal double bond
+43289  IOLE  H    trans-2-Hexene  |  internal double bond
+43290  IOLE  H    cis-2-Hexene  |  internal double bond
+43291  PAR   H    2,3-Dimethylpentane  |  alkane/cycloalkane carbon bonds
+43292  PAR   H    2-2-3-Trimethylpentane  |  alkane/cycloalkane carbon bonds
+43293  PAR   H    2,4-Dimethylhexane  |  alkane/cycloalkane carbon bonds
+43294  PAR   H    2,3-Dimethylhexane  |  alkane/cycloalkane carbon bonds
+43295  PAR   H    3-Ethylhexane  |  alkane/cycloalkane carbon bonds
+43296  PAR   H    Ethylcyclohexane  |  alkane/cycloalkane carbon bonds
+43298  OLE   H    1-Decene  |  terminal double bond
+43299  OLE   H    1-Undecene  |  terminal double bond
+43301  MEOH  H    Methanol  |  
+43302  ETOH  H    Ethyl alcohol  |  
+43303  PAR   L    n-Propyl alcohol  |  alcohol not in CB05; PAR surrogate is a guess
+43305  PAR   L    n-Butyl alcohol  |  alcohol not in CB05; PAR surrogate is a guess
+43307  PAR   L    n-Amyl alcohol  |  alcohol not in CB05; PAR surrogate is a guess
+43312  PAR   L    2-Propanol  |  alcohol not in CB05; PAR surrogate is a guess
+43323  ALDX  M    n-Pinene & benzaldehyde  |  C3+ aldehyde lumped surrogate
+43328  OLE   H    1-Heptene  |  terminal double bond
+43329  ALDX  M    Butyraldehyde & isobutyraldehyde  |  C3+ aldehyde lumped surrogate
+43330  OLE   H    Dodecene  |  terminal double bond
+43331  -     X    2-Chloropentane  |  halogenated: no CB05 species; trace at ambient levels
+43335  -     X    3-Chloropropene  |  halogenated: no CB05 species; trace at ambient levels
+43339  ALDX  M    Butryl-aldehyde & Methyl Ethyl Ketone  |  C3+ aldehyde lumped surrogate
+43340  -     L    Ethyne & isobutane  |  alkyne: no CB05 species
+43341  PAR   H    Isopentane & cyclopentane  |  alkane/cycloalkane carbon bonds
+43342  IOLE  H    3-Methyl-1-butene & cyclopentene  |  internal double bond
+43343  IOLE  H    2-Methyl-2-butene & 1-pentene  |  internal double bond
+43344  PAR   L    1-Hexanol  |  alcohol not in CB05; PAR surrogate is a guess
+43346  PAR   H    Methylcyclopentane & 2,4-dimethylpentane  |  alkane/cycloalkane carbon bonds
+43347  PAR   H    2-Methylhexane & cyclohexane  |  alkane/cycloalkane carbon bonds
+43348  XYL   M    n-Decane & 1,2,4-trimethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+43349  IOLE  H    cis-2-Pentene & 2-methylpentane  |  internal double bond
+43352  -     X    Dichloroethyl ether  |  halogenated: no CB05 species; trace at ambient levels
+43356  PAR   L    Diethylene glycol  |  alcohol not in CB05; PAR surrogate is a guess
+43359  -     X    Chlorodifluoromethane  |  halogenated: no CB05 species; trace at ambient levels
+43362  PAR   H    2-Methylhexane & 2,3-dimethylpentane  |  alkane/cycloalkane carbon bonds
+43363  XYL   M    1,2,4-Trimethylbenzene & sec-butylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+43364  XYL   M    1,2,4-Trimethylbenzene & .beta.-pinene  |  CB05 XYL covers di-/tri-methylbenzenes
+43372  PAR   L    Methyl tert-butyl ether  |  ester/ether not in CB05; PAR surrogate is a guess
+43373  PAR   L    Tert-amyl methyl ether  |  ester/ether not in CB05; PAR surrogate is a guess
+43375  PAR   H    2,2-Dimethylheptane  |  alkane/cycloalkane carbon bonds
+43376  PAR   H    2,2,4-Trimethylhexane  |  alkane/cycloalkane carbon bonds
+43379  XYL   M    m(and p)-Ethyltoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+43391  IOLE  H    4-Methylpentene & 3-methylpentene  |  internal double bond
+43392  PAR   H    2,2,3-Trimethylbutane  |  alkane/cycloalkane carbon bonds
+43393  PAR   H    cis-1,2-Dimethylcyclopentane  |  alkane/cycloalkane carbon bonds
+43394  PAR   H    trans-1,3-Dimethylcyclopentane  |  alkane/cycloalkane carbon bonds
+43395  PAR   H    4-Methylheptane  |  alkane/cycloalkane carbon bonds
+43396  PAR   L    tert-Butyl ethyl ether  |  ester/ether not in CB05; PAR surrogate is a guess
+43434  PAR   L    n-Propyl acetate  |  ester/ether not in CB05; PAR surrogate is a guess
+43438  PAR   L    Ethyl acrylate  |  ester/ether not in CB05; PAR surrogate is a guess
+43440  PAR   L    n-Butyl acrylate  |  ester/ether not in CB05; PAR surrogate is a guess
+43441  PAR   L    Methyl methacrylate  |  ester/ether not in CB05; PAR surrogate is a guess
+43447  PAR   L    Vinyl acetate  |  ester/ether not in CB05; PAR surrogate is a guess
+43501  -     -    Aldehydes  |  aggregate/diagnostic, not a single species
+43502  FORM  H    Formaldehyde  |  
+43503  ALD2  H    Acetaldehyde  |  
+43504  ALDX  M    Propionaldehyde  |  C3+ aldehyde lumped surrogate
+43505  ALDX  M    Acrolein - Unverified  |  C3+ aldehyde lumped surrogate
+43510  ALDX  M    Butyraldehyde  |  C3+ aldehyde lumped surrogate
+43512  ALDX  M    Isobutyraldehyde  |  C3+ aldehyde lumped surrogate
+43513  ALDX  M    Isovaleraldehyde  |  C3+ aldehyde lumped surrogate
+43514  PAR   L    Butyl acetate  |  ester/ether not in CB05; PAR surrogate is a guess
+43515  ALDX  M    Methacrolein  |  C3+ aldehyde lumped surrogate
+43516  ALDX  M    Trans-Crotonaldehyde  |  C3+ aldehyde lumped surrogate
+43517  ALDX  M    Hexanaldehyde  |  C3+ aldehyde lumped surrogate
+43518  ALDX  M    Valeraldehyde  |  C3+ aldehyde lumped surrogate
+43520  ALDX  M    cis-Crotonaldehyde  |  C3+ aldehyde lumped surrogate
+43521  ALDX  M    Decanal  |  C3+ aldehyde lumped surrogate
+43522  ALDX  M    Dodecanal  |  C3+ aldehyde lumped surrogate
+43523  ALDX  M    Tetradecanal  |  C3+ aldehyde lumped surrogate
+43524  ALDX  M    Nonanal  |  C3+ aldehyde lumped surrogate
+43525  ALDX  M    Octanal  |  C3+ aldehyde lumped surrogate
+43526  ALDX  M    Tridecanal  |  C3+ aldehyde lumped surrogate
+43527  ALDX  M    Undecanal  |  C3+ aldehyde lumped surrogate
+43528  ALDX  M    Crotonaldehyde  |  C3+ aldehyde lumped surrogate
+43549  ALDX  M    Methyl ethyl ketone & methacrolein  |  C3+ aldehyde lumped surrogate
+43551  PAR   L    Acetone  |  CB05 has no ketone group; PAR overstates it
+43552  PAR   L    Methyl ethyl ketone  |  CB05 has no ketone group
+43553  PAR   L    3-Pentanone  |  CB05 has no ketone group
+43557  PAR   L    3-Hexanone  |  CB05 has no ketone group
+43558  PAR   L    Methyl Vinyl Ketone  |  CB05 has no ketone group
+43559  PAR   L    Methyl Butyl Ketone  |  CB05 has no ketone group
+43560  PAR   L    Methyl isobutyl ketone  |  CB05 has no ketone group
+43562  PAR   L    2-Pentanone  |  CB05 has no ketone group
+43563  PAR   L    3-Heptanone  |  CB05 has no ketone group
+43564  PAR   L    2-Methyl-3-hexanone  |  CB05 has no ketone group
+43599  OLE   H    Ethane & acetylene  |  terminal double bond
+43601  PAR   L    Ethylene oxide  |  no CB05 species; PAR surrogate is a guess
+43602  PAR   L    Propylene oxide  |  no CB05 species; PAR surrogate is a guess
+43702  -     L    Acetonitrile  |  no CB05 species; trace
+43704  -     L    Acrylonitrile  |  no CB05 species; trace
+43756  -     L    2-Nitropropane  |  no CB05 species; trace
+43776  -     -    Radon  |  not a VOC
+43800  -     -    Total chlorinated hydrocarbons  |  aggregate/diagnostic, not a single species
+43801  -     X    Chloromethane  |  halogenated: no CB05 species; trace at ambient levels
+43802  -     X    Dichloromethane  |  halogenated: no CB05 species; trace at ambient levels
+43803  -     X    Chloroform  |  halogenated: no CB05 species; trace at ambient levels
+43804  -     X    Carbon tetrachloride  |  halogenated: no CB05 species; trace at ambient levels
+43805  -     X    Dibromomethane  |  halogenated: no CB05 species; trace at ambient levels
+43806  -     X    Bromoform  |  halogenated: no CB05 species; trace at ambient levels
+43808  -     X    Methyl Iodide  |  halogenated: no CB05 species; trace at ambient levels
+43811  -     X    Trichlorofluoromethane  |  halogenated: no CB05 species; trace at ambient levels
+43812  -     X    Chloroethane  |  halogenated: no CB05 species; trace at ambient levels
+43813  -     X    1,1-Dichloroethane  |  halogenated: no CB05 species; trace at ambient levels
+43814  -     X    Methyl chloroform  |  halogenated: no CB05 species; trace at ambient levels
+43815  -     X    Ethylene dichloride  |  halogenated: no CB05 species; trace at ambient levels
+43817  -     X    Tetrachloroethylene  |  halogenated: no CB05 species; trace at ambient levels
+43818  -     X    1,1,2,2-Tetrachloroethane  |  halogenated: no CB05 species; trace at ambient levels
+43819  -     X    Bromomethane  |  halogenated: no CB05 species; trace at ambient levels
+43820  -     X    1,1,2-Trichloroethane  |  halogenated: no CB05 species; trace at ambient levels
+43821  -     X    1,1,2-Trichloro-1,2,2-trifluoroethane  |  halogenated: no CB05 species; trace at ambient levels
+43823  -     X    Dichlorodifluoromethane  |  halogenated: no CB05 species; trace at ambient levels
+43824  -     X    Trichloroethylene  |  halogenated: no CB05 species; trace at ambient levels
+43825  -     X    2,2-Dichloro-1,1,1-trifluoroethane  |  halogenated: no CB05 species; trace at ambient levels
+43826  -     X    1,1-Dichloroethylene  |  halogenated: no CB05 species; trace at ambient levels
+43828  -     X    Bromodichloromethane  |  halogenated: no CB05 species; trace at ambient levels
+43829  -     X    1,2-Dichloropropane  |  halogenated: no CB05 species; trace at ambient levels
+43830  -     X    trans-1,3-Dichloropropene  |  halogenated: no CB05 species; trace at ambient levels
+43831  -     X    cis-1,3-Dichloropropene  |  halogenated: no CB05 species; trace at ambient levels
+43832  -     X    Dibromochloromethane  |  halogenated: no CB05 species; trace at ambient levels
+43833  -     X    2-Chloroethyl vinyl ether  |  halogenated: no CB05 species; trace at ambient levels
+43835  -     X    Chloroprene  |  halogenated: no CB05 species; trace at ambient levels
+43836  -     X    Bromochloromethane  |  halogenated: no CB05 species; trace at ambient levels
+43837  -     X    1,1,1,2-Tetrachloroethane  |  halogenated: no CB05 species; trace at ambient levels
+43838  -     X    trans-1,2-Dichloroethylene  |  halogenated: no CB05 species; trace at ambient levels
+43839  -     X    cis-1,2-Dichloroethene  |  halogenated: no CB05 species; trace at ambient levels
+43840  -     X    1,2-Dichloroethene(total)  |  halogenated: no CB05 species; trace at ambient levels
+43841  -     X    1,3-Dichloropropene(total)  |  halogenated: no CB05 species; trace at ambient levels
+43843  -     X    Ethylene dibromide  |  halogenated: no CB05 species; trace at ambient levels
+43844  -     -    Hexachlorobutadiene  |  PAH/pesticide/PCB: not in the O3 mechanism
+43847  -     X    1,4-Dichlorobutane  |  halogenated: no CB05 species; trace at ambient levels
+43848  -     X    Halocarbon 134a  |  halogenated: no CB05 species; trace at ambient levels
+43849  -     X    Freon 23  |  halogenated: no CB05 species; trace at ambient levels
+43853  -     X    1-Bromopropane  |  halogenated: no CB05 species; trace at ambient levels
+43860  -     X    Vinyl chloride  |  halogenated: no CB05 species; trace at ambient levels
+43861  -     X    Vinyl bromide  |  halogenated: no CB05 species; trace at ambient levels
+43862  -     X    Ethyl bromide  |  halogenated: no CB05 species; trace at ambient levels
+43863  -     X    3-Bromopropene  |  halogenated: no CB05 species; trace at ambient levels
+43901  -     L    Methyl mercaptan  |  no CB05 species (CB05 sulfur = SO2/SULF only)
+43911  -     L    Total reduced sulfur  |  no CB05 species (CB05 sulfur = SO2/SULF only)
+43950  ALDX  M    Heptanal  |  C3+ aldehyde lumped surrogate
+43954  PAR   H    n-Undecane  |  alkane/cycloalkane carbon bonds
+43955  PAR   H    2,5-Dimethylhexane  |  alkane/cycloalkane carbon bonds
+43960  PAR   H    2-Methylheptane  |  alkane/cycloalkane carbon bonds
+45102  XYL   H    Xylene(s)  |  
+45104  -     -    Isomers of ethyltoluene  |  aggregate/diagnostic, not a single species
+45109  XYL   H    m/p Xylene  |  
+45110  XYL   H    Styrene and o-xylene  |  
+45111  XYL   H    m(and p)-Xylene & bromoform  |  
+45112  XYL   H    o-Xylene & 1,1,2,2-tetrachloroethane  |  
+45115  -     X    Benzene & 1,2-dichloroethane  |  halogenated: no CB05 species; trace at ambient levels
+45116  XYL   M    m/p Ethyltoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+45140  XYL   H    O-xylene & N-nonane  |  
+45201  TOL   L    Benzene  |  no benzene in CB05; TOL overstates it
+45202  TOL   H    Toluene  |  
+45203  TOL   M    Ethylbenzene  |  CB05 lumps C2-benzenes with TOL
+45204  XYL   H    o-Xylene  |  
+45205  XYL   H    m-Xylene  |  
+45206  XYL   H    p-Xylene  |  
+45207  XYL   M    1,3,5-Trimethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45208  XYL   M    1,2,4-Trimethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45209  XYL   M    n-Propylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45210  XYL   M    Isopropylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45211  XYL   M    o-Ethyltoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+45212  XYL   M    m-Ethyltoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+45213  XYL   M    p-Ethyltoluene  |  CB05 XYL covers di-/tri-methylbenzenes
+45218  XYL   M    m-Diethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45219  XYL   M    p-Diethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45220  OLE   L    Styrene  |  no CB05 species; vinyl group -> OLE
+45221  XYL   M    Benzene,(1-methylethenyl)-  |  aromatic; lumped to XYL
+45225  XYL   M    1,2,3-Trimethylbenzene  |  CB05 XYL covers di-/tri-methylbenzenes
+45228  XYL   M    Benzene, 1-ethenyl-4-methyl  |  aromatic; lumped to XYL
+45300  CRES  M    Phenol  |  CB05 CRES covers cresols/higher aromatics
+45501  ALDX  M    Benzaldehyde  |  C3+ aldehyde lumped surrogate
+45503  ALDX  M    2,5-Dimethylbenzaldehyde  |  C3+ aldehyde lumped surrogate
+45504  ALDX  M    Tolualdehydes  |  C3+ aldehyde lumped surrogate
+45505  ALDX  M    o-Tolualdehyde  |  C3+ aldehyde lumped surrogate
+45506  ALDX  M    m & p-Tolualdehyde  |  C3+ aldehyde lumped surrogate
+45507  ALDX  M    p-Tolualdehyde  |  C3+ aldehyde lumped surrogate
+45508  ALDX  M    m-Tolualdehyde  |  C3+ aldehyde lumped surrogate
+45705  -     L    Nitrobenzene  |  no CB05 species; trace
+45801  -     X    Chlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45805  -     X    1,2-Dichlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45806  -     X    1,3-Dichlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45807  -     X    1,4-Dichlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45808  -     X    Bromofluorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45809  CRES  M    Benzyl chloride  |  CB05 CRES covers cresols/higher aromatics
+45810  -     X    1,2,4-Trichlorobenzene  |  halogenated: no CB05 species; trace at ambient levels
+45815  -     X    Benzene, 1,2,3-trichloro-  |  halogenated: no CB05 species; trace at ambient levels
+
+  groups: -=103, ALD2=1, ALDX=30, APIN=1, BPIN=1, CH4=1, CRES=2, ETH=1, ETHA=1, ETOH=1, FORM=1, IOLE=19, ISOP=1, MEOH=1, OLE=24, PAR=79, TOL=3, XYL=28
+  reactive species actually mapped to a CB05 group: 195
+

@@ -1,0 +1,336 @@
+monitor columns: ['State Code', 'County Code', 'Site Number', 'Parameter Code', 'Parameter Name', 'POC', 'Latitude', 'Longitude', 'Datum', 'First Year of Data', 'Last Sample Date', 'Monitor Type', 'Networks', 'Reporting Agency', 'PQAO', 'Collecting Agency', 'Exclusions', 'Monitoring Objective', 'Last Method Code', 'Last Method', 'Measurement Scale', 'Measurement Scale Definition', 'NAAQS Primary Monitor', 'QA Primary Monitor', 'Local Site Name', 'Address', 'State Name', 'County Name', 'City Name', 'CBSA Name', 'Tribe Name', 'Extraction Date']
+monitor rows: 370090  distinct sites: 20856
+distinct 43xxx VOC parameter codes: 361
+
+candidates (O3+NO+NO2+CO present AND >=10 VOC species): 254
+   of which flagged PAMS: 72
+
+ st cty site  VOC PAMS  1stYr last        city / site / agency / lat,lon
+----------------------------------------------------------------------------------------------------------------------
+ 37 119 0041  298    Y   1999 2026-05-31  Charlotte, North Carolina | Garinger High School | Mecklenburg County Air Quality | 35.2401,-80.785683
+ 48 201 1039  159    Y   1996 2026-02-28  Deer Park, Texas | Houston Deer Park #2 | Texas Commission On Environmental Quality | 29.670552,-95.129933
+ 04 013 9997  152    Y   1996 2026-03-31  Phoenix, Arizona | JLG SUPERSITE | Arizona Department Of Environmental Quality | 33.503833,-112.095767
+ 29 510 0085  145    Y   1999 2026-03-31  St. Louis, Missouri | Blair Street | Missouri Laboratory  Services Program | 38.656429,-90.198348
+ 17 031 4201  144    Y   1997 2026-04-30  Northbrook, Illinois | NORTHBROOK WATER PLANT | Illinois Environmental Protection Agency | 42.139996,-87.799227
+ 48 439 1002  143    Y   1975 2026-03-31  Fort Worth, Texas | Fort Worth Northwest | Texas Commission On Environmental Quality | 32.805816,-97.356526
+ 48 141 0055  142    Y   1999 2026-03-31  El Paso, Texas | Ascarate Park SE | Texas Commission On Environmental Quality | 31.746748,-106.402788
+ 37 183 0014  140    Y   1989 2026-04-30  Raleigh, North Carolina | Millbrook School | North Carolina Dept Of Environmental Quality | 35.856111,-78.574167
+ 22 033 0009  136    Y   1992 2026-05-31  Baton Rouge, Louisiana | Capitol | State Of Louisiana | 30.461981,-91.179219
+ 25 009 2006  135    Y   1992 2026-03-27  Lynn, Massachusetts | LYNN WATER TREATMENT PLANT | Mass Dept Environmental Protection-Div Air Quality Control | 42.474642,-70.970816
+ 48 201 1035  134    Y   1972 2026-03-31  Houston, Texas | Clinton | Texas Commission On Environmental Quality | 29.733737,-95.257605
+ 48 141 0037  133    Y   1981 2021-11-16  El Paso, Texas | El Paso UTEP | Texas Commission On Environmental Quality | 31.768286,-106.501243
+ 24 005 3001  130    Y   1967 2026-03-31  Essex, Maryland | Essex | Maryland Department of the Environment | 39.310833,-76.474444
+ 44 007 1010  129    Y   1994 2026-04-26  East Providence, Rhode Island | FRANCIS SCHOOL East Providence | Rhode Island DEM And DOH | 41.841039,-71.36097
+ 48 201 0024  129    Y   1974 2026-02-28  Houston, Texas | Houston Aldine | Texas Commission On Environmental Quality | 29.90103,-95.326147
+ 48 141 0044  125    Y   1988 2026-03-31  El Paso, Texas | El Paso Chamizal | Texas Commission On Environmental Quality | 31.765684,-106.455227
+ 48 201 0026  125    Y   1980 2026-03-31  Channelview, Texas | Channelview | Texas Commission On Environmental Quality | 29.802716,-95.125516
+ 13 089 0002  124    Y   1974 2026-04-30  Not in a City, Georgia | South DeKalb | Georgia Air Protection Branch Ambient Monitoring Program | 33.6878,-84.2905
+ 11 001 0043  122    Y   1994 2026-05-31  Washington, District Of Columbia | MCMILLAN  NCore-PAMS | Department of Energy & Environment, District of Columbia | 38.921847,-77.013178
+ 41 051 0080  122    Y   1981 2026-03-31  Portland, Oregon | Portland - SE Lafayette St (SEL) | Oregon Department Of Environmental Quality | 45.496641,-122.602877
+ 48 245 0009  121    Y   1980 2026-02-28  Beaumont, Texas | Beaumont Downtown | Texas Commission On Environmental Quality | 30.036481,-94.071074
+ 23 005 2003  120    Y   1981 2026-05-31  Not in a City, Maine | CETL - Cape Elizabeth Two Lights (State Park) | Maine D.E.P. Bureau Of Air Quality Control, Augusta | 43.561043,-70.207324
+ 53 033 0080  120    Y   1979 2026-02-28  Seattle, Washington | SEATTLE - BEACON HILL | Washington State Department Of Ecology | 47.568236,-122.308628
+ 18 097 0078  119    Y   1999 2026-05-31  Indianapolis (Remainder), Indiana | Indpls- Washington Park/  in parking lot next to police station | Indiana Depart Of Environ Management/Office Of Air Quality | 39.810833,-86.114444
+ 51 087 0014  119    Y   1981 2026-05-31  East Highland Park, Virginia | MathScience Innovation Center | Virginia Department of Environmental Quality | 37.55652,-77.40027
+ 06 037 1103  117    Y   1979 2026-03-31  Los Angeles, California | Los Angeles-North Main Street | South Coast Air Quality Management District | 34.06659,-118.22688
+ 10 003 2004  112    Y   1999 2025-12-31  Wilmington, Delaware | MLK  CORNER OF MLK BLVD AND JUSTISON ST | Delaware Dept Natural Resources and Environmental Control | 39.739441,-75.557534
+ 06 067 0006  110    Y   1980 2026-02-28  Arden-Arcade, California | Sacramento-Del Paso Manor | Sacramento County APCD | 38.613779,-121.368014
+ 36 005 0133  108    Y   2006 2026-05-31  New York, New York | PFIZER LAB SITE | New York State Department Of Environmental Conservation | 40.8679,-73.87809
+ 06 111 2002  107    Y   1985 2026-01-31  Simi Valley, California | Simi Valley-Cochran Street | Ventura County APCD | 34.276316,-118.683685
+ 24 033 0030  107    Y   2004 2026-03-31  Beltsville, Maryland | HU-Beltsville | Maryland Department of the Environment | 39.055277,-76.878333
+ 48 201 1034  107    Y   1973 2026-02-28  Houston, Texas | Houston East | Texas Commission On Environmental Quality | 29.768033,-95.220574
+ 36 081 0124  105    Y   2001 2026-05-31  New York, New York | QUEENS COLLEGE 2 | New York State Department Of Environmental Conservation | 40.73614,-73.82153
+ 06 065 8001  104    Y   1972 2026-03-31  Rubidoux, California | Rubidoux | South Coast Air Quality Management District | 33.99958,-117.41601
+ 48 245 0018  101    Y   1994 2026-02-28  Port Arthur, Texas | Jefferson County Airport | Texas Commission On Environmental Quality | 29.942828,-94.000795
+ 06 073 1022   95    Y   2016 2026-04-29  El Cajon, California | El Cajon - Lexington Elementary School | San Diego County Air Pollution Control District | 32.789565,-116.944308
+ 09 003 1003   95    Y   1981 2025-12-31  East Hartford, Connecticut | McAuliffe Park | Connecticut Department of Environmental Protection | 41.784722,-72.631667
+ 26 081 0020   95    Y   1980 2026-03-31  Grand Rapids, Michigan | GR-MONROE | Grand Rapids Department Of Air Pollution | 42.984173,-85.671339
+ 06 037 1601   94    Y   1978 2005-12-30  Pico Rivera, California |  | South Coast Air Quality Management District | 34.01407,-118.06056
+ 25 013 0008   92    Y   1983 2026-02-28  Chicopee, Massachusetts | WESTOVER AFB | Mass Dept Environmental Protection-Div Air Quality Control | 42.19438,-72.555112
+ 06 019 0011   91    Y   2012 2026-04-29  Fresno, California | Fresno - Garland | California Air Resources Board | 36.78538,-119.77321
+ 06 019 5001   90    Y   1990 2026-03-31  Clovis, California | Clovis-Villa | San Joaquin Valley Unified Air Pollution Control District | 36.819449,-119.716433
+ 09 001 9003   87    Y   1996 2025-12-31  Westport, Connecticut | Sherwood Island Connector | Connecticut Department of Environmental Protection | 41.118333,-73.336667
+ 27 003 1002   87    Y   1979 2025-12-31  Blaine, Minnesota | Anoka County Airport | Minnesota Pollution Control Agency, Division Of Air Quality | 45.13768,-93.207615
+ 06 111 3001   84    Y   1979 2026-01-31  Not in a City, California | El Rio-Rio Mesa School #2 | Ventura County APCD | 34.25239,-119.143182
+ 06 001 0007   78    Y   1999 2024-02-04  Livermore, California | Livermore | Bay Area Air Quality Management District | 37.687526,-121.784217
+ 06 019 4001   76    Y   1984 2025-12-31  Parlier, California | Parlier | San Joaquin Valley Unified Air Pollution Control District | 36.597442,-119.503659
+ 42 003 0008   75    Y   1978 2026-03-31  Pittsburgh, Pennsylvania | Lawrenceville | Allegheny County, PA Health Department | 40.46542,-79.960757
+ 06 039 0004   74    Y   1997 2025-12-31  Madera, California | Madera-Pump Yard | San Joaquin Valley Unified Air Pollution Control District | 36.867125,-120.010158
+ 40 143 1127   74    Y   2000 2026-06-15  Tulsa, Oklahoma | TULSA CENTRAL | Oklahoma Dept. Of Environmental Quality Air Quality Division | 36.204902,-95.976537
+ 01 073 0023   73    Y   1979 2026-03-31  Birmingham, Alabama | North Birmingham | Jefferson County, AL  Department Of Health | 33.553056,-86.815
+ 12 011 0034   71    Y   2015 2026-03-31  Davie, Florida | Daniela Banu NCORE | Broward County Environmental Protection Department | 26.053889,-80.256944
+ 33 011 5001   71    Y   2002 2026-03-31  Peterborough (Peterboro), New Hampshire | MILLER STATE PARK | New Hampshire Air Resources Agency | 42.86183,-71.878626
+ 49 035 3006   71    Y   1997 2026-05-31  Salt Lake City, Utah | Hawthorne | Utah Department Of Environmental Quality | 40.736389,-111.872222
+ 36 103 0044   69    Y   2018 2026-05-31  Old Field, New York | Flax Pond | New York State Department Of Environmental Conservation | 40.961017,-73.139046
+ 33 015 0018   68    Y   2011 2026-03-31  Londonderry, New Hampshire | MOOSEHILL SCHOOL | New Hampshire Air Resources Agency | 42.862531,-71.38014
+ 37 033 0001   68    Y   1993 2026-04-30  Not in a City, North Carolina | Cherry Grove | North Carolina Dept Of Environmental Quality | 36.307033,-79.467417
+ 23 009 0102   65    Y   1995 2026-05-31  Not in a City, Maine | TOP OF CADILLAC MTN (FENCED ENCLOSURE) | Maine D.E.P. Bureau Of Air Quality Control, Augusta | 44.351697,-68.22698
+ 49 035 3015   61    Y   2019 2026-05-31  Salt Lake City, Utah | Utah Technical Center | Utah Department Of Environmental Quality | 40.777145,-111.945849
+ 06 029 2012   60    Y   2012 2025-12-31  Bakersfield, California | Bakersfield-Muni | San Joaquin Valley Unified Air Pollution Control District | 35.331612,-118.999961
+ 09 009 0027   59    Y   2004 2025-12-31  New Haven, Connecticut | Criscuolo Park-New Haven | Connecticut Department of Environmental Protection | 41.3014,-72.902871
+ 12 057 3002   58    Y   2004 2026-03-31  Valrico, Florida | SYDNEY | Hillsborough County Environmental Protection Commission | 27.965744,-82.230596
+ 37 159 0021   58    Y   1993 2026-04-30  Rockwell, North Carolina | Rockwell | North Carolina Dept Of Environmental Quality | 35.551868,-80.395039
+ 39 035 0060   57    Y   1993 2026-04-30  Cleveland, Ohio | GT Craig NCore PAMS | Cleveland Air Pollution Control Agency | 41.492117,-81.678449
+ 48 245 1035   47    Y   2006 2026-02-28  Nederland, Texas | Nederland 17th Street | Texas Commission On Environmental Quality | 29.979975,-94.004778
+ 06 073 0001   44    Y   1972 2026-04-29  Chula Vista, California | Chula Vista | San Diego County Air Pollution Control District | 32.631242,-117.059088
+ 21 111 0067   40    Y   2009 2025-12-31  Louisville, Kentucky | CANNONS LANE | Louisville, KY Metro Air Pollution Control District | 38.22876,-85.65452
+ 32 003 0540   37    Y   2010 2026-04-30  Sunrise Manor, Nevada | Jerome Mack-NCore | Clark County, NV DES | 36.141875,-115.078742
+ 04 019 1011   36    Y   1973 2026-03-31  Tucson, Arizona | 22ND & CRAYCROFT | Pima County Department of Environmental Quality | 32.204411,-110.878067
+ 47 157 0075   36    Y   2011 2025-12-31  Memphis, Tennessee | Memphis NCORE site | Memphis-Shelby County Health Department | 35.151699,-89.850249
+ 39 061 0040   28    Y   1999 2026-04-30  Cincinnati, Ohio | Taft NCore PAMS | Hamilton County Department Of Environmental Services | 39.12886,-84.50404
+ 20 209 0021   10    Y   1999 2026-03-31  Kansas City, Kansas | JFK | Kansas Department Of Health And Environment | 39.117219,-94.635605
+ 37 119 0034  294    -   1980 1999-10-31  Charlotte, North Carolina |  | Mecklenburg County Air Quality | 35.248754,-80.766181
+ 37 119 1009  294    -   1980 2015-11-01  Not in a City, North Carolina | County Line | Mecklenburg County Air Quality | 35.347222,-80.695
+ 48 113 0069  155    -   1986 2025-10-31  Dallas, Texas | Dallas Hinton | Texas Commission On Environmental Quality | 32.820061,-96.860117
+ 50 007 0003  155    -   1970 2000-06-30  Burlington, Vermont |  | Vermont Agency Of Environmental Conservation | 44.478938,-73.211516
+ 50 021 0002  154    -   1971 2026-03-31  Rutland, Vermont | State of Vermont District Court Parking Lot | Vermont Agency Of Environmental Conservation | 43.608056,-72.982778
+ 22 051 1001  152    -   1982 2026-05-31  Kenner, Louisiana | Kenner | State Of Louisiana | 30.041238,-90.272826
+ 08 031 0002  149    -   1965 2026-04-30  Denver, Colorado | DENVER - CAMP | Colorado Department of Public Health And Environment | 39.751184,-104.987625
+ 34 039 0004  146    -   1972 2026-03-31  Elizabeth, New Jersey | Elizabeth Lab | New Jersey State Department Of Environmental Protection | 40.64144,-74.208365
+ 08 001 3001  143    -   1973 2026-04-30  Welby, Colorado | Welby | Colorado Department of Public Health And Environment | 39.838119,-104.94984
+ 48 141 0027  143    -   1973 2004-01-15  El Paso, Texas | NORTH OF CAMPBELL & FRANKLIN INTERSECTION | Texas Commission On Environmental Quality | 31.763076,-106.486712
+ 46 099 0008  141    -   2008 2021-04-07  Sioux Falls, South Dakota | SD School for the Deaf | South Dakota Department of Agriculture and Natural Resources | 43.54792,-96.700769
+ 19 163 0015  140    -   1982 2026-05-31  Davenport, Iowa | DAVENPORT, JEFFERSON SCH. | University Hygenic Laboratory (University of Iowa) | 41.530011,-90.587611
+ 38 017 1004  140    -   1998 2026-03-31  Not in a City, North Dakota | FARGO NW | North Dakota DEQ | 46.933754,-96.85535
+ 46 127 0001  140    -   2009 2021-09-30  Not in a City, South Dakota | Union County #1 Jensen | South Dakota Department of Agriculture and Natural Resources | 42.751518,-96.707208
+ 48 439 0057  140    -   1998 2001-07-11  Arlington, Texas | NORTH OF LEXINGTON & EAST ARKANSAS INTERSECTION | Texas Commission On Environmental Quality | 32.706944,-97.093611
+ 19 153 0030  139    -   2000 2026-05-31  Des Moines, Iowa | CARPENTER | Polk County Physical Planning | 41.603159,-93.643118
+ 37 067 0022  139    -   1983 2026-02-28  Winston-Salem, North Carolina | Hattie Avenue | Forsyth County Environmental Affairs Department | 36.11094,-80.224501
+ 34 007 0003  133    -   1968 2008-09-30  Camden, New Jersey | CAMDEN LAB | New Jersey State Department Of Environmental Protection | 39.923042,-75.097617
+ 55 079 0041  130    -   1973 2013-10-09  Milwaukee, Wisconsin | MILWAUKEE UWM-NORTH | Wisconsin Dept Of Natural Resources, Air Monitoring Section | 43.075,-87.884
+ 48 039 1003  120    -   1974 2014-12-31  Clute (corporate name for Clute City), Texas | Clute | Texas Commission On Environmental Quality | 29.010825,-95.397677
+ 36 005 0083  118    -   1994 2013-03-28  New York, New York | BOTANICAL GARDEN | New York State Department Of Environmental Conservation | 40.86585,-73.88083
+ 42 071 0007  113    -   1974 2025-12-31  Lancaster, Pennsylvania | Lancaster | Pennsylvania Department Of Environmental Protection | 40.046667,-76.283333
+ 13 223 0003  111    -   1996 2017-02-03  Not in a City, Georgia | Yorkville, King Farm | Georgia Air Protection Branch Ambient Monitoring Program | 33.9285,-85.04534
+ 36 059 0005  111    -   1970 2026-05-31  East Meadow, New York | EISENHOWER PARK | New York State Department Of Environmental Conservation | 40.74316,-73.58549
+ 42 017 0012  111    -   1974 2025-12-31  Bristol, Pennsylvania | Bristol | Pennsylvania Department Of Environmental Protection | 40.107222,-74.882222
+ 42 101 0004  110    -   1960 2026-03-31  Philadelphia, Pennsylvania | Air Management Services Laboratory (AMS LAB) | Philadelphia Air Management Services | 40.008889,-75.09778
+ 42 101 0048  110    -   1993 2026-03-31  Philadelphia, Pennsylvania | North East Waste (NEW) | Philadelphia Air Management Services | 39.991389,-75.080833
+ 42 001 0001  109    -   1996 2026-04-30  Not in a City, Pennsylvania | Arendtsville | Pennsylvania Department Of Environmental Protection | 39.92002,-77.30968
+ 36 081 0097  108    -   1997 2001-12-27  New York, New York | QUEENSBORO COMMUNITY COLLEGE | New York State Department Of Environmental Conservation | 40.75527,-73.75861
+ 06 019 0008  107    -   1990 2012-02-01  Fresno, California | 3425 N FIRST ST, FRESNO | California Air Resources Board | 36.781333,-119.77319
+ 17 031 8003  107    -   1991 2002-12-31  Calumet City (PU RR name Calumet Park (sta.)), Illinois | COOK COUNTY TRAILER | Cook County Department of Environmental Control | 41.631424,-87.5681
+ 48 361 1001  107    -   1974 2026-02-28  West Orange, Texas | West Orange | Texas Commission On Environmental Quality | 30.085258,-93.761366
+ 06 037 0002  106    -   1963 2022-09-29  Azusa, California | Azusa | South Coast Air Quality Management District | 34.1365,-117.92391
+ 48 141 0028  106    -   1974 1999-09-01  El Paso, Texas | NW OF BORDER HWY IN ASCARATE PARK | Texas Commission On Environmental Quality | 31.753611,-106.403889
+ 24 510 0050  104    -   1995 2001-09-14  Baltimore, Maryland | LAT/LONG POINT IS OF SAMPLING INLET................................. | Maryland Department of the Environment | 39.318611,-76.5825
+ 25 025 0042  101    -   1999 2026-03-30  Boston, Massachusetts | DUDLEY SQUARE ROXBURY | Mass Dept Environmental Protection-Div Air Quality Control | 42.3295,-71.0826
+ 06 073 0003  100    -   1982 2014-02-28  El Cajon, California | El Cajon | San Diego County Air Pollution Control District | 32.791194,-116.942092
+ 36 103 0009   99    -   2000 2026-05-31  Holtsville, New York | HOLTSVILLE | New York State Department Of Environmental Conservation | 40.82799,-73.05754
+ 48 113 0045   99    -   1973 1998-11-03  Dallas, Texas | SW OF BONNARD & WOZENCRAFT INTERSECTION | Texas Commission On Environmental Quality | 32.919722,-96.808056
+ 06 037 1002   97    -   1963 2014-06-30  Burbank, California | Burbank | South Coast Air Quality Management District | 34.17605,-118.31712
+ 06 071 1004   91    -   1973 2023-03-31  Upland, California | Upland | South Coast Air Quality Management District | 34.10374,-117.62914
+ 06 029 0010   90    -   1994 2026-03-31  Bakersfield, California | Bakersfield-Golden / M St | San Joaquin Valley Unified Air Pollution Control District | 35.385574,-119.015009
+ 18 097 0073   87    -   1990 2026-02-28  Indianapolis (Remainder), Indiana | Indpls.- E. 16th St. | Indiana Depart Of Environ Management/Office Of Air Quality | 39.789483,-86.060833
+ 48 141 0057   84    -   1999 2026-03-31  Socorro, Texas | Socorro Hueco | Texas Commission On Environmental Quality | 31.667549,-106.287972
+ 06 067 0013   82    -   1998 2008-07-31  Sacramento, California | LOCATED APPROXIMATELY 1 MILE NORTH OF I-5 AND I-80 FREEWAYS | Sacramento County APCD | 38.636848,-121.5144
+ 06 073 1018   82    -   2014 2016-12-26  El Cajon, California | El Cajon - Floyd Smith Dr. | San Diego County Air Pollution Control District | 32.817978,-116.968133
+ 55 079 0026   80    -   1999 2021-04-30  Milwaukee, Wisconsin | MILWAUKEE - SER DNR HDQRS | Wisconsin Dept Of Natural Resources, Air Monitoring Section | 43.060975,-87.913504
+ 26 113 0001   78    -   1998 2026-03-31  Not in a City, Michigan | LOCATED ABOUT 1/4 MILE WEST OF SITE | Michigan Dept Of Environment, Great Lakes, and Energy-Air Quality Division | 44.310555,-84.891865
+ 26 163 0001   78    -   1971 2026-03-31  Allen Park, Michigan | Allen Park | Michigan Dept Of Environment, Great Lakes, and Energy-Air Quality Division | 42.228611,-83.208333
+ 06 073 1007   77    -   1989 2005-07-13  San Diego, California | San Diego-12th Ave | San Diego County Air Pollution Control District | 32.709224,-117.154841
+ 48 167 1002   77    -   1974 2004-07-01  Texas City, Texas | WEST OF 15TH AVE. N & NORTH LOGAN INTERSECTION | Texas Commission On Environmental Quality | 29.398611,-94.933333
+ 13 089 3001   76    -   1995 2013-05-31  Tucker, Georgia | Tucker-Idlewood Road | Georgia Air Protection Branch Ambient Monitoring Program | 33.845741,-84.213398
+ 05 119 0007   75    -   1986 2026-03-31  North Little Rock, Arkansas | PARR | Arkansas Department of Energy and Environment | 34.756189,-92.281296
+ 17 031 3103   75    -   1998 2026-04-30  Schiller Park, Illinois | IEPA TRAILER | Illinois Environmental Protection Agency | 41.965193,-87.876265
+ 06 073 0006   74    -   1976 2012-02-29  San Diego, California | Kearny Mesa | San Diego County Air Pollution Control District | 32.836461,-117.128752
+ 42 045 0002   74    -   1974 2025-12-31  Chester, Pennsylvania | Chester | Pennsylvania Department Of Environmental Protection | 39.835556,-75.3725
+ 47 037 0011   74    -   1970 2026-03-31  Nashville, Tennessee | East Health Center | Metropolitan Health Department/Nashville & Davidson County | 36.205055,-86.74472
+ 21 019 0017   73    -   1999 2026-03-31  Ashland, Kentucky | ASHLAND PRIMARY (FIVCO) | Kentucky Division For Air Quality | 38.45934,-82.64041
+ 40 109 1037   73    -   1978 2026-04-30  Oklahoma City, Oklahoma | OKC NORTH | Oklahoma Dept. Of Environmental Quality Air Quality Division | 35.614131,-97.475083
+ 21 067 0012   72    -   1979 2026-03-31  Lexington-Fayette (corporate name for Lexington), Kentucky | LEXINGTON PRIMARY | Kentucky Division For Air Quality | 38.06503,-84.49761
+ 34 007 0002   72    -   2012 2024-06-26  Camden, New Jersey | Camden Spruce Street | New Jersey State Department Of Environmental Protection | 39.934559,-75.125219
+ 17 031 0039   71    -   1978 1994-08-31  Chicago, Illinois |  | Illinois Environmental Protection Agency | 41.894477,-87.62033
+ 37 159 0022   71    -   1995 2013-10-31  China Grove, North Carolina | Enochville School | North Carolina Dept Of Environmental Quality | 35.534482,-80.66756
+ 41 067 0005   71    -   2014 2026-03-31  Tualatin, Oregon | Tualatin - Bradbury Court (TBC) | Oregon Department Of Environmental Quality | 45.3992,-122.7455
+ 28 049 0010   70    -   1975 2015-03-31  Jackson, Mississippi | Jackson FS19 | Mississippi DEQ, Office Of Pollution | 32.385731,-90.1412
+ 48 439 3011   70    -   2002 2026-03-31  Arlington, Texas | Arlington Municipal Airport | Fort Worth Health Department | 32.656365,-97.088592
+ 12 095 2002   69    -   1976 2026-03-31  Winter Park, Florida | WINTER PARK | Orange County Environmental Protection Division | 28.595026,-81.363414
+ 12 103 0018   69    -   1975 2026-03-31  Saint Petersburg, Florida | Azalea Park | Pinellas County Department Of Environmental Management | 27.791304,-82.739593
+ 06 075 0005   67    -   1985 2026-04-26  San Francisco, California | San Francisco | Bay Area Air Quality Management District | 37.765946,-122.399044
+ 17 197 1011   67    -   1995 2026-04-30  Braidwood, Illinois | COM ED TRAINING CENTER | Illinois Environmental Protection Agency | 41.221537,-88.190967
+ 37 063 0013   67    -   1993 2006-10-31  Durham, North Carolina |  | North Carolina Dept Of Environmental Quality | 36.035556,-78.904167
+ 37 183 0015   67    -   1991 2003-12-29  Raleigh, North Carolina |  | North Carolina Dept Of Environmental Quality | 35.790023,-78.619723
+ 42 125 0005   67    -   1965 2026-04-30  Charleroi, Pennsylvania | Charleroi | Pennsylvania Department Of Environmental Protection | 40.146667,-79.902222
+ 42 133 0008   67    -   1974 2026-04-30  York, Pennsylvania | York | Pennsylvania Department Of Environmental Protection | 39.965278,-76.699444
+ 06 037 1602   66    -   2005 2026-04-30  Pico Rivera, California | Pico Rivera #2 | South Coast Air Quality Management District | 34.01029,-118.0685
+ 34 007 0010   66    -   2009 2026-03-31  Camden, New Jersey | South Camden | New Jersey State Department Of Environmental Protection | 39.923969,-75.122317
+ 37 067 1008   66    -   1988 2026-02-28  Winston-Salem, North Carolina | Union Cross | Forsyth County Environmental Affairs Department | 36.051805,-80.144933
+ 06 037 6012   65    -   2001 2026-03-31  Santa Clarita, California | Santa Clarita | South Coast Air Quality Management District | 34.38344,-118.5284
+ 06 065 5001   65    -   1971 2026-03-31  Palm Springs, California | Palm Springs | South Coast Air Quality Management District | 33.85275,-116.54101
+ 24 510 0040   65    -   1981 2021-12-31  Baltimore, Maryland | Oldtown | Maryland Department of the Environment | 39.297733,-76.604603
+ 27 053 0962   65    -   2013 2025-12-31  Minneapolis, Minnesota | Near Road I-35/I-94 | Minnesota Pollution Control Agency, Division Of Air Quality | 44.965242,-93.254759
+ 37 037 0004   65    -   1994 2015-11-02  Pittsboro, North Carolina | Pittsboro | North Carolina Dept Of Environmental Quality | 35.757222,-79.159722
+ 37 077 0001   65    -   1979 2026-04-30  Butner, North Carolina | Butner | North Carolina Dept Of Environmental Quality | 36.141111,-78.768056
+ 37 183 0016   65    -   1993 2015-11-02  Fuquay-Varina, North Carolina | Fuquay-Varina | North Carolina Dept Of Environmental Quality | 35.596944,-78.7925
+ 42 011 0011   65    -   2007 2026-04-30  Not in a City, Pennsylvania | Reading Airport | Pennsylvania Department Of Environmental Protection | 40.38335,-75.9686
+ 06 037 5001   64    -   1986 2004-03-30  Hawthorne, California | Hawthorne | South Coast Air Quality Management District | 33.92288,-118.37026
+ 42 125 5200   64    -   2012 2025-12-31  Not in a City, Pennsylvania | Marcellus | Pennsylvania Department Of Environmental Protection | 40.268963,-80.243995
+ 06 037 5005   63    -   2004 2021-09-16  Los Angeles, California | LAX Hastings | South Coast Air Quality Management District | 33.95507,-118.43049
+ 06 037 6002   63    -   1982 2001-05-17  Santa Clarita, California |  | South Coast Air Quality Management District | 34.387498,-118.53453
+ 06 037 9033   63    -   2001 2022-12-19  Lancaster, California | Lancaster-Division Street | Antelope Valley APCD | 34.669739,-118.130511
+ 04 012 8000   62    -   2005 2026-03-31  Wenden, Arizona | ALAMO LAKE | Arizona Department Of Environmental Quality | 34.2439,-113.5586
+ 42 049 0003   62    -   1988 2026-03-31  Erie, Pennsylvania | Erie | Pennsylvania Department Of Environmental Protection | 42.14175,-80.038611
+ 06 073 1002   61    -   1974 2015-08-28  Escondido, California | Escondido | San Diego County Air Pollution Control District | 33.127769,-117.075086
+ 06 073 1010   61    -   2005 2016-10-27  San Diego, California | San Diego - Beardsley Street | San Diego County Air Pollution Control District | 32.701492,-117.149653
+ 18 097 0087   60    -   2014 2026-05-31  Indianapolis (Remainder), Indiana | Indpls.- I 70 | Indiana Depart Of Environ Management/Office Of Air Quality | 39.787933,-86.13088
+ 06 073 2007   59    -   1991 2014-09-04  San Diego, California | Otay Mesa | San Diego County Air Pollution Control District | 32.552164,-116.937772
+ 40 097 9014   59    -   2004 2026-03-31  Not in a City, Oklahoma | CHEROKEE HEIGHTS | Cherokee Nation, Oklahoma | 36.228408,-95.249943
+ 42 007 0014   59    -   1974 2025-12-31  Beaver Falls, Pennsylvania | Beaver Falls | Pennsylvania Department Of Environmental Protection | 40.747796,-80.316442
+ 36 055 1007   58    -   2004 2026-05-31  Rochester, New York | ROCHESTER 2 | New York State Department Of Environmental Conservation | 43.14618,-77.54817
+ 42 021 0011   57    -   1974 2026-04-30  Johnstown, Pennsylvania | Johnstown | Pennsylvania Department Of Environmental Protection | 40.309722,-78.915
+ 42 043 0401   57    -   1978 2025-12-31  Not in a City, Pennsylvania | Harrisburg | Pennsylvania Department Of Environmental Protection | 40.246992,-76.846988
+ 42 069 2006   57    -   1965 2026-04-30  Scranton, Pennsylvania | Scranton | Pennsylvania Department Of Environmental Protection | 41.442778,-75.623056
+ 42 095 0025   57    -   1997 2026-04-30  Freemansburg, Pennsylvania | Freemansburg | Pennsylvania Department Of Environmental Protection | 40.628056,-75.341111
+ 36 001 0012   56    -   1987 2026-05-31  Albany, New York | LOUDONVILLE | New York State Department Of Environmental Conservation | 42.68075,-73.75733
+ 37 069 0001   56    -   1993 2015-11-02  Franklinton, North Carolina | Franklinton | North Carolina Dept Of Environmental Quality | 36.096189,-78.463719
+ 36 055 6001   53    -   1960 2004-07-29  Rochester, New York |  | New York State Department Of Environmental Conservation | 43.161062,-77.603293
+ 22 033 0004   52    -   1980 1992-04-18  Baton Rouge, Louisiana |  | State Of Louisiana | 30.461023,-91.187886
+ 12 086 4002   51    -   1968 2021-09-30  Miami, Florida | Lab Annex | Miami-Dade County Department of Environmental Resources Management | 25.798709,-80.210048
+ 35 001 0023   48    -   1986 2026-03-31  Albuquerque, New Mexico | DEL NORTE HIGH SCHOOL | Albuquerque Environmental Health Department, Air Quality Division | 35.1343,-106.5852
+ 22 071 0012   47    -   1981 2026-05-31  New Orleans, Louisiana | New Orleans / City Park | State Of Louisiana | 29.993519,-90.10155
+ 06 085 0005   45    -   2002 2026-04-26  San Jose, California | San Jose - Jackson | Bay Area Air Quality Management District | 37.348497,-121.894898
+ 35 001 0029   45    -   2002 2026-03-31  South Valley, New Mexico | SOUTH VALLEY | Albuquerque Environmental Health Department, Air Quality Division | 35.01708,-106.65739
+ 06 029 0014   44    -   1994 2026-04-30  Bakersfield, California | Bakersfield-California | California Air Resources Board | 35.356615,-119.062613
+ 36 029 0005   44    -   1969 2026-05-31  Buffalo, New York | BUFFALO | New York State Department Of Environmental Conservation | 42.876907,-78.809526
+ 51 013 0020   44    -   1978 2026-05-29  Arlington, Virginia | Aurora Hills Visitors Center | Virginia Department of Environmental Quality | 38.8577,-77.05922
+ 06 001 1001   43    -   1971 2010-10-31  Fremont, California | Fremont - Chapel Way | Bay Area Air Quality Management District | 37.535833,-121.961823
+ 23 005 0029   43    -   2008 2025-09-05  Portland, Maine | PDO - Portland Deering Oaks | Maine D.E.P. Bureau Of Air Quality Control, Augusta | 43.660246,-70.268965
+ 26 163 0016   43    -   1971 2026-04-08  Detroit, Michigan | DET-LINWOOD | Michigan Dept Of Environment, Great Lakes, and Energy-Air Quality Division | 42.357808,-83.096033
+ 36 101 0003   43    -   1999 2026-05-31  Not in a City, New York | PINNACLE STATE PARK | New York State Department Of Environmental Conservation | 42.09142,-77.20978
+ 06 061 0006   42    -   1993 2026-04-26  Roseville, California | Roseville-N Sunrise Ave | California Air Resources Board | 38.74643,-121.26498
+ 24 003 1003   42    -   1967 2024-03-31  Glen Burnie, Maryland | GLEN BURNIE | Maryland Department of the Environment | 39.169533,-76.627933
+ 24 510 0011   42    -   1967 1992-05-12  Baltimore, Maryland |  | Baltimore City Health Department | 39.236775,-76.584132
+ 06 073 1004   41    -   1973 1989-08-20  San Diego, California |  | San Diego County Air Pollution Control District | 32.727273,-117.154477
+ 17 031 0063   41    -   1988 2017-12-31  Chicago, Illinois | CTA BUILDING | Illinois Environmental Protection Agency | 41.877682,-87.635027
+ 36 061 0010   41    -   1970 2001-06-24  New York, New York |  | New York State Department Of Environmental Conservation | 40.739546,-73.985694
+ 36 063 2006   41    -   1969 1999-12-26  Niagara Falls, New York | NIAGARA FALLS | New York State Department Of Environmental Conservation | 43.085889,-78.996154
+ 06 077 1002   40    -   1963 2021-11-04  Stockton, California | Stockton-Hazelton | California Air Resources Board | 37.950741,-121.268523
+ 12 033 0004   40    -   1974 2026-03-31  Ferry Pass, Florida | Ellyson Industrial Park | Florida Dept of Environmental Protection, Northwest District | 30.525367,-87.20355
+ 17 031 0040   40    -   1977 1987-11-10  Chicago, Illinois |  | Illinois Environmental Protection Agency | 41.884477,-87.632831
+ 39 035 0033   40    -   1971 1992-11-20  Cleveland, Ohio |  | Cleveland Air Pollution Control Agency | 41.494178,-81.676706
+ 06 037 4002   39    -   1963 2022-06-28  Long Beach, California | Long Beach (North) | South Coast Air Quality Management District | 33.82376,-118.18921
+ 25 025 0021   39    -   1979 2011-05-31  Boston, Massachusetts |  | Mass Dept Environmental Protection-Div Air Quality Control | 42.377833,-71.027138
+ 06 025 0005   38    -   1994 2026-04-26  Calexico, California | Calexico-Ethel Street | California Air Resources Board | 32.67618,-115.48307
+ 20 173 0010   38    -   1973 2026-03-31  Wichita, Kansas | WICHITA HD | Kansas Department Of Health And Environment | 37.702066,-97.314847
+ 06 007 0002   36    -   1979 2012-07-31  Not in a City, California | Chico-Manzanita Ave. | California Air Resources Board | 39.757371,-121.843286
+ 06 013 0002   36    -   1980 2025-12-27  Concord, California | Concord | Bay Area Air Quality Management District | 37.936013,-122.026154
+ 06 007 0008   34    -   2012 2026-04-26  Chico, California | Chico-East Avenue | California Air Resources Board | 39.76168,-121.84047
+ 06 077 1003   34    -   2021 2026-04-26  Stockton, California | Stockton - University Park | California Air Resources Board | 37.961578,-121.281414
+ 80 002 0004   31    -   1996 2017-12-27  Rosarito, Country Of Mexico | EAST END OF PEDRO MORENO SCHOOL IN ROSARITO | Semarnap | 32.343396,-117.05558
+ 80 002 0012   31    -   1997 2022-09-30  Mexicali, Country Of Mexico | AT UABC, CORNER OF CALZADA BENITO JUAREZ & AVENIDA NORMAL, MEXICALI | Semarnap | 32.629225,-115.447769
+ 06 085 0004   30    -   1972 2002-05-02  San Jose, California | San Jose - 4th St. | Bay Area Air Quality Management District | 37.339666,-121.888575
+ 06 013 0003   28    -   1972 1997-05-06  Richmond, California | Richmond-13th St. | Bay Area Air Quality Management District | 37.949924,-122.357193
+ 06 029 0004   27    -   1971 1994-04-29  Bakersfield, California | Bakersfield-Chester Ave. | California Air Resources Board | 35.374959,-119.022602
+ 06 067 0001   27    -   1980 1993-03-20  Citrus Heights, California |  | California Air Resources Board | 38.667126,-121.251338
+ 06 085 2009   27    -   2010 2013-12-31  Cupertino, California | Cupertino Monta Vista | Bay Area Air Quality Management District | 37.318435,-122.069705
+ 06 041 0001   26    -   1967 2025-12-27  San Rafael, California | San Rafael | Bay Area Air Quality Management District | 37.97231,-122.520004
+ 06 055 0003   26    -   1972 2018-03-31  Napa, California | Napa | Bay Area Air Quality Management District | 38.310942,-122.296189
+ 06 075 0006   26    -   2004 2005-06-14  San Francisco, California | San Francisco - Bayview Hunters Point | Bay Area Air Quality Management District | 37.7338,-122.3824
+ 06 081 1001   26    -   1967 2025-12-27  Redwood City, California | Redwood City | Bay Area Air Quality Management District | 37.482934,-122.20337
+ 06 083 0010   26    -   1988 2000-10-31  Santa Barbara, California | Santa Barbara-W. Carrillo St. | California Air Resources Board | 34.421386,-119.702079
+ 06 095 0004   26    -   1976 2025-12-27  Vallejo, California | Vallejo | Bay Area Air Quality Management District | 38.102507,-122.237976
+ 06 097 0003   26    -   1981 2013-12-17  Santa Rosa, California | Santa Rosa - 5th St | Bay Area Air Quality Management District | 38.443503,-122.710169
+ 06 099 0005   26    -   1981 2026-04-26  Modesto, California | Modesto-14th Street | California Air Resources Board | 37.642165,-120.994212
+ 06 001 0009   24    -   2007 2025-12-27  Oakland, California | Oakland | Bay Area Air Quality Management District | 37.743065,-122.169935
+ 06 013 1002   24    -   1981 2025-12-27  Bethel Island, California | Bethel Island | Bay Area Air Quality Management District | 38.006311,-121.641918
+ 06 013 1004   24    -   2002 2025-12-27  San Pablo, California | San Pablo | Bay Area Air Quality Management District | 37.9604,-122.356811
+ 26 077 0905   24    -   1991 1996-09-30  Kalamazoo, Michigan |  | Upjohn | 42.278097,-85.541949
+ 06 001 0011   23    -   2009 2025-12-27  Oakland, California | Oakland West | Bay Area Air Quality Management District | 37.814781,-122.282347
+ 06 001 0013   23    -   2016 2025-12-27  Not in a City, California | Berkeley- Aquatic Park | Bay Area Air Quality Management District | 37.864767,-122.302741
+ 06 001 2004   23    -   2007 2010-12-31  Berkeley, California | Berkeley | Bay Area Air Quality Management District | 37.877794,-122.30129
+ 06 013 3001   23    -   1968 2008-12-31  Pittsburg, California | Pittsburg - W 10th St. | Bay Area Air Quality Management District | 38.029258,-121.896866
+ 06 097 0004   23    -   2014 2025-12-27  Sebastopol, California | Sebastopol | Bay Area Air Quality Management District | 38.403765,-122.818294
+ 06 013 1003   22    -   1996 2002-08-24  San Pablo, California | San Pablo - El Portal Center | Bay Area Air Quality Management District | 37.9642,-122.3403
+ 06 055 0004   22    -   2018 2021-05-20  Napa, California | Napa Valley College | Bay Area Air Quality Management District | 38.278849,-122.275024
+ 06 095 0006   22    -   2007 2008-12-31  Benicia, California | Benicia - VIP | Bay Area Air Quality Management District | 38.0656,-122.1507
+ 06 019 0005   19    -   1976 1990-01-23  Fresno, California | Fresno-Olive St. | California Air Resources Board | 36.725228,-119.751254
+ 06 071 2002   19    -   1982 2026-04-30  Fontana, California | Fontana | South Coast Air Quality Management District | 34.10002,-117.49201
+ 06 073 1009   19    -   1999 2001-03-20  San Diego, California | San Diego-Barrio Logan | California Air Resources Board | 32.698663,-117.133087
+ 06 047 1001   18    -   1968 1989-03-23  Merced, California | Merced-1205 18th St. | Merced County APCD | 37.30633,-120.493246
+ 06 001 0003   16    -   1981 2000-12-26  Livermore, California | Livermore - Old 1st St. | Bay Area Air Quality Management District | 37.6849,-121.7659
+ 06 037 7001   16    -   1972 1990-02-28  Lancaster, California | Lancaster-N. Beech St. | South Coast Air Quality Management District | 34.712206,-118.140073
+ 06 111 7001   16    -   1974 1985-08-31  Simi Valley, California |  | Ventura County APCD | 34.278058,-118.685924
+ 21 059 0005   16    -   1971 2023-08-07  Not in a City, Kentucky | OWENSBORO PRIMARY | Kentucky Division For Air Quality | 37.780776,-87.075307
+ 21 117 0007   16    -   1975 2010-06-07  Covington, Kentucky | CHASE (COVINGTON) | Kentucky Division For Air Quality | 39.0725,-84.525
+ 21 145 1024   16    -   1980 2022-12-12  Paducah, Kentucky | JACKSON PURCHASE (PADUCAH PRIMARY) | Kentucky Division For Air Quality | 37.05822,-88.57251
+ 06 075 0003   15    -   1969 2005-12-31  San Francisco, California | San Francisco - Ellis St. | Bay Area Air Quality Management District | 37.784,-122.4216
+ 25 017 1005   15    -   1979 1991-05-14  Watertown (Town of), Massachusetts |  | Mass Dept Environmental Protection-Div Air Quality Control | 42.374819,-71.181999
+ 80 002 0001   15    -   1994 2019-08-31  Tijuana, Country Of Mexico | CROSS STREETS CAL DEL TECNOLOGICO & CHAPULTEPEC | Semarnap | 32.525058,-116.985856
+ 06 083 0009   13    -   1983 1988-06-06  Santa Barbara, California |  | California Air Resources Board | 34.419997,-119.70069
+ 06 085 2004   12    -   1989 1995-04-20  San Jose, California | San Jose-W. San Carlos St. | Bay Area Air Quality Management District | 37.322998,-121.927179
+ 35 043 1003   12    -   1996 2009-07-27  Rio Rancho Estates, New Mexico | 2ZR SITE MOVED FROM RIO RANCHO CITY HALL TO SENIOR CENTER | New Mexico Environment Department | 35.238098,-106.650026
+ 48 201 7001   11    -   1978 1989-12-31  Seabrook, Texas |  | Texas Commission On Environmental Quality | 29.571944,-95.016667
+
+=== PAMS candidates with data reaching 2016+ ===
+('37', '119', '0041')  VOC=298  first=1999 last=2026-05-31  Charlotte, North Carolina | Garinger High School | 35.2401,-80.785683
+('48', '201', '1039')  VOC=159  first=1996 last=2026-02-28  Deer Park, Texas | Houston Deer Park #2 | 29.670552,-95.129933
+('04', '013', '9997')  VOC=152  first=1996 last=2026-03-31  Phoenix, Arizona | JLG SUPERSITE | 33.503833,-112.095767
+('29', '510', '0085')  VOC=145  first=1999 last=2026-03-31  St. Louis, Missouri | Blair Street | 38.656429,-90.198348
+('17', '031', '4201')  VOC=144  first=1997 last=2026-04-30  Northbrook, Illinois | NORTHBROOK WATER PLANT | 42.139996,-87.799227
+('48', '439', '1002')  VOC=143  first=1975 last=2026-03-31  Fort Worth, Texas | Fort Worth Northwest | 32.805816,-97.356526
+('48', '141', '0055')  VOC=142  first=1999 last=2026-03-31  El Paso, Texas | Ascarate Park SE | 31.746748,-106.402788
+('37', '183', '0014')  VOC=140  first=1989 last=2026-04-30  Raleigh, North Carolina | Millbrook School | 35.856111,-78.574167
+('22', '033', '0009')  VOC=136  first=1992 last=2026-05-31  Baton Rouge, Louisiana | Capitol | 30.461981,-91.179219
+('25', '009', '2006')  VOC=135  first=1992 last=2026-03-27  Lynn, Massachusetts | LYNN WATER TREATMENT PLANT | 42.474642,-70.970816
+('48', '201', '1035')  VOC=134  first=1972 last=2026-03-31  Houston, Texas | Clinton | 29.733737,-95.257605
+('48', '141', '0037')  VOC=133  first=1981 last=2021-11-16  El Paso, Texas | El Paso UTEP | 31.768286,-106.501243
+('24', '005', '3001')  VOC=130  first=1967 last=2026-03-31  Essex, Maryland | Essex | 39.310833,-76.474444
+('44', '007', '1010')  VOC=129  first=1994 last=2026-04-26  East Providence, Rhode Island | FRANCIS SCHOOL East Providence | 41.841039,-71.36097
+('48', '201', '0024')  VOC=129  first=1974 last=2026-02-28  Houston, Texas | Houston Aldine | 29.90103,-95.326147
+('48', '141', '0044')  VOC=125  first=1988 last=2026-03-31  El Paso, Texas | El Paso Chamizal | 31.765684,-106.455227
+('48', '201', '0026')  VOC=125  first=1980 last=2026-03-31  Channelview, Texas | Channelview | 29.802716,-95.125516
+('13', '089', '0002')  VOC=124  first=1974 last=2026-04-30  Not in a City, Georgia | South DeKalb | 33.6878,-84.2905
+('11', '001', '0043')  VOC=122  first=1994 last=2026-05-31  Washington, District Of Columbia | MCMILLAN  NCore-PAMS | 38.921847,-77.013178
+('41', '051', '0080')  VOC=122  first=1981 last=2026-03-31  Portland, Oregon | Portland - SE Lafayette St (SEL) | 45.496641,-122.602877
+('48', '245', '0009')  VOC=121  first=1980 last=2026-02-28  Beaumont, Texas | Beaumont Downtown | 30.036481,-94.071074
+('23', '005', '2003')  VOC=120  first=1981 last=2026-05-31  Not in a City, Maine | CETL - Cape Elizabeth Two Lights (State Park) | 43.561043,-70.207324
+('53', '033', '0080')  VOC=120  first=1979 last=2026-02-28  Seattle, Washington | SEATTLE - BEACON HILL | 47.568236,-122.308628
+('18', '097', '0078')  VOC=119  first=1999 last=2026-05-31  Indianapolis (Remainder), Indiana | Indpls- Washington Park/  in parking lot next to police station | 39.810833,-86.114444
+('51', '087', '0014')  VOC=119  first=1981 last=2026-05-31  East Highland Park, Virginia | MathScience Innovation Center | 37.55652,-77.40027
+('06', '037', '1103')  VOC=117  first=1979 last=2026-03-31  Los Angeles, California | Los Angeles-North Main Street | 34.06659,-118.22688
+('10', '003', '2004')  VOC=112  first=1999 last=2025-12-31  Wilmington, Delaware | MLK  CORNER OF MLK BLVD AND JUSTISON ST | 39.739441,-75.557534
+('06', '067', '0006')  VOC=110  first=1980 last=2026-02-28  Arden-Arcade, California | Sacramento-Del Paso Manor | 38.613779,-121.368014
+('36', '005', '0133')  VOC=108  first=2006 last=2026-05-31  New York, New York | PFIZER LAB SITE | 40.8679,-73.87809
+('06', '111', '2002')  VOC=107  first=1985 last=2026-01-31  Simi Valley, California | Simi Valley-Cochran Street | 34.276316,-118.683685
+('24', '033', '0030')  VOC=107  first=2004 last=2026-03-31  Beltsville, Maryland | HU-Beltsville | 39.055277,-76.878333
+('48', '201', '1034')  VOC=107  first=1973 last=2026-02-28  Houston, Texas | Houston East | 29.768033,-95.220574
+('36', '081', '0124')  VOC=105  first=2001 last=2026-05-31  New York, New York | QUEENS COLLEGE 2 | 40.73614,-73.82153
+('06', '065', '8001')  VOC=104  first=1972 last=2026-03-31  Rubidoux, California | Rubidoux | 33.99958,-117.41601
+('48', '245', '0018')  VOC=101  first=1994 last=2026-02-28  Port Arthur, Texas | Jefferson County Airport | 29.942828,-94.000795
+('06', '073', '1022')  VOC=95  first=2016 last=2026-04-29  El Cajon, California | El Cajon - Lexington Elementary School | 32.789565,-116.944308
+('09', '003', '1003')  VOC=95  first=1981 last=2025-12-31  East Hartford, Connecticut | McAuliffe Park | 41.784722,-72.631667
+('26', '081', '0020')  VOC=95  first=1980 last=2026-03-31  Grand Rapids, Michigan | GR-MONROE | 42.984173,-85.671339
+('25', '013', '0008')  VOC=92  first=1983 last=2026-02-28  Chicopee, Massachusetts | WESTOVER AFB | 42.19438,-72.555112
+('06', '019', '0011')  VOC=91  first=2012 last=2026-04-29  Fresno, California | Fresno - Garland | 36.78538,-119.77321
+('06', '019', '5001')  VOC=90  first=1990 last=2026-03-31  Clovis, California | Clovis-Villa | 36.819449,-119.716433
+('09', '001', '9003')  VOC=87  first=1996 last=2025-12-31  Westport, Connecticut | Sherwood Island Connector | 41.118333,-73.336667
+('27', '003', '1002')  VOC=87  first=1979 last=2025-12-31  Blaine, Minnesota | Anoka County Airport | 45.13768,-93.207615
+('06', '111', '3001')  VOC=84  first=1979 last=2026-01-31  Not in a City, California | El Rio-Rio Mesa School #2 | 34.25239,-119.143182
+('06', '001', '0007')  VOC=78  first=1999 last=2024-02-04  Livermore, California | Livermore | 37.687526,-121.784217
+('06', '019', '4001')  VOC=76  first=1984 last=2025-12-31  Parlier, California | Parlier | 36.597442,-119.503659
+('42', '003', '0008')  VOC=75  first=1978 last=2026-03-31  Pittsburgh, Pennsylvania | Lawrenceville | 40.46542,-79.960757
+('06', '039', '0004')  VOC=74  first=1997 last=2025-12-31  Madera, California | Madera-Pump Yard | 36.867125,-120.010158
+('40', '143', '1127')  VOC=74  first=2000 last=2026-06-15  Tulsa, Oklahoma | TULSA CENTRAL | 36.204902,-95.976537
+('01', '073', '0023')  VOC=73  first=1979 last=2026-03-31  Birmingham, Alabama | North Birmingham | 33.553056,-86.815
+('12', '011', '0034')  VOC=71  first=2015 last=2026-03-31  Davie, Florida | Daniela Banu NCORE | 26.053889,-80.256944
+('33', '011', '5001')  VOC=71  first=2002 last=2026-03-31  Peterborough (Peterboro), New Hampshire | MILLER STATE PARK | 42.86183,-71.878626
+('49', '035', '3006')  VOC=71  first=1997 last=2026-05-31  Salt Lake City, Utah | Hawthorne | 40.736389,-111.872222
+('36', '103', '0044')  VOC=69  first=2018 last=2026-05-31  Old Field, New York | Flax Pond | 40.961017,-73.139046
+('33', '015', '0018')  VOC=68  first=2011 last=2026-03-31  Londonderry, New Hampshire | MOOSEHILL SCHOOL | 42.862531,-71.38014
+('37', '033', '0001')  VOC=68  first=1993 last=2026-04-30  Not in a City, North Carolina | Cherry Grove | 36.307033,-79.467417
+('23', '009', '0102')  VOC=65  first=1995 last=2026-05-31  Not in a City, Maine | TOP OF CADILLAC MTN (FENCED ENCLOSURE) | 44.351697,-68.22698
+('49', '035', '3015')  VOC=61  first=2019 last=2026-05-31  Salt Lake City, Utah | Utah Technical Center | 40.777145,-111.945849
+('06', '029', '2012')  VOC=60  first=2012 last=2025-12-31  Bakersfield, California | Bakersfield-Muni | 35.331612,-118.999961
+('09', '009', '0027')  VOC=59  first=2004 last=2025-12-31  New Haven, Connecticut | Criscuolo Park-New Haven | 41.3014,-72.902871
+('12', '057', '3002')  VOC=58  first=2004 last=2026-03-31  Valrico, Florida | SYDNEY | 27.965744,-82.230596
+('37', '159', '0021')  VOC=58  first=1993 last=2026-04-30  Rockwell, North Carolina | Rockwell | 35.551868,-80.395039
+('39', '035', '0060')  VOC=57  first=1993 last=2026-04-30  Cleveland, Ohio | GT Craig NCore PAMS | 41.492117,-81.678449
+('48', '245', '1035')  VOC=47  first=2006 last=2026-02-28  Nederland, Texas | Nederland 17th Street | 29.979975,-94.004778
+('06', '073', '0001')  VOC=44  first=1972 last=2026-04-29  Chula Vista, California | Chula Vista | 32.631242,-117.059088
+('21', '111', '0067')  VOC=40  first=2009 last=2025-12-31  Louisville, Kentucky | CANNONS LANE | 38.22876,-85.65452
+('32', '003', '0540')  VOC=37  first=2010 last=2026-04-30  Sunrise Manor, Nevada | Jerome Mack-NCore | 36.141875,-115.078742
+('04', '019', '1011')  VOC=36  first=1973 last=2026-03-31  Tucson, Arizona | 22ND & CRAYCROFT | 32.204411,-110.878067
+('47', '157', '0075')  VOC=36  first=2011 last=2025-12-31  Memphis, Tennessee | Memphis NCORE site | 35.151699,-89.850249
+('39', '061', '0040')  VOC=28  first=1999 last=2026-04-30  Cincinnati, Ohio | Taft NCore PAMS | 39.12886,-84.50404
+('20', '209', '0021')  VOC=10  first=1999 last=2026-03-31  Kansas City, Kansas | JFK | 39.117219,-94.635605
