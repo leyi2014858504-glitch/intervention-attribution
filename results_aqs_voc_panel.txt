@@ -1,0 +1,363 @@
+# 361 distinct 43xxx VOC parameter codes in aqs_monitors
+# code   n_monitors  name
+  43101         470  Total hydrocarbons
+  43102        1263  Total NMOC (non-methane organic compound)
+  43104           4  Volatile organic compounds
+  43111          25  Isomers of dodecane
+  43121           3  Isomers of pentene
+  43126           4  Ethylene & acetylene
+  43127         187  Isobutene & 1-butene
+  43128           2  ISOHEPTANE & 2-3-DIMETHYLPENTANE
+  43129           6  TRICHLOROETHYLENE & BCM
+  43130          54  n-Octane & trans-1,3-dichloropropylene
+  43131          36  Unidentified VOC
+  43134           7  1,1-Bis(4-chlorophenyl)-2,2-dichloroethane
+  43136           3  2,4-Dichlorophenoxyacetic acid methyl ester
+  43137           7  Lindane
+  43138           7  1,2,3,4,5,6- Hexachlorocyclohexane
+  43139           7  1,2,3,4,5,6- Hexachlolocyclohexane, .beta.-
+  43140           7  1,2,3,4,5,6- Hexachlorocyclohexane, .delta.-
+  43141         473  n-Dodecane
+  43142         225  Tridecene
+  43143         269  n-Tridecane
+  43144         239  Propyne
+  43145         239  1-Octene
+  43148          10  cis/trans-2-Butene
+  43149           9  cis/trans-2-Hexene
+  43150          10  cis/trans-2-Pentene
+  43151           7  Heptachlor epoxide
+  43152           7  Endrin ketone
+  43153           8  Methoxychlor
+  43154           3  Guthion
+  43155           6  Atrazine
+  43156           3  Dacthal
+  43157           3  Endosulfan
+  43158           3  Dursban
+  43159           8  Aldrin
+  43160           3  Methyl Parathion
+  43161           3  Endrin aldehyde
+  43162           8  1,1,1-Trichloro-2,2-bis (p-chlorophenyl) ethane
+  43163           7  Endosulfan 2
+  43164           7  Endrin
+  43165           7  Dieldrin
+  43166           7  1,1-Dichloroethenylidene bis(4-chlorobenzene)
+  43167           3  Phosphorotrithioic acid,S,S,S-tributylester
+  43168           7  Endosulfan sulfate
+  43169           3  Malathion
+  43170           7  Heptachlor
+  43171           8  Cyclopentane & 2,3-dimethylbutane
+  43172           5  2-Methylheptane & 3-Methylheptane
+  43173          82  1-Hexene & 2-Methyl-1-pentene
+  43174           6  2,3-Dimethylbutane & 2-Methylpentane
+  43175           4  Endosulfan 1 (alpha)
+  43188           9  Pinene & p-ethytoluene
+  43189           8  beta.Pinene & 1,2,3- trimethylbenzene
+  43201         355  Methane
+  43202         736  Ethane
+  43203         773  Ethylene
+  43204         795  Propane
+  43205        1544  Propylene
+  43206        1268  Acetylene
+  43207         533  Freon 113
+  43208         838  Freon 114
+  43209         259  Ethyl acetate
+  43210           1  1-BUTYNE
+  43211           1  2-BUTYNE
+  43212         850  n-Butane
+  43214         783  Isobutane
+  43215          15  ISO-BUTYLENE duplicate use 43270 isobutene
+  43216         790  trans-2-Butene
+  43217         795  cis-2-Butene
+  43218        1802  1,3-Butadiene
+  43219           1  Ethylacetylene
+  43220         917  n-Pentane
+  43221         787  Isopentane
+  43222           8  2,2-Dimethylpropane
+  43223          18  1,2-Butadiene
+  43224         780  1-Pentene
+  43225         263  2-Methyl-1-butene
+  43226         768  trans-2-Pentene
+  43227         779  cis-2-Pentene
+  43228         573  2-Methyl-2-butene
+  43229           8  1,3-Hexadiene
+  43230         771  3-Methylpentane
+  43231        1177  n-Hexane
+  43232        1096  n-Heptane
+  43233        1478  n-Octane
+  43234         530  4-Methyl-1-pentene
+  43235         850  n-Nonane
+  43236         235  2-Ethyl-1-butene
+  43237          17  2-Methyl-2-pentene
+  43238         825  n-Decane
+  43240           1  METHYLCYCLOPENTENE
+  43241           8  2,3-Dimethyl-2-pentene
+  43242         785  Cyclopentane
+  43243         808  Isoprene
+  43244         783  2,2-Dimethylbutane
+  43245         467  1-Hexene
+  43246         597  2-Methyl-1-pentene
+  43247         768  2,4-Dimethylpentane
+  43248        1097  Cyclohexane
+  43249         778  3-Methylhexane
+  43250         906  2,2,4-Trimethylpentane
+  43251           6  Cyclopropane
+  43252         776  2,3,4-Trimethylpentane
+  43253         778  3-Methylheptane
+  43254           7  cis-3-Hexene
+  43255           6  Limonene
+  43256         508  alpha.-Pinene
+  43257         458  beta.-Pinene
+  43258           1  Camphene
+  43259          44  n-Tetradecane
+  43260          38  n-Pentadecane
+  43261         807  Methylcyclohexane
+  43262         765  Methylcyclopentane
+  43263         764  2-Methylhexane
+  43264          40  Heptane
+  43265           1  OCTENE
+  43269          57  Cyclohexene
+  43270         234  Isobutene
+  43274          13  2,4,4-Trimethyl-1-pentene
+  43275           7  2,4,4-Trimethyl-2-pentene
+  43279         273  1-Nonene
+  43280         655  1-Butene
+  43282         561  3-Methyl-1-butene
+  43283         556  Cyclopentene
+  43284         759  2,3-Dimethylbutane
+  43285         758  2-Methylpentane
+  43286           7  cis-4-Methyl-2-pentene
+  43289         562  trans-2-Hexene
+  43290         565  cis-2-Hexene
+  43291         775  2,3-Dimethylpentane
+  43292         229  2-2-3-Trimethylpentane
+  43293           9  2,4-Dimethylhexane
+  43294           9  2,3-Dimethylhexane
+  43295          47  3-Ethylhexane
+  43296          19  Ethylcyclohexane
+  43298         265  1-Decene
+  43299         271  1-Undecene
+  43301          16  Methanol
+  43302         235  Ethyl alcohol
+  43303          41  n-Propyl alcohol
+  43305          64  n-Butyl alcohol
+  43307          38  n-Amyl alcohol
+  43309          13  tert-butyl alcohol
+  43312         220  2-Propanol
+  43314           4  DIETHYL ETHER & 2-PROPANOL
+  43323           6  n-Pinene & benzaldehyde
+  43328         249  1-Heptene
+  43329         391  Butyraldehyde & isobutyraldehyde
+  43330         233  Dodecene
+  43331         106  2-Chloropentane
+  43335         181  3-Chloropropene
+  43339          26  Butryl-aldehyde & Methyl Ethyl Ketone
+  43340          20  Ethyne & isobutane
+  43341          28  Isopentane & cyclopentane
+  43342          21  3-Methyl-1-butene & cyclopentene
+  43343          20  2-Methyl-2-butene & 1-pentene
+  43344          38  1-Hexanol
+  43346           5  Methylcyclopentane & 2,4-dimethylpentane
+  43347           5  2-Methylhexane & cyclohexane
+  43348           5  n-Decane & 1,2,4-trimethylbenzene
+  43349           5  cis-2-Pentene & 2-methylpentane
+  43351           6  ETHYL ETHER
+  43352           4  Dichloroethyl ether
+  43356           3  Diethylene glycol
+  43359         102  Chlorodifluoromethane
+  43360           6  dichlorofluoromethane
+  43362          70  2-Methylhexane & 2,3-dimethylpentane 
+  43363           7  1,2,4-Trimethylbenzene & sec-butylbenzene
+  43364           7  1,2,4-Trimethylbenzene & .beta.-pinene
+  43372         952  Methyl tert-butyl ether
+  43373         361  Tert-amyl methyl ether
+  43375           6  2,2-Dimethylheptane
+  43376           7  2,2,4-Trimethylhexane
+  43378           6  1-Methylcyclohexene
+  43379           8  m(and p)-Ethyltoluene
+  43391          38  4-Methylpentene & 3-methylpentene
+  43392          32  2,2,3-Trimethylbutane
+  43393          32  cis-1,2-Dimethylcyclopentane
+  43394          32  trans-1,3-Dimethylcyclopentane
+  43395          17  4-Methylheptane
+  43396         361  tert-Butyl ethyl ether
+  43397          18  p-isopropyltoluene
+  43434          85  n-Propyl acetate
+  43437           4  METHYL ACRYLATE
+  43438         359  Ethyl acrylate
+  43440           3  n-Butyl acrylate
+  43441         473  Methyl methacrylate
+  43442           4  Ethyl methacrylate
+  43447         179  Vinyl acetate
+  43501         284  Aldehydes
+  43502        1179  Formaldehyde
+  43503        1188  Acetaldehyde
+  43504         904  Propionaldehyde
+  43505         930  Acrolein - Unverified
+  43509         227  Acrolein - Verified
+  43510         544  Butyraldehyde
+  43511           3  HEXANAL
+  43512          94  Isobutyraldehyde
+  43513         586  Isovaleraldehyde
+  43514          87  Butyl acetate
+  43515         103  Methacrolein
+  43516         584  Trans-Crotonaldehyde
+  43517         693  Hexanaldehyde
+  43518         683  Valeraldehyde
+  43520           8  cis-Crotonaldehyde
+  43521           4  Decanal
+  43522           3  Dodecanal
+  43523           3  Tetradecanal
+  43524          42  Nonanal
+  43525           4  Octanal
+  43526           4  Tridecanal
+  43527           3  Undecanal
+  43528         318  Crotonaldehyde
+  43549          24  Methyl ethyl ketone & methacrolein
+  43551        1200  Acetone
+  43552        1098  Methyl ethyl ketone
+  43553          70  3-Pentanone
+  43557          92  3-Hexanone
+  43558          18  Methyl Vinyl Ketone
+  43559         306  Methyl Butyl Ketone
+  43560         796  Methyl isobutyl ketone
+  43562          18  2-Pentanone
+  43563          35  3-Heptanone
+  43564          74  2-Methyl-3-hexanone
+  43565           1  Acetophenone
+  43566           1  1,2-Epoxybutane
+  43599         126  Ethane & acetylene
+  43601         159  Ethylene oxide
+  43602           4  Propylene oxide
+  43604           1  1,2,3-Trichloropropane
+  43605           1  1,3,5-Trichlorobenzene
+  43606           1  Propionitrile
+  43607           1  Epichlorohydrin
+  43702         575  Acetonitrile
+  43704         702  Acrylonitrile
+  43756           8  2-Nitropropane
+  43775           1  NITROETHANE
+  43776           3  Radon
+  43800           4  Total chlorinated hydrocarbons
+  43801        1358  Chloromethane
+  43802        1637  Dichloromethane
+  43803        1636  Chloroform
+  43804        1684  Carbon tetrachloride
+  43805          68  Dibromomethane
+  43806        1042  Bromoform
+  43807           2  CARBON TETRABROMIDE
+  43808          19  Methyl Iodide
+  43811        1076  Trichlorofluoromethane
+  43812        1219  Chloroethane
+  43813        1414  1,1-Dichloroethane
+  43814        1640  Methyl chloroform
+  43815        1585  Ethylene dichloride
+  43816           2  Duplicate use 43839
+  43817        1676  Tetrachloroethylene
+  43818        1418  1,1,2,2-Tetrachloroethane
+  43819        1364  Bromomethane
+  43820        1412  1,1,2-Trichloroethane
+  43821         432  1,1,2-Trichloro-1,2,2-trifluoroethane
+  43823         991  Dichlorodifluoromethane
+  43824        1653  Trichloroethylene
+  43825           3  2,2-Dichloro-1,1,1-trifluoroethane
+  43826        1079  1,1-Dichloroethylene
+  43827          26  Carbon Tetrafluoride
+  43828         976  Bromodichloromethane
+  43829        1469  1,2-Dichloropropane
+  43830        1299  trans-1,3-Dichloropropene
+  43831        1396  cis-1,3-Dichloropropene
+  43832         929  Dibromochloromethane
+  43833          21  2-Chloroethyl vinyl ether
+  43834          26  1,1,1,2,2-Pentafluoroethane
+  43835         813  Chloroprene
+  43836         622  Bromochloromethane
+  43837          59  1,1,1,2-Tetrachloroethane
+  43838         979  trans-1,2-Dichloroethylene
+  43839         929  cis-1,2-Dichloroethene
+  43840          53  1,2-Dichloroethene(total)
+  43841          66  1,3-Dichloropropene(total)
+  43842           9  1-Propene, 3-chloro
+  43843        1180  Ethylene dibromide
+  43844         844  Hexachlorobutadiene
+  43847           3  1,4-Dichlorobutane
+  43848          29  Halocarbon 134a
+  43849           3  Freon 23
+  43852          40  Dichlorotetrafluoroethane
+  43853          42  1-Bromopropane
+  43854          26  1,1-Difluoroethane
+  43860        1518  Vinyl chloride
+  43861          96  Vinyl bromide
+  43862           3  Ethyl bromide
+  43863           3  3-Bromopropene
+  43901           7  Methyl mercaptan
+  43902           1  ETHYL MERCAPTAN
+  43911          36  Total reduced sulfur
+  43915           2  DIMETHYL SULFIDE
+  43933           1  Carbonyl Sulfide
+  43950          56  Heptanal
+  43952           2  Indan
+  43954         812  n-Undecane
+  43955          47  2,5-Dimethylhexane
+  43960         768  2-Methylheptane
+  45102          84  Xylene(s)
+  45104           4  Isomers of ethyltoluene
+  45105           7  ISOMERS OF BUTYLBENZENE
+  45109        1943  m/p Xylene
+  45110         206  Styrene and o-xylene
+  45111          44  m(and p)-Xylene & bromoform
+  45112          90  o-Xylene & 1,1,2,2-tetrachloroethane
+  45115           3  Benzene & 1,2-dichloroethane
+  45116           9  m/p Ethyltoluene
+  45140           5  O-xylene & N-nonane
+  45201        2285  Benzene
+  45202        2223  Toluene
+  45203        2185  Ethylbenzene
+  45204        2012  o-Xylene
+  45205         265  m-Xylene
+  45206         285  p-Xylene
+  45207        1687  1,3,5-Trimethylbenzene
+  45208        1645  1,2,4-Trimethylbenzene
+  45209         814  n-Propylbenzene
+  45210         870  Isopropylbenzene
+  45211         723  o-Ethyltoluene
+  45212         718  m-Ethyltoluene
+  45213         930  p-Ethyltoluene
+  45216           6  sec-Butylbenzene
+  45217           6  o-Diethylbenzene
+  45218         643  m-Diethylbenzene
+  45219         707  p-Diethylbenzene
+  45220        1901  Styrene
+  45221          83  Benzene,(1-methylethenyl)-
+  45225         768  1,2,3-Trimethylbenzene
+  45228         349  Benzene, 1-ethenyl-4-methyl
+  45230          38  p-tert-butyl toluene
+  45231           8  1,2,4,5-Tetramethylbenzene
+  45232           6  Butylbenzene
+  45233          21  Butyl benzene
+  45234           6  n-Hexylbenzene
+  45300           8  Phenol
+  45301          38  Biphenyl
+  45501         835  Benzaldehyde
+  45503         530  2,5-Dimethylbenzaldehyde
+  45504         501  Tolualdehydes
+  45505          90  o-Tolualdehyde
+  45506          52  m & p-Tolualdehyde
+  45507          60  p-Tolualdehyde
+  45508          53  m-Tolualdehyde
+  45704           3  4,4-Methylenedianiline
+  45705          12  Nitrobenzene
+  45732           9  4,4-Methylenediphenyl Diisocyanate (MDI)
+  45801        1502  Chlorobenzene
+  45802           2  BROMOBENZENE
+  45805        1364  1,2-Dichlorobenzene
+  45806        1343  1,3-Dichlorobenzene
+  45807        1429  1,4-Dichlorobenzene
+  45808          15  Bromofluorobenzene
+  45809         700  Benzyl chloride
+  45810         904  1,2,4-Trichlorobenzene
+  45811          13  2-chlorotoluene
+  45815           4  Benzene, 1,2,3-trichloro-
+  45850          96  Naphthalene
+  45851           1  1-Methylnaphthalene
+  45852           1  2-Methylnaphthalene
+  45901           1  DUPLICATE USE 17141

@@ -17,7 +17,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 #           splitting step after each INTEGRATE (G4 reference build)
 #   dummy : /root/kpp5, cb05d_Main.f90 - the same forcing expressed as dummy
 #           reactions inside the mechanism (Möbius build)
-BACKENDS = {"split": "/root/kpp4", "dummy": "/root/kpp5", "co": "/root/kpp6"}
+BACKENDS = {"split": "/root/kpp4", "dummy": "/root/kpp5", "co": "/root/kpp6",
+            "anchor": "/root/kppa", "scale": "/root/kpp7"}
 DEFAULT_BACKEND = os.environ.get("KPP_BACKEND", "split")
 
 # RUNCFG keys understood by every backend ...
@@ -29,7 +30,9 @@ BASE_KEYS = ["TEND_S", "DT_S", "STATE_IN", "EMIS_NOX", "EMIS_VOC", "EMIS_ISO",
 # build plus the third intervention sector (COW), i.e. the 12-player game;
 # "dummy" deliberately omits COW so its namelists stay 8-player.
 EXTRA_KEYS = {"dummy": ["DUMMYF", "CONSTJ", "C_H2O"],
-              "co": ["DUMMYF", "CONSTJ", "C_H2O", "COW"]}
+              "co": ["DUMMYF", "CONSTJ", "C_H2O", "COW"],
+              "anchor": ["DUMMYF", "CONSTJ", "C_H2O"],
+              "scale": ["DUMMYF", "CONSTJ", "C_H2O", "COW"]}
 
 DEFAULTS = dict(
     TEND_S=259200.0, DT_S=300.0, STATE_IN="none",
@@ -127,6 +130,7 @@ def _run_once(cfg, name, backend=None):
     m["nfail"] = nfail
     m["cfg"] = p
     m["state"] = state
+    m["traj"] = traj          # diurnal() needs the full series, not just scalars
     return m
 
 def load_traj(path):
@@ -137,7 +141,31 @@ def load_traj(path):
             if not ln or ln.startswith("#"):
                 continue
             rows.append([float(x) for x in ln.split()])
-    return rows  # cols: t_h o3 nox temp sday kdil emis
+    return rows  # cols: t_h o3 nox temp sday kdil emis  [anchor adds co no no2 par tol xyl isop]
+
+
+# The "anchor" backend appends the species we need to compare against AQS.
+# Columns beyond index 6 only exist there, so this is guarded.
+ANCHOR_COLS = ["co", "no", "no2", "par", "tol", "xyl", "isop"]
+
+
+def diurnal(traj, col, spinup_h=48.0):
+    """Mean of column `col` by local hour, using only t >= spinup_h.
+
+    The box is driven by a repeating diurnal cycle, so the meaningful comparison
+    with a station is the 24-h composite, not a day-by-day series.
+    """
+    acc = {h: [] for h in range(24)}
+    idx = 1 if col == "o3" else (2 if col == "nox" else 7 + ANCHOR_COLS.index(col))
+    for r in traj:
+        if len(r) <= idx:
+            continue
+        t = r[0]
+        if t < spinup_h:
+            continue
+        h = int(round(t)) % 24
+        acc[h].append(r[idx])
+    return {h: (sum(v) / len(v) if v else float("nan")) for h, v in acc.items()}
 
 def _fort_float(s):
     # Fortran Ew.d may print exponents without 'E': 0.300167756076091-314
