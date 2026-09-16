@@ -20,10 +20,13 @@ TARGETS
             the "time-resolved" refinement: psi gives a per-window attribution
             plus the within-window sector split.
 
-  Note: the Moebius transform on the Boolean cube IS the Walsh-Hadamard
-  transform, and phi/psi are linear functionals of that spectrum -- this is
-  what makes "sample the spectrum" and "estimate the attribution" the same
-  problem with a known objective.
+  Note: the Moebius transform on the Boolean cube is the fast zeta inversion;
+  the Walsh (Fourier on {+-1}^n) spectrum of the same v differs only by a
+  triangular basis change, so the two are informationally equivalent but their
+  order-k decompositions are NOT the same partition.  We work in the Moebius
+  basis; phi/psi are linear functionals of it -- this is what makes "sample
+  the spectrum" and "estimate the attribution" the same problem with a known
+  objective.
 
 CHECKS (all must hold, else the oracle is wrong)
   * the two Shapley implementations agree to 1e-9
