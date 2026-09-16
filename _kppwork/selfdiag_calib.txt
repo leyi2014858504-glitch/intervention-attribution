@@ -1,0 +1,43 @@
+Calibration of oracle-free flags: can they PREDICT (not just rank) the
+realized error e_q?  Fit e = c*flag; transfer via leave-one-corner-out;
+coverage factor k for 90/95 pct.  Protocol identical to exp_selfdiag.
+
+collecting r_sat n=8 v_ppb ...
+
+collecting r_sat n=12 v_ppb ...
+
+collecting r_sat n=16 v_ppb ...
+
+collecting r_lim1 n=8 v_ppb ...
+
+collecting r_lim1 n=12 v_ppb ...
+
+collecting r_lim1 n=16 v_ppb ...
+
+====================================================================
+METRIC v_ppb   (148 fit points, corners: [('r_lim1', 8), ('r_lim1', 12), ('r_lim1', 16), ('r_sat', 8), ('r_sat', 12), ('r_sat', 16)])
+====================================================================
+  flag=h   c=median(e/f)=  0.278  per-corner c spread=  1.5x  slope b=1.08  k(90%)=  1.6  k(95%)=  1.8
+        LOO-corner e/pred ratio: median 0.97  range [0.80, 1.14]
+  flag=sp  c=median(e/f)=  2.303  per-corner c spread=  3.3x  slope b=0.51  k(90%)=  3.2  k(95%)=  4.5
+        LOO-corner e/pred ratio: median 1.39  range [1.04, 1.91]
+  flag=g   c=median(e/f)=  0.163  per-corner c spread= 21.7x  slope b=0.28  k(90%)=  2.8  k(95%)=  3.6
+        LOO-corner e/pred ratio: median 1.47  range [0.40, 2.89]
+
+collecting r_sat n=12 v_mda8 ...
+
+collecting r_sat n=16 v_mda8 ...
+
+collecting r_lim1 n=12 v_mda8 ...
+
+collecting r_lim1 n=16 v_mda8 ...
+
+====================================================================
+METRIC v_mda8   (100 fit points, corners: [('r_lim1', 12), ('r_lim1', 16), ('r_sat', 12), ('r_sat', 16)])
+====================================================================
+  flag=h   c=median(e/f)=  0.327  per-corner c spread=  1.2x  slope b=1.03  k(90%)=  1.7  k(95%)=  1.8
+        LOO-corner e/pred ratio: median 1.00  range [0.91, 1.10]
+  flag=sp  c=median(e/f)=  2.024  per-corner c spread=  2.5x  slope b=0.21  k(90%)=  2.9  k(95%)=  3.6
+        LOO-corner e/pred ratio: median 1.48  range [1.13, 1.65]
+  flag=g   c=median(e/f)=  0.920  per-corner c spread=  3.2x  slope b=0.44  k(90%)=  2.7  k(95%)=  3.5
+        LOO-corner e/pred ratio: median 1.07  range [0.59, 1.29]
