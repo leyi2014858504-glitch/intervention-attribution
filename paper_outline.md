@@ -14,7 +14,7 @@
 | ③ | 采样器代价**远低于枚举，但并非与 n 无关**；且**小 n 时枚举反而更便宜** | 全枚举 n=8/12/16 实测：同等预算下误差 1.6–1.8×/倍 n ⇒ 同精度约 2.5–3×；枚举 16×/256×。交叉点在 n=8–12 之间 | Fig. 4 + Table 5 |
 | ④ | 全谱才暴露的结构 | 块内符号翻转；配额最优随 regime 翻转；CO 弱玩家稳健性 | Fig. 5–7 + Table 3 |
 | ⑤ | 整条链路可验（L1/L2 封死） | sham 已知零（1.07e-14）；V-门 6 个冻结值逐位复现 | Table 1 |
-| ⑥ | 局地方法结构上看不见 ④，且**只在无关紧要的玩家上精确** | 相邻 3h 窗：局地同号、有限关停反号（−0.42 vs +6.98 ppb）；CO 精确到 2% 但总效应仅 0.14 ppb | Fig. 6 + Table 2 |
+| ⑥ | 局地方法结构上看不见 ④，且**只在无关紧要的玩家上精确** | 相邻 3h 窗：局地同号、有限关停反号（MDA8 −0.91 vs +8.24 ppb；v48 同为反号）；CO 精确到 2% 但总效应仅 0.30 ppb | Fig. 6 + Table 2 |
 
 **注意 ⑥ 的位置**：它既是发现，又是定位武器。前五条说"我们造了什么、它是对的"，⑥ 说"不这么做会错"。
 
@@ -75,18 +75,20 @@ terms, only partly cancelled by the decay of the spectrum.
 
 Third, the spectrum exposes structure that a local method cannot represent. Inside a
 single six-hour block, NOx reductions in [12,15) and [15,18) are both predicted by the
-local derivative to RAISE ozone; under finite intervention the first one LOWERS it
-(−0.42 and +6.98 ppb respectively, with the linear extrapolation giving +3.03 and
-+5.69). Aggregating to six hours hides the sign change entirely (0/12 sign disagreements
+local derivative to RAISE ozone; under finite intervention the first one instead LOWERS
+it (−0.91 and +8.24 ppb respectively, with the linear extrapolation giving +6.37 and
++8.20). Aggregating to six hours hides the sign change entirely (0/12 sign disagreements
 at 6 h versus 1/24 at 3 h). The divergence tracks whether the response is MONOTONE, not
-how large the effect is: VOC windows stay within 11 % of the linear extrapolation and CO
+how large the effect is: VOC windows stay within 13 % of the linear extrapolation and CO
 windows, a third and weaker sector, within 2 %. But CO's entire effect is at most
-0.14 ppb, so a local method is exact precisely where the player does not matter, while
-the sector that dominates the outcome — NOx, 40–200× larger — is the one whose sign it
-gets wrong. EKMA-style budget constraints additionally make the optimal allocation
-regime-dependent — VOC-only on the NOx-saturated side, morning NOx plus afternoon VOC on
-the NOx-limited side — and adding CO as a third sector moves the NOx/VOC attributions by
-at most 0.10 ppb per player (sector totals by 0.31 ppb).
+0.30 ppb, so a local method is exact precisely where the player does not matter, while
+the sector that dominates the outcome — NOx, one to two orders of magnitude larger — is
+the one whose sign it gets wrong. The sign flip is metric-independent: it appears
+identically under the daily-mean statistic (same 1/24, 0/12 counts). EKMA-style budget
+constraints additionally make the optimal allocation regime-dependent — VOC-only on the
+NOx-saturated side, morning NOx plus afternoon VOC on the NOx-limited side — and adding
+CO as a third sector moves the NOx/VOC attributions by at most 0.10 ppb per player
+(sector totals by 0.31 ppb).
 
 The pipeline is verified against physically forced zeros (a sham switch that makes four
 CO windows null players; max |Möbius| = 1.1e-14) and a sub-lattice gate (the four-window
@@ -177,11 +179,12 @@ winter periods from them.
 - **画什么**：8 个 3 小时窗的有限关停效应 Δ_off（柱状），按小时排列。12–15h 一根负柱紧邻 15–18h 一根正柱。
 - **承载**：④；也是 ⑥ 的引子
 - **素材**：`results_local_vs_global.txt`（3h 段）
-- **⚠️ 口径一致性**：本轮用 V-门基线 + 度量 v48 得 −0.42 / +6.98 ppb；早先 n=24 扫描给出过 −1.60 / +11.32。**符号结构稳定、幅度依度量（v48 vs MDA8）而异**——全文必须统一到一个度量，并在图注写明是哪一个。
+- **度量**：主口径 MDA8，得 −0.91 / +8.24 ppb；v48 为 −0.42 / +6.98。**符号结构两度量完全一致**（1/24、0/12 相同），幅度依度量而异——图注声明用 MDA8，v48 进补充材料做稳健性对照。
 
 ### Fig. 6 — 局地导数 vs 全局归因（定位武器）⑥
 - **画什么**：三部门（NOx / VOC / CO）× 8 个 3h 窗。每个窗并排：(a) 局地导数 D_local（DDM-1 能给的），(b) −D_local（线性外推的关停效应），(c) 真实有限关停 Δ_off。NOx 12–15h 处 (b)(c) 反号，红框标出。
-- **图注必须给的三条**：NOx \|D\|=1.0–5.7 ppb、ratio 0.99–2.21 且一处反号；VOC \|D\|=1.0–3.6、ratio ≤0.11；CO \|D\|=0.028–0.14、ratio ≤0.02。**结论句：局地方法只在无关紧要的玩家上精确——CO 精确到 2% 却只值 0.14 ppb，NOx 大 40–200× 却反号。**
+- **图注必须给的三条（MDA8 主口径）**：NOx \|D_local\|=2.1–8.2 ppb、ratio −0.14–1.34 且一处反号；VOC \|D_local\|=2.3–8.5、ratio ≤0.13；CO \|D_local\|=0.06–0.29、ratio ≤0.02。**结论句：局地方法只在无关紧要的玩家上精确——CO 精确到 2% 却只值 0.30 ppb，NOx 大一到两个数量级却反号。**
+- **反号的度量不变性（必须点出）**：v48 下同一窗反号、计数同为 1/24（3h）与 0/12（6h）——核心定性结论不依赖度量选择。⚠️ 注意 v48 的幅度偏离更极端（ratio 达 2.21），MDA8 更温和（≤1.34）但绝对效应更大；两度量并置讲"符号翻转稳健、幅度依度量"。
 - **承载**：⑥ —— 回答"为什么不用 DDM-3D"，并给出可判定规则（偏离跟随响应是否单调，而非效应大小）
 - **素材**：`results_local_vs_global.txt`、`_local_vs_global.py`
 
@@ -197,10 +200,10 @@ winter periods from them.
 - **素材**：`_kppwork/exp_sham.py`、`sham_result.txt`、`results_gate7.txt`
 
 ### Table 2 — Local vs global（审稿人正面回答表）⑥
-- **列**：sector | hours | D_local | D_finite | −D_local | ratio | sign_ok
+- **列**：sector | hours | D_local | D_finite | −D_local | ratio | sign_ok（**主表 = MDA8**；v48 同格式表进补充材料）
 - **行**：24 个 3h 窗（NOx/VOC/CO 各 8）+ 12 个 6h 块，**全列不挑**
-- **图注必须点出**：ratio = D_finite/(−D_local)，线性响应下恒为 1；符号不一致 1/24（3h）与 0/12（6h）
-- **素材**：`results_local_vs_global.txt`
+- **图注必须点出**：ratio = D_finite/(−D_local)，线性响应下恒为 1；符号不一致 1/24（3h）与 0/12（6h），**两度量计数相同**
+- **素材**：`results_local_vs_global.txt`（双度量已并置）
 
 ### Table 3 — 玩家集稳健性 ④
 - **列**：φ（8 玩家）vs φ（12 玩家，含 CO 第三部门），逐玩家 |Δφ|
@@ -261,13 +264,13 @@ winter periods from them.
 
 ## 五、局地方法可用性的判据（已完成的补充实验）
 
-原计划的"把 CO 补进 Fig. 6"已经做完，36 个窗的结果给出一条可判定规则：
+原计划的"把 CO 补进 Fig. 6"已经做完，36 个窗的结果给出一条可判定规则（**MDA8 主口径**；括号内为 v48，反号计数两度量相同）：
 
 | sector | \|D_local\| 量级 | ratio 偏离 | 局地方法可靠吗 |
 |---|---|---|---|
-| NOx | 1.0–5.7 ppb | 0.99–2.21，一处**反号** | ✗ 有 EKMA 拐点 |
-| VOC | 1.0–3.6 ppb | ≤0.11 | 基本可靠（单调） |
-| CO | 0.028–0.14 ppb | ≤0.02 | ✓ 完全可靠，**但因此无关紧要** |
+| NOx | 2.1–8.2 ppb (1.0–5.7) | −0.14–1.34 (0.99–2.21)，一处**反号** | ✗ 有 EKMA 拐点 |
+| VOC | 2.3–8.5 ppb (1.0–3.6) | ≤0.13 (≤0.11) | 基本可靠（单调） |
+| CO | 0.06–0.29 ppb (0.028–0.14) | ≤0.02 (≤0.02) | ✓ 完全可靠，**但因此无关紧要** |
 
 **要写进 Discussion 的一句**：偏离跟随的是**响应是否单调**，而不是效应大小；而"最需要精确的那个部门恰好就是失败的那个"。这句把 ⑥ 从"我们更好"升级成"我们知道什么时候可以不换"——后者审稿人更喜欢，因为它是可证伪的。
 
