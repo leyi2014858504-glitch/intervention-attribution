@@ -51,25 +51,29 @@ _spec.loader.exec_module(_ex16)
 mobius_fast = _ex16.mobius_fast
 
 
-def load_table(fn, scen=None):
+def load_table(fn, scen=None, col="v_ppb", shards=False):
     raw = {}
-    with open(os.path.join(HERE, fn)) as fh:
-        for row in csv.DictReader(fh):
-            nm = row["name"]
-            if row["v_ppb"] in ("", "NaN"):
-                continue
-            if scen is not None:
-                if "_m" not in nm:
+    import glob as _g
+    files = (sorted(_g.glob(os.path.join(HERE, fn))) if shards
+             else [os.path.join(HERE, fn)])
+    for path in files:
+        with open(path) as fh:
+            for row in csv.DictReader(fh):
+                nm = row["name"]
+                if row[col] in ("", "NaN"):
                     continue
-                s, ms = nm.rsplit("_m", 1)
-                if s != scen:
-                    continue
-                m = int(ms)
-            else:
-                if not nm.startswith("m"):
-                    continue
-                m = int(nm[1:])
-            raw[m] = float(row["v_ppb"])
+                if scen is not None:
+                    if "_m" not in nm:
+                        continue
+                    s, ms = nm.rsplit("_m", 1)
+                    if s != scen:
+                        continue
+                    m = int(ms)
+                else:
+                    if not nm.startswith("m"):
+                        continue
+                    m = int(nm[1:])
+                raw[m] = float(row[col])
     base = raw[0]
     return {m: v - base for m, v in raw.items()}
 
@@ -183,25 +187,33 @@ def run_case(v, n, Bs, qcap, phi_true, t_q, scale, add):
 
 
 def main():
+    scen_arg = sys.argv[1] if len(sys.argv) > 1 else None
+    metric = sys.argv[2] if len(sys.argv) > 2 else "v_ppb"
+    assert metric in ("v_ppb", "v_mda8")
     L = []
     add = L.append
     add("Oracle-free flags vs true errors (all % except h_q which is RMS/sd;")
     add("t_q* = Table-6 oracle truncation error; e_q = realized fit error)")
-    scen_arg = sys.argv[1] if len(sys.argv) > 1 else None
+    add("METRIC COLUMN = %s" % metric)
     scen_list = [scen_arg] if scen_arg else ["r_sat", "r_lim1"]
     v1 = []
     v3 = []
     for scen in scen_list:
-        for n, fn, Bs, qcap in (
-                (8, "scen_v.csv", [64, 128, 250], 3),
-                (12, "co_v.csv", [512, 1024, 2048], 4),
-                (16, "n16_v_%s.csv" % scen, [1024, 2048, 4096, 8192], 4)):
-            path = os.path.join(HERE, fn)
+        if metric == "v_ppb":
+            tables = ((8, "scen_v.csv", False, [64, 128, 250], 3),
+                      (12, "co_v.csv", False, [512, 1024, 2048], 4),
+                      (16, "n16_v_%s.csv" % scen, False, [1024, 2048, 4096, 8192], 4))
+        else:
+            # n=8 MDA8 lives only in the derived sub-lattice table (not a file);
+            # V1 is defined at n=12/16, so skip n=8 here.
+            tables = ((12, "co_v_m8_*.csv", True, [512, 1024, 2048], 4),
+                      (16, "n16_v_%s_m8.csv" % scen, False, [1024, 2048, 4096, 8192], 4))
+        for n, fn, shards, Bs, qcap in tables:
+            path = os.path.join(HERE, fn if not shards else fn.replace("*", "1"))
             if not os.path.exists(path):
                 continue
-            # n16_v_<scen>.csv: one file per scenario, names m<05d>
-            # scen_v.csv / co_v.csv: mixed scenarios, names <scen>_m<ddd>
-            v = load_table(fn, None if fn.startswith("n16_v_") else scen)
+            v = load_table(fn, None if fn.startswith("n16_v_") else scen,
+                           col=metric, shards=shards)
             if len(v) != 1 << n:
                 add("\n%s n=%d incomplete (%d of %d) -- skipped" % (scen, n, len(v), 1 << n))
                 continue
@@ -239,7 +251,8 @@ def main():
             (scen, n, allr["e"], allr["g"], allr["h"], allr["sp"]))
     txt = "\n".join(L)
     print(txt)
-    with open(os.path.join(HERE, "selfdiag.txt"), "w") as fh:
+    outfn = "selfdiag.txt" if metric == "v_ppb" else "selfdiag_m8.txt"
+    with open(os.path.join(HERE, outfn), "w") as fh:
         fh.write(txt + "\n")
 
 
