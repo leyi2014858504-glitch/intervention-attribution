@@ -135,3 +135,9 @@ _kppwork/_ziplook*.sh
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# personal reference screenshots (PKU database list), not project data
+_kppwork/mmexport*
+# backup of the pre-rebuild corrupt co_v.csv (kept on disk, not versioned)
+_kppwork/*_corrupt_backup*
+_kppwork/co_files_m8.txt

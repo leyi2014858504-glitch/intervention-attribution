@@ -9,7 +9,7 @@
 
 | # | 断言 | 证据 | 承载图 |
 |---|---|---|---|
-| ① | 低阶截断**不只是有地板，而是非单调、会发散** | 全枚举 n=8/12/16 实测：n=12 时截断误差随阶数**升高**到 1033%（q≤6）；谱质量从 n=8 的随阶衰减变为 n≥12 的峰在 k≈8（16× 一阶） | Fig. 2 + Table 6 |
+| ① | 低阶截断**不只是有地板，而是非单调、会发散** | 全枚举 n=8/12/16 × 双度量实测：v48 在 n=16 发散（8.9%→56.2%）；**MDA8 全级别发散**（n=16 q≤8 = 2722%，n=8 一阶截断已 118%）；谱质量峰在 n=16（k=8–10，17× 一阶），n=8/12 随阶衰减 | Fig. 2 + Table 6 |
 | ② | 全谱枚举是 2ⁿ，不可承受 | n=24 精确需 16,777,216 次 | Fig. 4 |
 | ③ | 采样器代价**远低于枚举，但并非与 n 无关**；且**小 n 时枚举反而更便宜** | 全枚举 n=8/12/16 实测：同等预算下误差 1.6–1.8×/倍 n ⇒ 同精度约 2.5–3×；枚举 16×/256×。交叉点在 n=8–12 之间 | Fig. 4 + Table 5 |
 | ④ | 全谱才暴露的结构 | 块内符号翻转；配额最优随 regime 翻转；CO 弱玩家稳健性 | Fig. 5–7 + Table 3 |
@@ -22,7 +22,7 @@
 
 | 层 | 内容 | 状态 |
 |---|---|---|
-| **架构层 = 本文贡献** | ① 干预的**有限**博弈表述（部门 × 时间窗开关）② Möbius/Walsh **全谱**作为研究对象 ③ Shapley/Owen 是谱的**已知线性泛函** ④ 四层验证框架（L1/L2 可验、L3 公理选择、L4 外部效度）⑤ 诊断：截断发散、局地导数失效、regime 依赖 | 全部有实测支撑 |
+| **架构层 = 本文贡献** | ① 干预的**有限**博弈表述（部门 × 时间窗开关）② Möbius **全谱**（Harsanyi 红利）作为研究对象 ③ Shapley/Owen 是谱的**已知线性泛函** ④ 四层验证框架（L1/L2 可验、L3 公理选择、L4 外部效度）⑤ 诊断：截断发散、局地导数失效、regime 依赖 | 全部有实测支撑 |
 | **实现层 ≠ 贡献** | 用哪个采样器估计谱 | 实测 n=16 上 `perm_anti`（标准、结构盲）**优于** hub-分层主动采样 4–6×（差距随 n 扩大），故**直接采用 `perm_anti`**，不再声称"结构感知主动采样"是方法贡献 |
 
 采样器是可替换件：换掉它，架构一分钱不损。原"OURS"臂的失败应写入 Discussion，作为"分层粒度随 n 线性增长、收益不增长"的教训。
@@ -44,19 +44,22 @@ are not infinitesimal; a sector is switched off for a window, so the multiplier 
 from 1 to 0, not from 1 to 1+ε.
 
 We recast the problem as a cooperative game over (sector × time-window) players and
-compute the full Möbius/Walsh interaction spectrum, of which Shapley and Owen values
+compute the full Möbius interaction spectrum (the Harsanyi dividends), of which Shapley and Owen values
 are known linear functionals. Three things follow.
 
 First, low-order truncation does not merely have a floor — it is NON-MONOTONE and can
 diverge, so the spectrum has to be measured rather than assumed. Fully enumerating
-n = 8, 12 and 16 lets the truncation error be computed exactly at every order. On the
-NOx-saturated case, the best achievable q-th-order model still leaves 34 % (q=1) and 6.7 %
-(q=3) at n = 8 — but at n = 12 the error RISES with order, to 80 % (q=4) and 1033 % (q=6),
-and at n = 16 it bottoms at 8.9 % (q=2) before climbing back to 42 % (q=6). The reason is
-visible in the spectrum itself: the interaction mass Σ_{|A|=k}|m(A)|/|A| decays with k at
-n = 8 but peaks near k = 8 — 16× the first-order mass — at n = 12 and n = 16. High-order
-terms are individually large and cancel; truncating away the cancellation is what destroys
-the estimate. A pre-registered eight-player pilot had already stopped on its own criterion.
+n = 8, 12 and 16 lets the truncation error be computed exactly at every order, under two
+metrics. On the NOx-saturated case with a daily-mean metric, truncating the spectrum at
+order q — what low-order attribution implicitly does — leaves a floor of 6.7 % (q=3) at
+n = 8 and 6.9 % at n = 12, and at n = 16 it bottoms at 8.9 % (q=2) before climbing to
+56 % (q=7). Under the regulatory MDA8 metric — itself a max functional, which concentrates
+rather than dilutes the afternoon response — the effect is far stronger: first-order
+truncation already carries 118 % at n = 8, and at n = 16 the error climbs through 113 %
+(q=4) to 2722 % (q=8). The reason is visible in the spectrum itself: the interaction mass
+Σ_{|A|=k}|m(A)|/|A| decays with k at n = 8 and 12 but peaks at k = 10 — 17× the
+first-order mass — at n = 16. High-order terms are individually large and cancel;
+truncating away the cancellation is what destroys the estimate.
 
 Second, measuring the spectrum is a 2ⁿ problem, and we use a STANDARD permutation-with-
 antithetic estimator, characterising its cost rather than claiming it. Its cost grows far
@@ -83,12 +86,15 @@ the sector that dominates the outcome — NOx, 40–200× larger — is the one 
 gets wrong. EKMA-style budget constraints additionally make the optimal allocation
 regime-dependent — VOC-only on the NOx-saturated side, morning NOx plus afternoon VOC on
 the NOx-limited side — and adding CO as a third sector moves the NOx/VOC attributions by
-at most 0.18 ppb.
+at most 0.10 ppb per player (sector totals by 0.31 ppb).
 
 The pipeline is verified against physically forced zeros (a sham switch that makes four
 CO windows null players; max |Möbius| = 1.1e-14) and a sub-lattice gate (the four-window
 game is an exact sub-lattice of the eight-window game; six frozen values reproduced
-bit-for-bit, including v = 21.182293).
+bit-for-bit, including v = 21.182293). The same bit-for-bit regression gates later caught
+— and localized to 18 rows — an interleaved-write corruption in an earlier 12-player
+table, which the dual-metric re-run exposed and repaired: the verification layer protects
+the data, not only the code.
 
 We also report a data-driven validity diagnostic for the host box: two independent
 nighttime constraints on its dilution timescale — O₃ titration requires ≈13 min, the
@@ -106,23 +112,37 @@ winter periods from them.
 - **承载**：入口定义（不承载结果，但决定读者怎么读全文）
 - **素材**：手绘/矢量图；代码依据 `_kppwork/exp_mobius.py`、`_kppwork/attrib_samplers.py`
 
-### Fig. 2 — 低阶截断**非单调且会发散** ①
-- **画什么**：双面板。(a) 截断误差 vs 阶数 q，n=8/12/16 三条线（同一 scenario）——n=12 那条**随 q 升高**是主视觉；(b) 谱质量 `Σ_{|A|=k}|m(A)|/|A|` 按 k 分布（以 k=1 归一），显示 n=8 单调衰减 vs n≥12 峰在 k≈8。
-- **实测（r_sat，全枚举 oracle）**：
+### Fig. 2 — 低阶截断**非单调且会发散** ①（双度量）
+- **画什么**：双面板。(a) 截断误差 vs 阶数 q，n=8/12/16 三条线，**每面板一个度量**（d3_mean | MDA8）——MDA8 的 n=16 那条**随 q 爆炸**是主视觉；(b) 谱质量 `Σ_{|A|=k}|m(A)|/|A|` 按 k 分布（以 k=1 归一）：n=8/12 随阶衰减 vs n=16 峰在 k≈10。
+- **实测（r_sat，全枚举 oracle；2026-09-16 重建 co_v.csv 后的干净数字）**：
 
+  d3_mean（v48）：
   | q | n=8 | n=12 | n=16 |
   |---|---|---|---|
-  | ≤1 | 34.4% | 35.7% | 39.8% |
-  | ≤2 | 17.7% | 18.5% | **8.9%** |
-  | ≤3 | **6.7%** | 26.7% | 13.2% |
-  | ≤4 | 8.7% | 79.7% | 16.1% |
-  | ≤6 | 5.7% | **1032.9%** | 41.9% |
+  | ≤1 | 34.4% | 35.6% | 39.8% |
+  | ≤2 | 17.7% | 18.6% | **8.9%** |
+  | ≤3 | **6.7%** | 6.9% | 13.2% |
+  | ≤4 | 8.7% | 9.8% | 16.1% |
+  | ≤6 | 5.7% | 6.9% | 41.9% |
+  | ≤7 | 0.3% | 0.5% | **56.2%** |
 
-  r_lim1 同结构（n=16 时 q≤3 最低 2.0%，q≤6 回升到 32.7%）。
-- **机制句（必须写）**：高阶 Möbius 项**各自很大但相互抵消**；截断掉的是抵消，不是小量。所以误差不降反升。
+  MDA8（法定度量，主图）：
+  | q | n=8 | n=12 | n=16 |
+  |---|---|---|---|
+  | ≤1 | **117.6%** | 119.2% | 81.6% |
+  | ≤2 | 54.3% | 55.0% | 58.1% |
+  | ≤3 | 37.2% | 39.2% | 56.2% |
+  | ≤4 | 65.0% | 63.4% | **113.4%** |
+  | ≤6 | 10.0% | 16.7% | **877.6%** |
+  | ≤8 | 3.6%(q≤7) | 0.3% | **2722.0%** |
+
+  r_lim1 同结构：v48 n=16 q≤3 最低 2.0% → q≤6 32.7%；MDA8 n=16 q≤3 9.6% → q≤7 170.9%。
+- **新机制句（MDA8 版，必须写）**：MDA8 本身是 max 泛函（8h 滚动均值的日最大），它**集中**午后响应而非稀释——法定度量恰是交互结构最强的度量。一阶截断误差 >100% 意味着"只保留主效应"比"什么都不说"还差。
+- **机制句（原版，保留）**：高阶 Möbius 项**各自很大但相互抵消**；截断掉的是抵消，不是小量。所以误差不降反升。
 - **承载**：① ——"必须实测全谱、不能假设低阶"的全部理由；这是**架构**主张而非采样器主张
-- **素材**：`_kppwork/_n16_spectrum.py`、`_kppwork/spectrum_orders.txt`、`_kppwork/exp_mobius.py`、`mobius_results_dummy.txt`；预注册判定在 spec 文档"⚠️ n=8 Möbius pilot"节
-- **图注要点**：n=8 的 6.7% 与 n=12 的 1033% 是**同一断言的两种强度**，后者强得多，别只引 n=8
+- **素材**：`_kppwork/_n16_spectrum.py`、`_kppwork/spectrum_orders.txt`、`_kppwork/_m8_spectrum.py`、`_kppwork/spectrum_orders_m8.txt`、`mobius_results_dummy.txt`
+- **⚠️ 更正记录**：旧 n=12 列（26.7/79.7/1032.9%）**作废**——来自 co_v.csv 的 18 行交织写坏（WSL 崩溃恢复产物），双度量重跑被逐位回归门抓获并重建；干净 n=12 与 n=8 同形（地板 ~6.9%）。发散证据现在完全由 **n=16（两度量）+ MDA8 全级别**承载，更强而非更弱。
+- **图注要点**：引 MDA8 面板做主视觉；v48 面板放补充材料，两度量并置本身就是"结论不依赖度量选择"的证据
 
 ### Fig. 3 — 谱的形态（n=12 与 n=24 两格）
 - **画什么**：Möbius 系数按阶分布（重尾、不稀疏）；两种 regime 分列，显示"饱和侧低阶主导 / 受限侧高阶主导"。
@@ -184,7 +204,7 @@ winter periods from them.
 
 ### Table 3 — 玩家集稳健性 ④
 - **列**：φ（8 玩家）vs φ（12 玩家，含 CO 第三部门），逐玩家 |Δφ|
-- **结论**：max |Δφ| ≤ 0.18 ppb；CO Σφ 仅占 ~1%
+- **结论**（2026-09-16 干净表重跑）：逐玩家 max |Δφ| = **0.10 ppb**（旧值 0.18 出自被污染的 co_v.csv，作废）；部门总量移动 ≤ 0.31 ppb；CO Σφ 仅占 ~1%
 - **素材**：`_kppwork/exp_co12.py`、`results_co12.txt`
 
 ### Table 4 — 宿主模型有效域诊断（scope 声明，不是负结果）
@@ -202,12 +222,23 @@ winter periods from them.
 - **另附**：Möbius 快速实现的交叉校验 `max|fast − exp_scale| = 1.6e-14`（n=8）；两个冻结锚点 `m00000 → 21.182293`、`m00012 → 27.371391` 逐位复现
 - **素材**：`_kppwork/scaling_n16.txt`、`_kppwork/n16_exact_shapley.json`、`_kppwork/exp_n16.py`
 
-### Table 6 — 截断地板与谱质量（全枚举 n=8/12/16）①
+### Table 6 — 截断地板与谱质量（全枚举 n=8/12/16 × 双度量）①
 - **列**：n | max\|φ\| | trunc(q≤1..8) | 谱质量 `Σ_{|A|=k}|m(A)|/|A|` 按 k（k=1 归一）
-- **行**：r_sat 与 r_lim1 各 3 个 n
-- **必带的机制句**：高阶项各自大、相互抵消；截断破坏抵消 ⇒ 误差非单调、可发散
+- **行**：r_sat 与 r_lim1 各 3 个 n × 2 个度量（数字以 Fig. 2 双表为准，2026-09-16 重建后）
+- **max|φ| 对照**：v48 16.66/16.61/13.89 vs MDA8 7.64/7.56/6.35 ppb（n=8/12/16）——MDA8 下主效应相互抵消更多、尾部更重，正是截断爆炸的来源
+- **必带的机制句**：高阶项各自大、相互抵消；截断破坏抵消 ⇒ 误差非单调、可发散。MDA8 的 max 泛函性质放大之（法定度量恰是交互最强的度量）
 - **与 Table 5 的区分**：Table 5 是**采样器**的代价（实现层），本表是**谱结构**的性质（架构层）——两者不可混引
-- **素材**：`_kppwork/spectrum_orders.txt`、`_kppwork/_n16_spectrum.py`
+- **素材**：`_kppwork/spectrum_orders.txt`、`_kppwork/spectrum_orders_m8.txt`、`_kppwork/_n16_spectrum.py`、`_kppwork/_m8_spectrum.py`
+
+### Table 7b — 无真值自诊断旗标的 oracle 验证（3D 迁移的可行性实验，`selfdiag.txt`）
+- **动机**：3D 上永远没有 oracle，"截断/采样误差多大"必须**不依赖真值**估计。0-D 表给了真值，是唯一能验证旗标本身的环境。零新运行，纯后处理。
+- **旗标**：g_q 效率违反（截断模型对不上总账）、h_q holdout 失拟、sp_q bootstrap spread。预注册判据 V1/V2/V3 先于看数据写死。
+- **V1 FAIL（有价值的负结果）**：全局和类旗标**看不见发散**——n=16 v48 发散段（t: 8.9→13.2→16.1%，q≤2→4）g_q 反而降（12.1→3.3→1.0%）。机制：g_q 测总尾质量 Σ_{|A|>q}m(A)，高阶抵消使其恒小；发散住在**逐玩家尾部**，抵消模式不同。推论：任何"对总数"的统计量都原理性漏检发散。
+- **待做**：selfdiag 目前跑在 v48 列；MDA8 列（发散到 2722%）是唯一能让"旗标追得上发散"成立与否的决定性测试——若 MDA8 下 g/h 仍漏检，"必须全谱"的论证闭环；若追上了，3D 协议多一个可用旗标。
+- **意外正发现（比原预期更好）**：同一阶 q、同一预算 B，**全局拟合的 q 阶模型远优于截断**（n=16 q=4：e_q=0.7% vs t_q=16.1%）——大联盟样本值携带尾部信息，LS 把它部分吸收进低阶列。**截断不仅发散，还是在 q 阶模型里选错了估计量。** 3D 协议因此是"拟合+holdout"，不是"截断+祈祷"。
+- **V3 PASS**：对拟合估计量，h_q/g_q 跟踪实测误差（n=16 上 ρ=0.91–0.95），bootstrap spread 确认是弱旗标（n=16 上 0.07–0.22）——与 n=24 时"spread 弱"的旧注一致。
+- **措辞联动**：摘要原句 "the best achievable q-th-order model" **作废**（拟合模型就是反例），已改为"truncating the spectrum ... what low-order attribution implicitly does"。
+- **素材**：`_kppwork/exp_selfdiag.py`、`_kppwork/selfdiag.txt`
 
 ### Table 7 — 两个 n=8 benchmark 在 n=16 oracle 上重跑（讨论用）
 - **动机**：两个 benchmark 原都在 n=8，宇宙仅 256、预算达 192（覆盖 75%），**方法无法分离**——与 Table 5 的交叉点（枚举在 n=8 反而便宜）是同一事实。n=16 的预算 64 只覆盖 0.098%。

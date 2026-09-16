@@ -49,7 +49,11 @@ def mask_name(m, n=N12):
 
 
 def mobius(v, n):
-    """Exact subset Möbius transform (the FS / Walsh spectrum), O(3**n)."""
+    """Exact subset Möbius transform (Harsanyi dividends), O(3**n).
+
+    Not the Walsh spectrum: same information, but related to it by a
+    triangular basis change, so the order-k splits differ.
+    """
     out = [0.0] * (1 << n)
     for mask in range(1 << n):
         s, sub = 0.0, mask

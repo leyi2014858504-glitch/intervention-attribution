@@ -3,11 +3,15 @@
 # scale_v.csv is kept.  The shards themselves stay ignored (they are per-worker
 # partials); the merged table is what gets versioned.
 W=/mnt/d/atmos/_kppwork
+# $1 = shard suffix: "" (original d3_mean tables) or "_m8" (dual-metric)
+SFX=${1:-}
+HDR="name,v_ppb,nfail,rc,nrow"
+[ "$SFX" = "_m8" ] && HDR="name,v_ppb,v_mda8,nfail,rc,nrow"
 for TAG in r_sat r_lim1; do
-  OUT=$W/n16_v_${TAG}.csv
-  echo "name,v_ppb,nfail,rc,nrow" > $OUT
+  OUT=$W/n16_v_${TAG}${SFX}.csv
+  echo "$HDR" > $OUT
   for K in $(seq 1 12); do
-    f=$W/n16_v_${TAG}_$K.csv
+    f=$W/n16_v_${TAG}${SFX}_$K.csv
     [ -f "$f" ] || continue
     awk 'NR>1' "$f" >> $OUT
   done
