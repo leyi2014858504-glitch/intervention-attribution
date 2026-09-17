@@ -9,12 +9,13 @@ local tangent is ~0 while the finite switch-off effect is not.  Two readings:
       worse than a sign error, because "zero" reads as safe.
   (b) NOISE: if D1 is pure differencing dust, ratio is meaningless.
 
-Discriminator: compare |D1| against the numerical noise floor of the runs.
-The box is deterministic (the hddm cross-check matched lvg bit-for-bit at
-4.7e-07), so the floor here is the truncation error of the central difference,
-O(delta^2 * f'''), estimated from the spread of D2 across windows -- NOT
-machine epsilon.  If |D1| is orders of magnitude above that floor the zero is
-physical.
+Discriminator: the box is deterministic (the hddm cross-check matched lvg
+bit-for-bit at 4.7e-07), so the only numerical floor is the truncation error
+of the central difference.  That error is (delta^2/6) f''', and f''' is NOT
+measurable from runs at 1+-delta alone -- so rather than fabricate a proxy we
+settle it empirically by delta refinement in _ridge_delta.py (halving delta
+moves D1 by 2%), which is the dimensionally correct test.  This script reports
+the ratio diagnostics only.
 
 Writes results_zero_effect.txt
 """
@@ -78,24 +79,29 @@ def main():
                                      tag=tag, d1=d1, d2=d2, dfin=dfin,
                                      ratio=dfin / (-d1),
                                      scale=abs(base[j])))
-    # noise floor: the runs are deterministic, so the floor is the central-
-    # difference truncation error.  Estimate it as delta^2/6 * |D2| * anything
-    # else is smooth -- a conservative proxy is delta^2 * |D2|.
+    # NOISE FLOOR -- deliberately NOT computed here.
+    #   An earlier version compared |D1| against delta^2*|D2|.  That comparison
+    #   is dimensionally inconsistent: delta^2*|D2| has the units of the
+    #   response (ppb) while D1 has units of ppb per unit multiplier, so their
+    #   ratio is not a signal-to-noise number (the arithmetic ran, but the
+    #   quantity was meaningless).  The correct floor is the central-difference
+    #   truncation error (delta^2/6) f''', and f''' is NOT measurable from runs
+    #   at 1+-delta alone -- a third-order stencil needs a wider point set.
+    #   The question is settled empirically instead, by delta refinement, in
+    #   _ridge_delta.py -> results_ridge_delta.txt (truncation error at
+    #   delta=0.05 is ~6e-04, i.e. 0.7% of |D1| at the zero-effect windows).
     for tag, mname in (("8", "MDA8"), ("48", "d3_mean")):
         rs = [r for r in rows if r["tag"] == tag]
-        floors = [DELTA ** 2 * abs(r["d2"]) for r in rs]
-        floor = sorted(floors)[len(floors) // 2]      # median proxy
         add("=" * 88)
-        add("METRIC = %s    central-difference truncation floor ~ delta^2*|D2| = %.2e"
-            % (mname, floor))
+        add("METRIC = %s" % mname)
         add("=" * 88)
-        add("%-12s %-6s %-8s %10s %10s %10s %10s %9s" %
-            ("point", "sector", "window", "D1", "D2", "D_finite", "ratio", "|D1|/floor"))
+        add("%-12s %-6s %-8s %10s %10s %10s %10s" %
+            ("point", "sector", "window", "D1", "D2", "D_finite", "ratio"))
         hot = [r for r in rs if abs(r["ratio"]) > 5]
         for r in sorted(hot, key=lambda r: -abs(r["ratio"])):
-            add("%-12s %-6s %-8s %10.4f %10.4f %10.4f %10.2f %9.0f" %
+            add("%-12s %-6s %-8s %10.4f %10.4f %10.4f %10.2f" %
                 (r["pt"], r["sec"], r["win"], r["d1"], r["d2"], r["dfin"],
-                 r["ratio"], abs(r["d1"]) / floor if floor else float("inf")))
+                 r["ratio"]))
         add("")
         add("windows with |ratio| > 5 : %d of %d" % (len(hot), len(rs)))
         if hot:
@@ -104,9 +110,8 @@ def main():
             for r in big:
                 add("    %s %s@%s : local says %.3f ppb (tangent), finite truth %.3f ppb"
                     % (r["pt"], r["sec"], r["win"], -r["d1"], r["dfin"]))
-            mind1 = min(abs(r["d1"]) for r in hot)
-            add("  smallest |D1| among them: %.4f ppb  (= %.0f x the truncation floor)"
-                % (mind1, mind1 / floor if floor else float("inf")))
+        add("")
+        add("  -> truncation-error test (delta refinement): results_ridge_delta.txt")
         add("")
 
     txt = "\n".join(L)

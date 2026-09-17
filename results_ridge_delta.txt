@@ -1,0 +1,27 @@
+Delta-refinement test at the zero-effect windows and a control
+D1(delta) = [f(1+delta) - f(1-delta)] / (2 delta);  f'(1) = D1 + O(delta^2)
+
+n075v100  NOX_FACTOR=0.75 VOC_FACTOR=1.00  window 12-15   [zero-effect (12-15)]
+    MDA8  D1: delta=0.05  -0.0885 | 0.10  -0.0904 | 0.20  -0.0979
+             |D1(0.10)-D1(0.05)| = 0.0020  -> extrapolated f'(1) = -0.0878
+    v48   D1: delta=0.05  -0.1420 | 0.10  -0.1432 | 0.20  -0.1480
+             |D1(0.10)-D1(0.05)| = 0.0013  -> extrapolated f'(1) = -0.1415
+
+n075v100  NOX_FACTOR=0.75 VOC_FACTOR=1.00  window 0-3   [control (0-3)]
+    MDA8  D1: delta=0.05  -2.1541 | 0.10  -2.1543 | 0.20  -2.1552
+             |D1(0.10)-D1(0.05)| = 0.0001  -> extrapolated f'(1) = -2.1541
+    v48   D1: delta=0.05  -1.0625 | 0.10  -1.0628 | 0.20  -1.0641
+             |D1(0.10)-D1(0.05)| = 0.0003  -> extrapolated f'(1) = -1.0624
+
+n050v100  NOX_FACTOR=0.50 VOC_FACTOR=1.00  window 9-12   [zero-effect (9-12)]
+    MDA8  D1: delta=0.05  +0.0349 | 0.10  +0.0353 | 0.20  +0.0350
+             |D1(0.10)-D1(0.05)| = 0.0003  -> extrapolated f'(1) = +0.0348
+    v48   D1: delta=0.05  +0.1199 | 0.10  +0.1200 | 0.20  +0.1199
+             |D1(0.10)-D1(0.05)| = 0.0001  -> extrapolated f'(1) = +0.1199
+
+n050v100  NOX_FACTOR=0.50 VOC_FACTOR=1.00  window 0-3   [control (0-3)]
+    MDA8  D1: delta=0.05  -1.0190 | 0.10  -1.0189 | 0.20  -1.0188
+             |D1(0.10)-D1(0.05)| = 0.0001  -> extrapolated f'(1) = -1.0191
+    v48   D1: delta=0.05  -1.5153 | 0.10  -1.5151 | 0.20  -1.5142
+             |D1(0.10)-D1(0.05)| = 0.0003  -> extrapolated f'(1) = -1.5154
+
