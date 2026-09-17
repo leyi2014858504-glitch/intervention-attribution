@@ -37,7 +37,12 @@ def one_point(pt, vals):
     out = {"pt": pt, "noxf": int(pt[1:4]) / 100.0, "vocf": int(pt[5:8]) / 100.0,
            "base48": base[0], "base8": base[1], "flips8": [], "flips48": [],
            "dev8": {"NOXW": [], "VOCW": [], "COW": []},
-           "dev48": {"NOXW": [], "VOCW": [], "COW": []}}
+           "dev48": {"NOXW": [], "VOCW": [], "COW": []},
+           "abs8": {"NOXW": [], "VOCW": [], "COW": []},
+           "abs48": {"NOXW": [], "VOCW": [], "COW": []},
+           "maxfin8": 0.0, "maxfin48": 0.0, "ridge8": [], "ridge48": []}
+    # first pass: collect everything, track the largest finite effect per metric
+    tmp = []
     for sec in SECTORS:
         for i in range(NW):
             try:
@@ -49,11 +54,27 @@ def one_point(pt, vals):
             for tag, j in (("8", 1), ("48", 0)):
                 Dloc = (v_p[j] - v_m[j]) / (2 * DELTA)
                 Dfin = v_off[j] - base[j]
-                flipped = (Dloc * (-Dfin)) <= 0 and abs(Dloc) > 1e-9 and abs(Dfin) > 1e-9
-                if flipped:
-                    out["flips" + tag].append("%s@%d-%d" % (sec, 3 * i, 3 * i + 3))
-                if abs(Dloc) > 1e-9:
-                    out["dev" + tag][sec].append(abs(Dfin / (-Dloc) - 1.0))
+                tmp.append((sec, i, tag, Dloc, Dfin))
+                out["maxfin" + tag] = max(out["maxfin" + tag], abs(Dfin))
+    # second pass: deviations with the sane normalisation
+    for sec, i, tag, Dloc, Dfin in tmp:
+        scale = out["maxfin" + tag] or 1.0
+        flipped = (Dloc * (-Dfin)) <= 0 and abs(Dloc) > 1e-9 and abs(Dfin) > 1e-9
+        if flipped:
+            out["flips" + tag].append("%s@%d-%d" % (sec, 3 * i, 3 * i + 3))
+        if abs(Dloc) > 1e-9:
+            out["dev" + tag][sec].append(abs(Dfin / (-Dloc) - 1.0))
+        # absolute error of the DDM-1 prediction, normalised by max|effect|:
+        # unlike |ratio-1| this does NOT blow up on the ridge (D1 -> 0)
+        out["abs" + tag][sec].append(abs(Dfin - (-Dloc)) / scale)
+        # ridge marker: the real "zero-effect" failure -- the tangent is at
+        # least 10x smaller than the true finite effect, i.e. the local method
+        # reports "no effect" for a lever that matters.  (An earlier, looser
+        # test -- small |D1| relative to the point's max effect -- also flagged
+        # small-but-consistent windows such as night-time VOC; those are not
+        # ridges, they are simply weak players.)
+        if abs(Dfin) > 0.5 and abs(Dloc) < 0.1 * abs(Dfin):
+            out["ridge" + tag].append("%s@%d-%d" % (sec, 3 * i, 3 * i + 3))
     return out
 
 
@@ -70,17 +91,27 @@ def main():
     add("Scan A: sign-flip prevalence across the (NOX_FACTOR, VOC_FACTOR) grid")
     add("protocol = _local_vs_global (3h windows, DELTA=0.05, both metrics)")
     add("flip = sign(D_local) != sign(D_finite_off) with both above noise")
+    add("NOxdev/VOCdev/COdev = |ratio-1|, RATIO-BASED (blows up on ridge, D1~0)")
+    add("NOxabs/VOCabs/COabs = |D_finite - (-D_local)| / max|D_finite|  (RIDGE-SAFE)")
     add("")
-    add("%-10s %5s %5s %6s %8s %8s  %6s %6s %6s | %s" %
+    add("%-10s %5s %5s %6s %8s %8s  %6s %6s %6s  %6s %6s %6s | %s" %
         ("point", "NOxF", "VOCF", "base8", "flips/24", "(v48)",
-         "NOxdev", "VOCdev", "COdev", "flipped windows (MDA8)"))
+         "NOxabs", "VOCabs", "COabs", "NOxdev", "VOCdev", "COdev",
+         "flipped windows (MDA8)"))
     for r in sorted(full, key=lambda r: (r["noxf"], r["vocf"])):
-        add("%-10s %5.2f %5.2f %8.2f %6d %6d  %6.2f %6.2f %6.2f | %s" %
-            (r["pt"], r["noxf"], r["vocf"], r["base8"],
-             len(r["flips8"]), len(r["flips48"]),
-             max(r["dev8"]["NOXW"], default=float("nan")),
-             med(r["dev8"]["VOCW"]), med(r["dev8"]["COW"]),
-             ", ".join(r["flips8"]) or "-"))
+        flips = ", ".join(r["flips8"]) or "-"
+        ridge = ", ".join(r["ridge8"]) or ""
+        line = ("%-10s %5.2f %5.2f %8.2f %6d %6d  %6.2f %6.2f %6.2f  %6.2f %6.2f %6.2f | %s" %
+                (r["pt"], r["noxf"], r["vocf"], r["base8"],
+                 len(r["flips8"]), len(r["flips48"]),
+                 max(r["abs8"]["NOXW"], default=float("nan")),
+                 med(r["abs8"]["VOCW"]), med(r["abs8"]["COW"]),
+                 max(r["dev8"]["NOXW"], default=float("nan")),
+                 med(r["dev8"]["VOCW"]), med(r["dev8"]["COW"]),
+                 flips))
+        add(line)
+        if ridge:
+            add("%10s Zero-effect (tangent >=10x smaller than truth): %s" % ("", ridge))
     add("")
     add("5x5 flip-count grid (MDA8), rows NOX_FACTOR, cols VOC_FACTOR:")
     add("      " + "".join("%7.2f" % v for v in GRID))

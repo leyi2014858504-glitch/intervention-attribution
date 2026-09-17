@@ -1,0 +1,33 @@
+Is the near-zero local derivative a RIDGE (physics) or noise?
+protocol: 3h windows, delta=0.05, same runs as results_scan_flips.txt
+
+========================================================================================
+METRIC = MDA8    central-difference truncation floor ~ delta^2*|D2| = 4.04e-04
+========================================================================================
+point        sector window           D1         D2   D_finite      ratio |D1|/floor
+n075v100     NOXW   12-15       -0.0885    -8.1988    -3.6348     -41.09       219
+n050v100     NOXW   9-12         0.0349    -1.0024    -0.5322      15.23        86
+n100v200     NOXW   12-15        0.8360    -8.4268    -4.6000       5.50      2069
+
+windows with |ratio| > 5 : 3 of 600
+  of those, |D_finite| > 0.5 ppb (i.e. the lever MATTERS): 3
+    n050v100 NOXW@9-12 : local says -0.035 ppb (tangent), finite truth -0.532 ppb
+    n075v100 NOXW@12-15 : local says 0.088 ppb (tangent), finite truth -3.635 ppb
+    n100v200 NOXW@12-15 : local says -0.836 ppb (tangent), finite truth -4.600 ppb
+  smallest |D1| among them: 0.0349 ppb  (= 86 x the truncation floor)
+
+========================================================================================
+METRIC = d3_mean    central-difference truncation floor ~ delta^2*|D2| = 2.14e-04
+========================================================================================
+point        sector window           D1         D2   D_finite      ratio |D1|/floor
+n075v100     NOXW   12-15       -0.1420    -5.1308    -2.1573     -15.20       663
+n100v200     NOXW   12-15        0.3947    -5.4388    -2.7966       7.09      1844
+n050v150     NOXW   6-9          0.2145    -2.0124    -1.3270       6.19      1002
+
+windows with |ratio| > 5 : 3 of 600
+  of those, |D_finite| > 0.5 ppb (i.e. the lever MATTERS): 3
+    n050v150 NOXW@6-9 : local says -0.215 ppb (tangent), finite truth -1.327 ppb
+    n075v100 NOXW@12-15 : local says 0.142 ppb (tangent), finite truth -2.157 ppb
+    n100v200 NOXW@12-15 : local says -0.395 ppb (tangent), finite truth -2.797 ppb
+  smallest |D1| among them: 0.1420 ppb  (= 663 x the truncation floor)
+
