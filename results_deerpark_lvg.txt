@@ -1,0 +1,36 @@
+Deer Park 2017 summer: regime positioning at the anchored slice
+anchor: {'EMIS_NOX': 0.5, 'EMIS_VOC': 4.2406, 'EMIS_ISO': 10.0, 'EMIS_CO': 1.0, 'KDIL_DAY': 2233.674, 'KDIL_NIGHT': 86400.0, 'BG_O3': 5.0, 'BG_CO': 136.875, 'BG_NO2': 2.0, 'BG_NO': 0.5, 'BG_VOC': 20.0, 'BG_ISO': 0.2}  (TMIN 293.0 K, TMAX 304.4 K)
+
+base v48 = 25.8751  mda8 = 33.7409
+
+sector window      D_local   D_finite   -D_local     ratio    sign
+NOXW   0-3           0.380     -0.382     -0.380      1.01      ok
+NOXW   3-6           0.598     -0.603     -0.598      1.01      ok
+NOXW   6-9           2.154     -2.236     -2.154      1.04      ok
+NOXW   9-12          0.809     -0.824     -0.809      1.02      ok
+NOXW   12-15         0.833     -0.828     -0.833      0.99      ok
+NOXW   15-18         0.295     -0.311     -0.295      1.05      ok
+NOXW   18-21         0.526     -0.531     -0.526      1.01      ok
+NOXW   21-24         0.294     -0.296     -0.294      1.01      ok
+VOCW   0-3           0.149     -0.149     -0.149      1.00      ok
+VOCW   3-6           0.242     -0.241     -0.242      0.99      ok
+VOCW   6-9           0.954     -0.944     -0.954      0.99      ok
+VOCW   9-12          0.389     -0.392     -0.389      1.01      ok
+VOCW   12-15         0.421     -0.421     -0.421      1.00      ok
+VOCW   15-18         0.124     -0.125     -0.124      1.01      ok
+VOCW   18-21         0.182     -0.178     -0.182      0.98      ok
+VOCW   21-24         0.110     -0.110     -0.110      1.00      ok
+COW    0-3           0.001     -0.001     -0.001      0.98      ok
+COW    3-6           0.001     -0.001     -0.001      1.01      ok
+COW    6-9           0.001     -0.001     -0.001      0.99      ok
+COW    9-12          0.000     -0.000     -0.000      0.70      ok
+COW    12-15         0.000     -0.000     -0.000      1.06      ok
+COW    15-18         0.001     -0.001     -0.001      1.02      ok
+COW    18-21         0.001     -0.001     -0.001      1.00      ok
+COW    21-24         0.001     -0.001     -0.001      0.96      ok
+
+MDA8  sign flips: 0/24   zero-effect windows: 0
+v48   sign flips: 0/24
+
+NOx windows where switch-off RAISES MDA8 (saturated behaviour): 0 of 8
+=> regime read-off: LIMITED side
