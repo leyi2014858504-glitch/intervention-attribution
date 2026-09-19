@@ -1,0 +1,26 @@
+Taylor-2 vs DDM-1 at the DEER PARK anchored slice (2017s, LIMITED side)
+150 stratified truth coalitions (small k<=4: 40, mid 5-9: 40, large >=10: 70)
+errors normalised by max|truth|; flips need both sides > 1% of max|truth|
+
+====================================================================================
+METRIC = MDA8 (primary)   max|truth| = 8.742 ppb   (base 33.721)
+====================================================================================
+k-group        n |  DDM1 med  DDM1 max |   HD2 med   HD2 max |   flip1%   flip2%
+small k<=4    40 |      0.7%      3.0% |      0.2%      1.3% |     0.0%     0.0%
+mid 5<=k<=9    40 |      4.1%     10.7% |      0.6%     11.2% |     0.0%     0.0%
+large k>=10    70 |      8.4%     15.6% |      2.0%     22.7% |     0.0%     0.0%
+all          150 |      5.1%     15.6% |      0.9%     22.7% |     0.0%     0.0%
+  worst DDM-1 : mask 000000000000d1ff  k=12  err 15.6%  (pred -6.75 truth -8.11)
+  worst HD-2  : mask 000000000000cee7  k=11  err 22.7%  (pred -7.10 truth -5.11)
+
+====================================================================================
+METRIC = d3_mean (secondary)   max|truth| = 5.134 ppb   (base 25.862)
+====================================================================================
+k-group        n |  DDM1 med  DDM1 max |   HD2 med   HD2 max |   flip1%   flip2%
+small k<=4    40 |      1.1%      3.4% |      0.3%      1.4% |     0.0%     0.0%
+mid 5<=k<=9    40 |      5.7%     14.3% |      1.7%      4.8% |     0.0%     0.0%
+large k>=10    70 |     11.8%     22.8% |      3.9%      9.3% |     0.0%     0.0%
+all          150 |      7.1%     22.8% |      2.3%      9.3% |     0.0%     0.0%
+  worst DDM-1 : mask 0000000000007dfe  k=13  err 22.8%  (pred -3.96 truth -5.13)
+  worst HD-2  : mask 0000000000007dfe  k=13  err 9.3%  (pred -4.65 truth -5.13)
+
