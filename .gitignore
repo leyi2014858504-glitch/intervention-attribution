@@ -143,3 +143,4 @@ _kppwork/*_corrupt_backup*
 _kppwork/co_files_m8.txt
 # scan-A per-worker shards (merged report results_scan_flips.txt is what counts)
 _kppwork/flip_v_*.csv
+paper/
