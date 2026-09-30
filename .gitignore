@@ -101,11 +101,11 @@ _kppwork/_*.err
 /_aqs_signup.py
 /_aqs_full.sh
 # superseded round-1 leftovers: the Beaumont partials (that site was dropped
-# once its CO turned out to have ended in 1996) and a fit result from before we
-# found that a 3-day run never reaches a diurnal steady state
+# once its CO turned out to have ended in 1996).  The Dallas fit IS versioned
+# now: it was re-anchored under the 8-knob protocol (2026-09-30) and the
+# spin-up concern that had excluded it is resolved (results_spinup_dallas.txt)
 /obs_*_partial*.csv
 /results_obs_*_partial*.txt
-/results_fit_dallas_2016w.txt
 /_do_confirm*.sh
 /_env_check.sh
 /_lvg_smoke.py

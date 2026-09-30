@@ -1,0 +1,36 @@
+Dallas 2016 winter: regime positioning at the anchored slice
+anchor: {'EMIS_NOX': 2.7312, 'EMIS_VOC': 0.5, 'EMIS_ISO': 0.0, 'EMIS_CO': 1.0, 'KDIL_DAY': 2288.0, 'KDIL_NIGHT': 86400.0, 'BG_O3': 6.0312, 'BG_CO': 222.1875}  (TMIN 271.2 K, TMAX 294.6 K)
+
+base v48 = 14.5468  mda8 = 25.5114
+
+sector window      D_local   D_finite   -D_local     ratio    sign
+NOXW   0-3          -0.023      0.061      0.023      2.65      ok
+NOXW   3-6          -0.039      0.094      0.039      2.38      ok
+NOXW   6-9          -0.134      0.684      0.134      5.10      ok
+NOXW   9-12          0.196     -0.197     -0.196      1.01      ok
+NOXW   12-15         2.483     -2.998     -2.483      1.21      ok
+NOXW   15-18        -0.955      0.782      0.955      0.82      ok
+NOXW   18-21        -0.168      0.320      0.168      1.91      ok
+NOXW   21-24        -0.019      0.059      0.019      3.17      ok
+VOCW   0-3           0.066     -0.066     -0.066      0.99      ok
+VOCW   3-6           0.083     -0.082     -0.083      0.98      ok
+VOCW   6-9           0.263     -0.242     -0.263      0.92      ok
+VOCW   9-12          0.118     -0.118     -0.118      1.00      ok
+VOCW   12-15         0.114     -0.115     -0.114      1.01      ok
+VOCW   15-18         0.133     -0.132     -0.133      0.99      ok
+VOCW   18-21         0.156     -0.148     -0.156      0.95      ok
+VOCW   21-24         0.066     -0.065     -0.066      0.99      ok
+COW    0-3           0.003     -0.003     -0.003      0.98      ok
+COW    3-6           0.003     -0.003     -0.003      1.00      ok
+COW    6-9           0.004     -0.004     -0.004      1.00      ok
+COW    9-12          0.004     -0.004     -0.004      1.01      ok
+COW    12-15         0.004     -0.004     -0.004      0.99      ok
+COW    15-18         0.002     -0.002     -0.002      1.01      ok
+COW    18-21         0.002     -0.002     -0.002      0.98      ok
+COW    21-24         0.003     -0.003     -0.003      1.00      ok
+
+MDA8  sign flips: 0/24   zero-effect windows: 0
+v48   sign flips: 0/24
+
+NOx windows where switch-off RAISES MDA8 (saturated behaviour): 6 of 8
+=> regime read-off: SATURATED side

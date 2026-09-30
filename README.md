@@ -33,7 +33,7 @@ nocturnal boundary-layer regime is explicitly out of scope).
 | `paper_outline.md` | figure/table plan with the numbers behind every claim |
 | `RELEASE_NOTES.md` | release body for the submission snapshot (what is / is not in the archive, scope caveats). No licence is attached yet; add one before publishing a release. |
 | `methods_zh.md` | methods draft (Chinese working version) |
-| `vibecoding_prompt_atmos_mcts.md` | project working log: decisions, bugs, verdicts, retractions |
+| `vibecoding_prompt_atmos_mcts.md` | the original project prompt (early SAPRC-07/MCTS planning notes; historical, superseded by the CB05 box) |
 | everything `_*`-prefixed | scratch: probes, working logs, one-off diagnostics. Kept for provenance; not part of any pipeline. |
 
 ## The pipeline in one page
@@ -66,8 +66,8 @@ evaluations** (= chemistry runs).
 | `_voc_map.py` | PAMS species -> CB05 model species routing (audit trail: `results_voc_map.txt`, `results_aqs_voc_panel.txt`) |
 | `_voc_nc.py` | VOC netCDF ingest helper (early phase) |
 | `_obs_build.py`, `_obs_cb05.py` | observation composites -> `obs_*_cb05.csv` (24 h composites per city-season) |
-| `_fit_anchor.py` | city anchoring: 8 physical knobs fitted to observed composites with observation-bounded ranges (O3 cycle held out for verification) -> `results_fit_*.txt` |
-| `_scan_anchor.py`, `_diag_fit.py` | anchor diagnostics and scan support |
+| `_fit_anchor.py` | city anchoring: 8 physical knobs fitted to observed composites with observation-bounded ranges (O3 and NOx carry weight 1.0 in the cost -- a fit, not a held-out check) -> `results_fit_*.txt` |
+| `_scan_anchor.py`, `_diag_fit.py` | anchor diagnostics; `_diag_fit.py` is the spin-up sufficiency check (3-day vs 10-day last-day composites) -> `results_spinup_dallas.txt` |
 | `_local_vs_global.py` | local-vs-global protocol driver: local central differences (delta=0.05) vs measured finite chords, both metrics -> `results_local_vs_global.txt` |
 | `regime_mcts.py` | early planning prototype (MCTS over coalitions; the negative result that seeded the planning benchmark) |
 
@@ -87,7 +87,8 @@ evaluations** (= chemistry runs).
 | `_dual_bench.py` | dual-metric (d3_mean + MDA8) re-derivation of every sampling exhibit, zero chemistry runs: builds the n=8/12/16 oracles for both metrics (n=8 MDA8 read off the n=16 table at union-of-pairs masks, licensed by a bit-exact v_ppb cross-check) and reruns the cost law and the five attribution arms |
 | `exp_attrib.py`, `exp_calib.py`, `exp_selfdiag.py`, `exp_planning_bench.py`, `exp_quota.py`, `exp_sham.py`, `exp_co12*.py`, `exp_scale.py`, `exp_mda8.py`, `exp_stoch_gap.py`, `exp_cost_frontier.py`, `exp_surrogate_opt.py` | the analysis suite (one experiment per paper claim) |
 | `v_*.csv` oracle tables | `n16_v_r_*.csv` / `n16_v_r_*_m8.csv` (n=16, both metrics), `co_v.csv` (n=12), `sham_v.csv`, `scen_v.csv`, `scale_v.csv`, `hddm_v_*.csv`, `dp_v_*.csv`, `flip_v_*.csv` |
-| `_mda8_wincheck.py`, `_grid_check.sh` | metric-convention checks (window containment, 5-min grid facts) |
+| `_mda8_wincheck.py`, `_grid_check.sh` | metric-convention checks (window containment -> `results_mda8_wincheck.txt`, 5-min grid facts) |
+| `_d3_conv.py` | 289- vs 288-point daily-mean convention, re-derived on the full n=8 game (256 runs, both conventions from the same trajectories) -> `results_d3_conv.txt` |
 | early-phase numerics gates | `exp_g4_kpp.py`, `g3_check.py`, `ab_compare.py`, `v1_regress.py`, `probe_ridge*.py`, `probe_isop.py` |
 
 ## Results files -> paper claims
@@ -100,7 +101,11 @@ evaluations** (= chemistry runs).
 | `results_local_vs_global.txt` | Fig. 5/6 + Table 2: local vs finite effects, three failure modes |
 | `results_scan_flips.txt` | Table 8: failure map over the 25-point EKMA grid (8/25 cells flip) |
 | `results_zero_effect.txt`, `results_ridge_delta.txt` | ridge zero-effect windows, delta-refinement verification |
-| `results_fit_deerpark_2017s.txt`, `results_deerpark_lvg.txt`, `results_obs_*_cb05.csv` | Table 9 + L4: Deer Park anchored-slice out-of-sample test (limited side). **The Dallas arm is NOT reproducible from this repo**: no script ran a Dallas-anchored regime test and `results_fit_dallas_2016w.txt` is excluded (a superseded 6-knob fit); the previously claimed Dallas signature is withdrawn pending that run. |
+| `results_fit_deerpark_2017s.txt`, `results_deerpark_lvg.txt`, `results_obs_*_cb05.csv`, `_kppwork/_deerpark_lvg.py` | Table 9 + L4: Deer Park anchored-slice out-of-sample test (limited side): all chord ratios 0.98-1.05, 0/24 sign flips -- "the failure disappears" reproduced |
+| `results_fit_dallas_2016w.txt`, `results_dallas_lvg.txt`, `_kppwork/_dallas_lvg.py` | Table 9 + L4: Dallas anchored-slice test (saturated side, 8-knob re-anchor cost 0.441): 0/24 sign flips, but NOx chord ratios 0.82-5.10 (4/8 windows >= 1.9x; VOC/CO ~1) -- the city-side amplitude failure. The pre-stated "saturated -> flips" expectation did not materialise; disclosed, not hidden |
+| `results_spinup_dallas.txt` | L4 + Methods: spin-up sufficiency (3-day vs 10-day last-day drift <= 0.4%) -- the 3-day window is a diurnal cycle |
+| `_kppwork/results_mda8_wincheck.txt` | Methods: MDA8 window containment (windows ending at t>=48 vs t>=56 bit-identical, 5 configurations) |
+| `_kppwork/results_d3_conv.txt` (+ `d3_conv_n8.csv`) | Methods: 289- vs 288-point daily-mean convention measured end to end (Shapley shifts <= 0.055 ppb = 0.33% of max|phi|) |
 | `results_hddm_check.txt`, `results_hddm_coalitions.txt`, `results_deerpark_taylor.txt` | Table 7d: Taylor-2 tail failure on the saturated side only |
 | `_kppwork/selfdiag*.txt`, `selfdiag_calib.txt` | Table 7a/7b: self-diagnosis flags; holdout calibration (e ~ 0.33 h) |
 | `results_kdil.txt` | Table 4: nocturnal validity diagnostics (scope gate) |
