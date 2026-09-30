@@ -31,6 +31,7 @@ nocturnal boundary-layer regime is explicitly out of scope).
 | `obs_*_cb05.csv` | observation composites routed to CB05 species (PAMS speciated VOC + NOx/O3) per city-season |
 | `results_*.txt` | one file per paper claim (map below) |
 | `paper_outline.md` | figure/table plan with the numbers behind every claim |
+| `RELEASE_NOTES.md` | release body for the submission snapshot (what is / is not in the archive, scope caveats). No licence is attached yet; add one before publishing a release. |
 | `methods_zh.md` | methods draft (Chinese working version) |
 | `vibecoding_prompt_atmos_mcts.md` | project working log: decisions, bugs, verdicts, retractions |
 | everything `_*`-prefixed | scratch: probes, working logs, one-off diagnostics. Kept for provenance; not part of any pipeline. |
