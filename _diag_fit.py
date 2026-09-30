@@ -27,10 +27,38 @@ with open(f"{D}/obs_{label}_cb05.csv", newline="") as fh:
                 obs[k][h].append(float(v))
 obsm = {k: {h: (sum(v) / len(v) if v else float("nan")) for h, v in obs[k].items()} for k in obs}
 
-base = dict(EMIS_NOX=6.0, EMIS_VOC=1.0, EMIS_ISO=0.3, EMIS_CO=60.0,
-            KDIL_DAY=22880.0, KDIL_NIGHT=86400.0,
-            BG_O3=14.0, BG_CO=200.0, BG_NO2=2.0, BG_NO=0.5,
-            BG_VOC=20.0, BG_ISO=0.2, TMIN_K=271.2, TMAX_K=294.6)
+def _read_anchor():
+    """8-knob anchor from the fit, so the steady-state claim is made on the
+    slice the paper actually anchors."""
+    knobs = {}
+    with open(f"{D}/results_fit_{label}.txt") as fh:
+        for line in fh:
+            if "=" not in line:
+                continue
+            k, _, v = line.partition("=")
+            if k.strip() in ("EMIS_NOX", "EMIS_VOC", "EMIS_ISO", "EMIS_CO",
+                             "KDIL_DAY", "KDIL_NIGHT", "BG_O3", "BG_CO"):
+                knobs[k.strip()] = float(v)
+    return knobs
+
+
+def _read_met_tminmax():
+    T = []
+    with open(f"{D}/met_{label}.csv") as fh:
+        for r in fh:
+            p = r.strip().split(",")
+            if p[0] == "time":
+                continue
+            try:
+                T.append(float(p[1]))
+            except (ValueError, IndexError):
+                pass
+    return min(T) + 273.15, max(T) + 273.15
+
+
+_tmin, _tmax = _read_met_tminmax()
+base = dict(_read_anchor(), BG_NO2=2.0, BG_NO=0.5,
+            BG_VOC=20.0, BG_ISO=0.2, TMIN_K=_tmin, TMAX_K=_tmax)
 
 runs = {}
 for tag, tend in (("3d", 259200.0), ("10d", 864000.0)):

@@ -1,0 +1,22 @@
+289- vs 288-point daily mean: measured convention effect (n=8 full game)
+scenario r_sat; 256 coalitions re-run on the 5-min grid;
+v289 = mean(t>=48) [released convention], v288 = mean(t>48) [strict].
+
+sub-lattice check vs n16_v_r_sat.csv (v289 vs oracle v_ppb): max|d| = 4.979e-07
+
+x0 = O3(t=48h):  min 0.02  median 10.67  max 47.93 ppb
+
+(a) game values:           delta = v288-v289
+    min -0.0407  median +0.0481  max +0.1102 ppb
+    (expected sign: delta = (v288 - x0)/289, i.e. positive when the
+    24-h mean exceeds the 48-h instant; magnitude ~0.0x ppb)
+
+(b) coalition differences v(S)-v(empty): delta offset
+    min -0.1141  median -0.0253  max +0.0368 ppb
+
+(c) Shapley values phi (8 players)
+    max|phi| = 16.6644 ppb;  max|dphi| = 0.0549 ppb (0.329% of max|phi|)
+
+verdict: the conventions differ by a coalition-scale shift of order
+0.01-0.05 ppb; differences and Shapley values move far below any
+effect size quoted in the paper.

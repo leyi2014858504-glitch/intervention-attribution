@@ -64,13 +64,28 @@ this tag; the mapping is tabulated in `README.md` and `paper_outline.md`.
   "same accuracy costs 2.5-3x" statements are **retired**. In MDA8 the same
   estimator needs an order of magnitude more runs and a 1.5% single-run
   error is unreachable within the tested budgets.
-- **Anchoring (2026-09 audit).** The anchoring cost function includes O3
-  with weight 1.0 (`TARGETS` in `_fit_anchor.py`), so it is a fit, not a
-  held-out verification. The Deer Park slice is fully reproducible; **the
-  Dallas arm is withdrawn** -- no script ran a Dallas-anchored regime test
-  and the Dallas fit file is excluded as superseded.
-- The spin-up sufficiency check is still a TODO; the diagnostic output is
-  not yet published.
+- **Anchoring (2026-09 audit + 2026-09-30 re-run).** The anchoring cost
+  function includes O3 with weight 1.0 (`TARGETS` in `_fit_anchor.py`), so
+  it is a fit, not a held-out verification. Both city arms are now
+  reproducible under the 8-knob protocol: Deer Park 2017s (cost 0.399;
+  limited side: chord ratios 0.98-1.05, 0/24 sign flips) and Dallas 2016w
+  (cost 0.441; saturated side: 0/24 sign flips but NOx chord ratios
+  0.82-5.10 -- the city-side amplitude failure; VOC/CO stay ~1). The
+  previously quoted Dallas "signature" (7/8, 1/24 flips) had no supporting
+  run and is withdrawn; the pre-stated expectation that the saturated
+  slice would flip signs somewhere did not materialise, and is disclosed
+  as such.
+- **Spin-up sufficiency (2026-09-30).** Resolved: at the Dallas anchored
+  slice the 3-day and the 10-day run agree on the last-day composite to
+  <=0.4% daily drift (`results_spinup_dallas.txt`), so the scored 3-day
+  window is a diurnal cycle. The earlier caveat is retired.
+- **Metric conventions (2026-09-30).** Measured, not assumed: the 289- vs
+  288-point daily-mean choice moves Shapley values by at most 0.055 ppb
+  (0.33% of max|phi|) and coalition differences by <0.12 ppb
+  (`results_d3_conv.txt`, full n=8 game re-derived under both
+  conventions); the MDA8 window-containment check
+  (`results_mda8_wincheck.txt`, 5 configurations) is bit-identical
+  between the t>=48 and t>=56 rules.
 
 ## Manuscript reference
 

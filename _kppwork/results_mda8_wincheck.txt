@@ -1,0 +1,6 @@
+cfg               w   mda8>=48   t_max |   mda8>=56   t_max | verdict
+base             96   205.3624   65.58 |   205.3624   65.58 | IDENTICAL
+nox12_15off      96    61.3557   65.17 |    61.3557   65.17 | IDENTICAL
+voc12_15off      96    33.3198   64.83 |    33.3198   64.83 | IDENTICAL
+allnoxoff        96    26.9033   65.67 |    26.9033   65.67 | IDENTICAL
+highnox_base     96    59.8454   65.25 |    59.8454   65.25 | IDENTICAL
