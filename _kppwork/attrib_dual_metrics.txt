@@ -1,0 +1,1 @@
+See scaling_dual_metrics.txt PART B (single run writes both).

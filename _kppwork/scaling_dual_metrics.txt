@@ -1,0 +1,220 @@
+Dual-metric re-derivation of the released sampling exhibits
+Rationale: attrib_bench.txt / bench_n16.txt / scaling_n16.txt were all
+computed on the d3_mean column; this recomputes them on both metrics
+with zero chemistry runs (all values read from released oracle tables).
+
+oracle provenance:
+  n=16  n16_v_<scen>_m8.csv (enumerated, both columns)
+  n=12  co_v.csv (d3_mean) / co_v_m8_*.csv shards (MDA8)
+  n=8   scen_v.csv (d3_mean) / sub-lattice of the n=16 MDA8 table
+  [r_sat] n=8 sub-lattice check (derived v_ppb vs scen_v.csv): max|dv48| = 0.000e+00  OK
+  [r_lim1] n=8 sub-lattice check (derived v_ppb vs scen_v.csv): max|dv48| = 0.000e+00  OK
+
+==============================================================================
+PART A -- sampler cost law, metric = d3_mean (secondary)
+==============================================================================
+  estimator = permutation + antithetic, 24 seeds, error = max_i |est-true| / max_i |true| (single-run)
+
+  scenario r_sat
+       n         B        runs    err(run)
+       8        64          64      6.241%
+       8       128         128      4.364%
+       8       256         256      1.121%
+      12        64          64      8.870%
+      12       128         128      6.487%
+      12       256         256      3.985%
+      12       512         512      2.764%
+      12      1024        1024      1.542%
+      16        64          64     11.279%
+      16       128         128      7.186%
+      16       256         256      5.035%
+      16       512         512      3.246%
+      16      1024        1024      2.050%
+    same-budget error ratios (clean ladders only):
+      B=  64  8->12 sector+1 1.42x   8->16 time-refined 1.81x   12->16 NON-NESTED 1.27x
+      B= 128  8->12 sector+1 1.49x   8->16 time-refined 1.65x   12->16 NON-NESTED 1.11x
+      B= 256  8->12 sector+1 3.55x   8->16 time-refined 4.49x   12->16 NON-NESTED 1.26x
+      B= 512  12->16 NON-NESTED 1.17x
+      B=1024  12->16 NON-NESTED 1.33x
+
+  scenario r_lim1
+       n         B        runs    err(run)
+       8        64          64      3.807%
+       8       128         128      2.380%
+       8       256         256      0.630%
+      12        64          64      4.503%
+      12       128         128      4.274%
+      12       256         256      2.420%
+      12       512         512      1.410%
+      12      1024        1024      1.017%
+      16        64          64      7.479%
+      16       128         128      4.799%
+      16       256         256      2.790%
+      16       512         512      1.775%
+      16      1024        1024      1.039%
+    same-budget error ratios (clean ladders only):
+      B=  64  8->12 sector+1 1.18x   8->16 time-refined 1.96x   12->16 NON-NESTED 1.66x
+      B= 128  8->12 sector+1 1.80x   8->16 time-refined 2.02x   12->16 NON-NESTED 1.12x
+      B= 256  8->12 sector+1 3.84x   8->16 time-refined 4.43x   12->16 NON-NESTED 1.15x
+      B= 512  12->16 NON-NESTED 1.26x
+      B=1024  12->16 NON-NESTED 1.02x
+
+  runs needed for 1.5% error (log-log interpolation; 'n/a' = not bracketed)
+  scen        n       runs
+  r_sat       8        221
+  r_sat      12        n/a
+  r_sat      16        n/a
+  r_lim1      8        163
+  r_lim1     12        473
+  r_lim1     16        637
+
+==============================================================================
+PART A -- sampler cost law, metric = MDA8 (primary)
+==============================================================================
+  estimator = permutation + antithetic, 24 seeds, error = max_i |est-true| / max_i |true| (single-run)
+
+  scenario r_sat
+       n         B        runs    err(run)
+       8        64          64     28.162%
+       8       128         128     17.759%
+       8       256         256      5.043%
+      12        64          64     36.137%
+      12       128         128     22.688%
+      12       256         256     16.519%
+      12       512         512     11.813%
+      12      1024        1024      7.240%
+      16        64          64     38.053%
+      16       128         128     30.453%
+      16       256         256     21.354%
+      16       512         512     15.005%
+      16      1024        1024      8.362%
+    same-budget error ratios (clean ladders only):
+      B=  64  8->12 sector+1 1.28x   8->16 time-refined 1.35x   12->16 NON-NESTED 1.05x
+      B= 128  8->12 sector+1 1.28x   8->16 time-refined 1.71x   12->16 NON-NESTED 1.34x
+      B= 256  8->12 sector+1 3.28x   8->16 time-refined 4.23x   12->16 NON-NESTED 1.29x
+      B= 512  12->16 NON-NESTED 1.27x
+      B=1024  12->16 NON-NESTED 1.15x
+
+  scenario r_lim1
+       n         B        runs    err(run)
+       8        64          64      9.894%
+       8       128         128      5.963%
+       8       256         256      1.589%
+      12        64          64     13.630%
+      12       128         128      9.703%
+      12       256         256      6.520%
+      12       512         512      3.877%
+      12      1024        1024      2.434%
+      16        64          64     22.450%
+      16       128         128     14.698%
+      16       256         256      9.598%
+      16       512         512      7.037%
+      16      1024        1024      3.662%
+    same-budget error ratios (clean ladders only):
+      B=  64  8->12 sector+1 1.38x   8->16 time-refined 2.27x   12->16 NON-NESTED 1.65x
+      B= 128  8->12 sector+1 1.63x   8->16 time-refined 2.46x   12->16 NON-NESTED 1.51x
+      B= 256  8->12 sector+1 4.10x   8->16 time-refined 6.04x   12->16 NON-NESTED 1.47x
+      B= 512  12->16 NON-NESTED 1.82x
+      B=1024  12->16 NON-NESTED 1.50x
+
+  runs needed for 1.5% error (log-log interpolation; 'n/a' = not bracketed)
+  scen        n       runs
+  r_sat       8        n/a
+  r_sat      12        n/a
+  r_sat      16        n/a
+  r_lim1      8        n/a
+  r_lim1     12        n/a
+  r_lim1     16        n/a
+
+==============================================================================
+PART B -- attribution arms, metric = d3_mean (secondary)
+==============================================================================
+
+  r_sat  n=8  max|phi| = 16.6644 ppb  (5 arms x 50 seeds)
+  arm               20%      10%       5%       2%
+  kernelshap         48      128     >192     >192
+  perm               16       64      192     >192
+  perm_anti           8       16       96     >192
+  perm_strat          8       64      160     >192
+  OURS                8       48       96     >192
+
+  r_sat  n=16  max|phi| = 13.8918 ppb  (5 arms x 50 seeds)
+  arm               20%      10%       5%       2%
+  kernelshap        128     >512     >512     >512
+  perm              128      256     >512     >512
+  perm_anti          64       64      256     >512
+  perm_strat         64      256     >512     >512
+  OURS               64      128      256     >512
+
+  r_lim1  n=8  max|phi| = 12.7477 ppb  (5 arms x 50 seeds)
+  arm               20%      10%       5%       2%
+  kernelshap         48      128     >192     >192
+  perm               16       64      160     >192
+  perm_anti           8        8       32      128
+  perm_strat          8       64      128     >192
+  OURS                8       48       64      160
+
+  r_lim1  n=16  max|phi| = 10.0494 ppb  (5 arms x 50 seeds)
+  arm               20%      10%       5%       2%
+  kernelshap         64     >512     >512     >512
+  perm               64      128      512     >512
+  perm_anti          64       64       64      512
+  perm_strat         64      256     >512     >512
+  OURS               64      128      256     >512
+
+==============================================================================
+PART B -- attribution arms, metric = MDA8 (primary)
+==============================================================================
+
+  r_sat  n=8  max|phi| = 7.6399 ppb  (5 arms x 50 seeds)
+  arm               20%      10%       5%       2%
+  kernelshap        192     >192     >192     >192
+  perm              128     >192     >192     >192
+  perm_anti          96     >192     >192     >192
+  perm_strat        128     >192     >192     >192
+  OURS               96     >192     >192     >192
+
+  r_sat  n=16  max|phi| = 6.3499 ppb  (5 arms x 50 seeds)
+  arm               20%      10%       5%       2%
+  kernelshap       >512     >512     >512     >512
+  perm              512     >512     >512     >512
+  perm_anti         256     >512     >512     >512
+  perm_strat        512     >512     >512     >512
+  OURS              512     >512     >512     >512
+
+  r_lim1  n=8  max|phi| = 8.8976 ppb  (5 arms x 50 seeds)
+  arm               20%      10%       5%       2%
+  kernelshap        128     >192     >192     >192
+  perm               96      160     >192     >192
+  perm_anti          16       64      160     >192
+  perm_strat         96      192     >192     >192
+  OURS               48       96      192     >192
+
+  r_lim1  n=16  max|phi| = 6.6766 ppb  (5 arms x 50 seeds)
+  arm               20%      10%       5%       2%
+  kernelshap       >512     >512     >512     >512
+  perm              256     >512     >512     >512
+  perm_anti          64      256     >512     >512
+  perm_strat        256     >512     >512     >512
+  OURS              128      512     >512     >512
+
+==============================================================================
+SUMMARY -- same-budget error ratios, per (metric, scenario, ladder)
+==============================================================================
+  v_mda8    r_lim1  12->16 NON-NESTED n=5  median 1.51x  range 1.47-1.82
+  v_mda8    r_lim1  8->12 sector+1   n=3  median 1.63x  range 1.38-4.10
+  v_mda8    r_lim1  8->16 time-refined n=3  median 2.46x  range 2.27-6.04
+  v_mda8    r_sat   12->16 NON-NESTED n=5  median 1.27x  range 1.05-1.34
+  v_mda8    r_sat   8->12 sector+1   n=3  median 1.28x  range 1.28-3.28
+  v_mda8    r_sat   8->16 time-refined n=3  median 1.71x  range 1.35-4.23
+  v_ppb     r_lim1  12->16 NON-NESTED n=5  median 1.15x  range 1.02-1.66
+  v_ppb     r_lim1  8->12 sector+1   n=3  median 1.80x  range 1.18-3.84
+  v_ppb     r_lim1  8->16 time-refined n=3  median 2.02x  range 1.96-4.43
+  v_ppb     r_sat   12->16 NON-NESTED n=5  median 1.26x  range 1.11-1.33
+  v_ppb     r_sat   8->12 sector+1   n=3  median 1.49x  range 1.42-3.55
+  v_ppb     r_sat   8->16 time-refined n=3  median 1.81x  range 1.65-4.49
+
+Reading: the 8->12 (sector addition) and 8->16 (time refinement) ladders
+are clean nested comparisons; 12->16 is NOT nested (different games) and
+is reported only for completeness.  Ratios are budget-dependent, so no
+single pooled factor is quoted.

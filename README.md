@@ -84,6 +84,7 @@ evaluations** (= chemistry runs).
 | `_n16_spectrum.py`, `_m8_spectrum.py` | Möbius spectrum, order masses, truncation-error curves (both metrics) |
 | `_local_vs_global` analyses: `_zero_effect.py`, `_ridge_delta.py`, `_flip_report.py` | three failure-mode statistics: near-zero chords on the ridge, delta-refinement Richardson check, ridge-safe flip report |
 | `_hddm_check.py`, `_hddm_coalitions.py`, `_dp_taylor.py`, `_deerpark_lvg.py` | Taylor-2 (HDDM) single-axis and coalition scoring; Deer Park anchored-slice versions |
+| `_dual_bench.py` | dual-metric (d3_mean + MDA8) re-derivation of every sampling exhibit, zero chemistry runs: builds the n=8/12/16 oracles for both metrics (n=8 MDA8 read off the n=16 table at union-of-pairs masks, licensed by a bit-exact v_ppb cross-check) and reruns the cost law and the five attribution arms |
 | `exp_attrib.py`, `exp_calib.py`, `exp_selfdiag.py`, `exp_planning_bench.py`, `exp_quota.py`, `exp_sham.py`, `exp_co12*.py`, `exp_scale.py`, `exp_mda8.py`, `exp_stoch_gap.py`, `exp_cost_frontier.py`, `exp_surrogate_opt.py` | the analysis suite (one experiment per paper claim) |
 | `v_*.csv` oracle tables | `n16_v_r_*.csv` / `n16_v_r_*_m8.csv` (n=16, both metrics), `co_v.csv` (n=12), `sham_v.csv`, `scen_v.csv`, `scale_v.csv`, `hddm_v_*.csv`, `dp_v_*.csv`, `flip_v_*.csv` |
 | `_mda8_wincheck.py`, `_grid_check.sh` | metric-convention checks (window containment, 5-min grid facts) |
@@ -95,11 +96,11 @@ evaluations** (= chemistry runs).
 |---|---|
 | `_kppwork/sham_result.txt` | Table 1: L1 dummy-player gate (dividends ~1e-14) |
 | `_kppwork/spectrum_orders*.txt` | Fig. 2 + Table 6: truncation divergence (MDA8, n=16) |
-| `_kppwork/scaling_n16.txt`, `attrib_bench.txt`, `bench_n16.txt` | Fig. 4 + Table 5: sampling cost law (1.6-1.8x per doubling of n) |
+| `_kppwork/scaling_dual_metrics.txt` (from `_dual_bench.py`) | Fig. 4 + Table 5: sampling cost law, **both metrics** — the primary reference (the older `scaling_n16.txt` / `attrib_bench.txt` / `bench_n16.txt` are d3_mean-only; the pooled "1.6-1.8x per doubling" and "same accuracy 2.5-3x" statements are retired) |
 | `results_local_vs_global.txt` | Fig. 5/6 + Table 2: local vs finite effects, three failure modes |
 | `results_scan_flips.txt` | Table 8: failure map over the 25-point EKMA grid (8/25 cells flip) |
 | `results_zero_effect.txt`, `results_ridge_delta.txt` | ridge zero-effect windows, delta-refinement verification |
-| `results_fit_dallas_2016w.txt`, `results_fit_deerpark_2017s.txt`, `results_deerpark_lvg.txt`, `results_obs_*_cb05.txt` | Table 9 + L4: two-city bracket, opposite regime signatures |
+| `results_fit_deerpark_2017s.txt`, `results_deerpark_lvg.txt`, `results_obs_*_cb05.csv` | Table 9 + L4: Deer Park anchored-slice out-of-sample test (limited side). **The Dallas arm is NOT reproducible from this repo**: no script ran a Dallas-anchored regime test and `results_fit_dallas_2016w.txt` is excluded (a superseded 6-knob fit); the previously claimed Dallas signature is withdrawn pending that run. |
 | `results_hddm_check.txt`, `results_hddm_coalitions.txt`, `results_deerpark_taylor.txt` | Table 7d: Taylor-2 tail failure on the saturated side only |
 | `_kppwork/selfdiag*.txt`, `selfdiag_calib.txt` | Table 7a/7b: self-diagnosis flags; holdout calibration (e ~ 0.33 h) |
 | `results_kdil.txt` | Table 4: nocturnal validity diagnostics (scope gate) |

@@ -56,6 +56,21 @@ this tag; the mapping is tabulated in `README.md` and `paper_outline.md`.
 - The full spectrum is obtained **by enumeration only** (n <= 16). Sampling
   estimates the attribution functionals, not the spectrum; no claim of
   sub-2^n spectrum recovery is made.
+- **Metric labelling (2026-09 audit).** The originally released sampling
+  outputs (`scaling_n16.txt`, `attrib_bench.txt`, `bench_n16.txt`) were
+  computed on the d3_mean column. `_dual_bench.py` recomputes every sampling
+  exhibit on both metrics with zero chemistry runs
+  (`scaling_dual_metrics.txt`); the pooled "1.6-1.8x per doubling" and
+  "same accuracy costs 2.5-3x" statements are **retired**. In MDA8 the same
+  estimator needs an order of magnitude more runs and a 1.5% single-run
+  error is unreachable within the tested budgets.
+- **Anchoring (2026-09 audit).** The anchoring cost function includes O3
+  with weight 1.0 (`TARGETS` in `_fit_anchor.py`), so it is a fit, not a
+  held-out verification. The Deer Park slice is fully reproducible; **the
+  Dallas arm is withdrawn** -- no script ran a Dallas-anchored regime test
+  and the Dallas fit file is excluded as superseded.
+- The spin-up sufficiency check is still a TODO; the diagnostic output is
+  not yet published.
 
 ## Manuscript reference
 
