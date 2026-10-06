@@ -39,9 +39,10 @@ import attrib_samplers as S
 HERE = os.path.dirname(os.path.abspath(__file__))
 # Budgets stay below the size of the coalition lattice, which differs by
 # target: a Shapley chain can reach any subset, but an Owen chain is
-# group-contiguous, so for psi only ~48 distinct coalitions are reachable and
-# every arm saturates (error -> 0) around B=96.  The psi grid is therefore
-# capped where the comparison is still informative.
+# group-contiguous, so for psi only 80 distinct coalitions are reachable
+# (16 whole-group unions + 64 unions-plus-one-member; measured 2026-10,
+# _check_facts.sh) and every arm saturates (error -> 0) well before B=96.
+# The psi grid is therefore capped where the comparison is still informative.
 BUDGETS = {"phi": [8, 16, 24, 32, 48, 64, 96, 128, 160, 192],
            "psi": [8, 16, 24, 32, 48, 64]}
 EPS = [0.20, 0.10, 0.05, 0.02]
