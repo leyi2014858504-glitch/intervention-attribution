@@ -1,54 +1,30 @@
 #!/bin/bash
-# Verify: (a) reachable coalition set of group-contiguous Owen chains at n=8;
-#         (b) budget overshoot of exp_scale.gen (chain completed past B).
+# Owen-chain reachability for the other configurations (pure combinatorics, no chemistry):
+#   n=12 CO extension: 4 groups x 3 players  -> ?
+#   n=16 3-hour game : 8 groups x 2 players  -> ?
 cd /mnt/d/atmos
 python3 - <<'EOF'
-import random, itertools
+import random
 
-# (a) Owen chain reachability, n=8, groups = [[w, 4+w] for w in range(4)]
-groups = [[w, 4 + w] for w in range(4)]
-reach = set()
-rng = random.Random(0)
-for _ in range(200000):
-    gid = list(range(4)); rng.shuffle(gid)
-    S = 0; reach.add(0)
-    for g in gid:
-        inside = list(groups[g]); rng.shuffle(inside)
-        for i in inside:
-            S |= 1 << i
-            reach.add(S)
-print("psi reachable coalitions (n=8):", len(reach), "of 256")
-unions = {m for m in reach if all((m >> j) & 1 == (m >> (4 + j)) & 1
-                                   for j in range(4)) or True}
-full_unions = set()
-for t in itertools.product([0, 1], repeat=4):
-    m = 0
-    for w in range(4):
-        if t[w]:
-            m |= 1 << w | 1 << (4 + w)
-    full_unions.add(m)
-print("  of which whole-group unions:", len(full_unions & reach))
+def reach_count(nsec, nwin, trials=200000, seed=0):
+    groups = [[w * nsec + s for s in range(nsec)] for w in range(nwin)]
+    n = nsec * nwin
+    rng = random.Random(seed)
+    reach = {0}
+    for _ in range(trials):
+        gid = list(range(nwin)); rng.shuffle(gid)
+        S = 0
+        for g in gid:
+            inside = list(groups[g]); rng.shuffle(inside)
+            for i in inside:
+                S |= 1 << i
+                reach.add(S)
+    return len(reach), 1 << n
 
-# (b) budget overshoot of exp_scale.gen
-def gen(rng, budget, n):
-    seen = set(); orders = []
-    while len(seen) < budget:
-        order = list(range(n)); rng.shuffle(order)
-        for seq in (order, order[::-1]):
-            mask = 0; seen.add(0)
-            for i in seq:
-                mask |= 1 << i; seen.add(mask)
-            seen.add((1 << n) - 1); orders.append(seq)
-            if len(seen) >= budget:
-                break
-    return orders, seen
-
-for n in (8, 12, 16):
-    for B in (64, 128):
-        over = []
-        for sd in range(50):
-            _, seen = gen(random.Random(1000 * B + sd), B, n)
-            over.append(len(seen) - 1 - B)   # minus the free empty set
-        print("gen: n=%2d B=%3d  realised runs: min %d  max %d  (nominal %d, overshoot up to %d)"
-              % (n, B, B + min(over), B + max(over), B, max(over)))
+for nsec, nwin, tag in ((2, 4, "n=8  (4 groups x 2)"),
+                        (3, 4, "n=12 (4 groups x 3, CO ext)"),
+                        (2, 8, "n=16 (8 groups x 2)"),
+                        (3, 8, "n=24 (8 groups x 3, stress only)")):
+    r, tot = reach_count(nsec, nwin)
+    print("%s: Owen chains reach %5d of %8d  (%.1f%%)" % (tag, r, tot, 100.0 * r / tot))
 EOF
