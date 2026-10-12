@@ -12,6 +12,7 @@ artifacts -- this script recomputes nothing chemical:
 Run with the Windows Python (matplotlib):  python _kppwork/make_figs.py
 """
 import csv
+import math
 import os
 import re
 
@@ -74,37 +75,41 @@ def parse_spectrum_orders(path):
     return out
 
 
-def fig2():
-    d3 = parse_spectrum_orders(os.path.join(HERE, "spectrum_orders.txt"))
-    m8 = parse_spectrum_orders(os.path.join(HERE, "spectrum_orders_m8.txt"))
+def _fig2_panels(dat, metric_label, prefix, suptitle):
     fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.4))
     ax = axes[0]
     for n in (8, 12, 16):
-        t = m8["r_sat"]["trunc"][n]
+        t = dat["r_sat"]["trunc"][n]
         ax.plot(list(t), [t[q] for q in t], "o-", color=CN[n],
-                label="MDA8, n=%d" % n)
-        t = d3["r_sat"]["trunc"][n]
-        ax.plot(list(t), [t[q] for q in t], "s--", color=CN[n], alpha=0.5,
-                label="d3_mean, n=%d" % n)
+                label="n=%d" % n)
     ax.set_yscale("log")
     ax.set_xlabel("truncation order q")
     ax.set_ylabel("truncation error (% of max|phi|)")
-    ax.set_title("(a) low-order truncation (r_sat)", loc="left")
-    ax.legend(fontsize=7, ncol=2)
+    ax.set_title("(a) low-order truncation (r_sat, %s)" % metric_label,
+                 loc="left")
+    ax.legend(fontsize=7)
     ax = axes[1]
     for n in (8, 12, 16):
-        t = m8["r_sat"]["mass"][n]
-        ax.plot(list(t), [t[k] for k in t], "o-", color=CN[n],
-                label="MDA8, n=%d" % n)
-        t = d3["r_sat"]["mass"][n]
-        ax.plot(list(t), [t[k] for k in t], "s--", color=CN[n], alpha=0.5,
-                label="d3_mean, n=%d" % n)
+        t = dat["r_sat"]["mass"][n]
+        ax.plot(list(t), [t[k] for k in t], "o-", color=CN[n], label="n=%d" % n)
     ax.set_yscale("log")
     ax.set_xlabel("interaction order k")
     ax.set_ylabel("spectral mass (k=1 normalised)")
-    ax.set_title("(b) spectrum by order (r_sat)", loc="left")
+    ax.set_title("(b) spectrum by order (r_sat, %s)" % metric_label, loc="left")
     fig.tight_layout()
-    save(fig, "fig2_truncation")
+    save(fig, prefix)
+
+
+def fig2():
+    """main text: MDA8 only (the regulatory metric); d3_mean goes to SI."""
+    m8 = parse_spectrum_orders(os.path.join(HERE, "spectrum_orders_m8.txt"))
+    _fig2_panels(m8, "MDA8", "fig2_truncation", None)
+
+
+def fig2_supp():
+    """supplementary: same panels on the daily-mean metric."""
+    d3 = parse_spectrum_orders(os.path.join(HERE, "spectrum_orders.txt"))
+    _fig2_panels(d3, "d3_mean", "figS1_truncation_d3", None)
 
 
 # --------------------------------------------------------------- Fig 3
@@ -164,7 +169,8 @@ def fig3():
 
 # --------------------------------------------------------------- Fig 4
 def parse_scaling(path):
-    """-> {metric: {scen: {n: [(B, err%)]}}}, {metric: {scen: {n: runs or None}}}"""
+    """-> {metric: {scen: {n: [(B, err%, q1%, q3%)]}}}, {metric: {scen: {n: runs or None}}}
+    q1/q3 are the seed quartiles (may be nan for pre-2026-10 files)."""
     res, runs = {}, {}
     metric, scen = None, None
     mode = None
@@ -187,10 +193,13 @@ def parse_scaling(path):
             mode = "runs"
             continue
         if mode == "err":
-            m = re.match(r"\s+(\d+)\s+(\d+)\s+(\d+)\s+([\d.]+)%", line)
+            m = re.match(r"\s+(\d+)\s+(\d+)\s+(\d+)\s+([\d.]+)%"
+                         r"(?:\s+([\d.]+)%\s+([\d.]+)%)?", line)
             if m:
                 res[metric][scen].setdefault(int(m.group(1)), []).append(
-                    (int(m.group(2)), float(m.group(4))))
+                    (int(m.group(2)), float(m.group(4)),
+                     float(m.group(5)) if m.group(5) else float("nan"),
+                     float(m.group(6)) if m.group(6) else float("nan")))
         elif mode == "runs":
             m = re.match(r"\s+(\S+)\s+(\d+)\s+(\S+)", line)
             if m and m.group(1) in ("r_sat", "r_lim1"):
@@ -206,26 +215,40 @@ def fig4():
     for metric, ls, lab in (("m8", "-", "MDA8"), ("d3", "--", "d3_mean")):
         for n in (8, 12, 16):
             pts = sorted(res[metric]["r_sat"][n])
-            ax.plot([p[0] for p in pts], [p[1] for p in pts], ls + "o",
-                    color=CN[n], alpha=1.0 if metric == "m8" else 0.55,
+            xs = [p[0] for p in pts]
+            ys = [p[1] for p in pts]
+            ax.plot(xs, ys, ls + "o", color=CN[n],
+                    alpha=1.0 if metric == "m8" else 0.55,
                     label="%s, n=%d" % (lab, n))
+            q1 = [p[2] for p in pts]
+            q3 = [p[3] for p in pts]
+            if not any(math.isnan(q) for q in q1 + q3):
+                ax.fill_between(xs, q1, q3, color=CN[n], alpha=0.12,
+                                linewidth=0)
     ax.set_xscale("log"); ax.set_yscale("log")
     ax.set_xlabel("coalition evaluations (budget B)")
     ax.set_ylabel("single-run error (% of max|phi|)")
-    ax.set_title("(a) sampling error vs cost (r_sat)", loc="left")
+    ax.set_title("(a) sampling error vs cost (r_sat; band = IQR over seeds)",
+                 loc="left", fontsize=9)
     ax.legend(fontsize=6.5, ncol=2)
     ax = axes[1]
     ns = np.array([8, 12, 16])
     ax.plot(ns, 2.0 ** ns, "k-", label="full enumeration 2$^n$")
-    for metric, ls, lab in (("m8", "-", "MDA8"), ("d3", "--", "d3_mean")):
-        rr = [runs[metric]["r_sat"].get(n) for n in ns]
-        ax.plot(ns, [x if x else np.nan for x in rr], ls + "o",
-                color=METC[metric], label="perm_anti, %s (1.5%%)" % lab)
+    for scen, ls, lab in (("r_lim1", "-", "d3_mean, r_lim1"),
+                          ("r_sat", "--", "d3_mean, r_sat")):
+        rr = [runs["d3"][scen].get(n) for n in ns]
+        if any(rr):
+            ax.plot(ns, [x if x else np.nan for x in rr], ls + "o",
+                    color=METC["d3"],
+                    label="perm_anti, %s (1.5%%, interpolated)" % lab)
     ax.set_yscale("log")
     ax.set_xticks(ns)
     ax.set_xlabel("players n")
-    ax.set_ylabel("runs for 1.5% error (r_sat)")
+    ax.set_ylabel("runs for 1.5% error")
     ax.set_title("(b) cost of equal precision", loc="left")
+    ax.annotate("MDA8: 1.5% not reached\nwithin tested budgets (both scenarios)",
+                xy=(0.98, 0.03), xycoords="axes fraction", ha="right",
+                fontsize=7.5, color=METC["m8"])
     ax.legend(fontsize=7)
     fig.tight_layout()
     save(fig, "fig4_cost")
@@ -348,6 +371,7 @@ def fig7():
 
 if __name__ == "__main__":
     fig2()
+    fig2_supp()
     fig3()
     fig4()
     fig5()
