@@ -114,9 +114,9 @@ winter periods from them.
 | Fig | 图片（工作稿） | 数据来源 |
 |---|---|---|
 | 1 | **待绘制**（示意图，手绘/矢量） | 无数据 |
-| 2 | [figs/fig2_truncation.png](figs/fig2_truncation.png) | `_kppwork/spectrum_orders{,_m8}.txt` |
+| 2 | [figs/fig2_truncation.png](figs/fig2_truncation.png)（**MDA8 单度量**；d3_mean 版进补充材料 [figs/figS1_truncation_d3.png](figs/figS1_truncation_d3.png)） | `_kppwork/spectrum_orders_m8.txt`（补充版用 `spectrum_orders.txt`） |
 | 3 | [figs/fig3_spectrum.png](figs/fig3_spectrum.png) | `co_v.csv` + `n16_v_r_*_m8.csv`（快 Möbius 现算） |
-| 4 | [figs/fig4_cost.png](figs/fig4_cost.png) | `_kppwork/scaling_dual_metrics.txt` |
+| 4 | [figs/fig4_cost.png](figs/fig4_cost.png)（(a) 带 seed 间 **IQR 阴影带**；(b) 双情景 d3 阶梯 + MDA8 1.5% 不可达注记） | `_kppwork/scaling_dual_metrics.txt`（q1/q3 列，2026-10-12 重导） |
 | 5 | [figs/fig5_signflip.png](figs/fig5_signflip.png) | `results_local_vs_global.txt`（MDA8 3h 段） |
 | 6 | [figs/fig6_lvg.png](figs/fig6_lvg.png) | 同上（24 窗三组柱） |
 | 7 | [figs/fig7_quota.png](figs/fig7_quota.png) | `results_quota.txt` |

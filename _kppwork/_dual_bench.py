@@ -163,6 +163,14 @@ def exact_shapley(vd, n):
 
 
 # ------------------------------------------------------------------- part A
+def _pct(xs, p):
+    """linear-interpolated quantile of xs at fraction p (stdlib only)."""
+    ys = sorted(xs)
+    k = (len(ys) - 1) * p
+    f, c = int(math.floor(k)), int(math.ceil(k))
+    return ys[f] if f == c else ys[f] + (ys[c] - ys[f]) * (k - f)
+
+
 def scaling_tables(orc, L):
     ratios = {}
     for col, mname in METRICS:
@@ -175,7 +183,8 @@ def scaling_tables(orc, L):
         for s in SCEN:
             L.append("")
             L.append("  scenario %s" % s)
-            L.append("  %6s %9s %11s %11s" % ("n", "B", "runs", "err(run)"))
+            L.append("  %6s %9s %11s %11s %8s %8s"
+                     % ("n", "B", "runs", "err(run)", "q1", "q3"))
             errs = {}
             for n in (8, 12, 16):
                 vd = orc[col][s][n]
@@ -195,8 +204,9 @@ def scaling_tables(orc, L):
                         es.append(max(abs(est[i] - true[i])
                                       for i in range(n)) / scale)
                     errs[(n, B)] = st.median(es)
-                    L.append("  %6d %9d %11d %10.3f%%"
-                             % (n, B, B, 100 * errs[(n, B)]))
+                    L.append("  %6d %9d %11d %10.3f%% %7.3f%% %7.3f%%"
+                             % (n, B, B, 100 * errs[(n, B)],
+                                100 * _pct(es, 0.25), 100 * _pct(es, 0.75)))
             # honest ratio reporting: per-budget, no pooling
             L.append("    same-budget error ratios (clean ladders only):")
             for B in BUDGETS:
