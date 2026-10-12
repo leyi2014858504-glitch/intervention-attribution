@@ -149,18 +149,55 @@ def order_mass(v, n):
     return mass / mass[1]
 
 
+def embed8(m8):
+    """4-window (6 h) mask -> 8-window (3 h) mask; each 6 h block = its two
+    adjacent 3 h blocks switched together (sub-lattice of the n=16 game)."""
+    m16 = 0
+    for j in range(4):
+        if (m8 >> j) & 1:
+            m16 |= 1 << (2 * j) | 1 << (2 * j + 1)
+        if (m8 >> (4 + j)) & 1:
+            m16 |= 1 << (8 + 2 * j) | 1 << (8 + 2 * j + 1)
+    return m16
+
+
+def load_shards(scen, n, col="v_mda8"):
+    """co_v_m8_k.csv shards: name '<scen>_m<mask>' -> {mask: value}."""
+    v = np.zeros(1 << n)
+    for fn in sorted(os.listdir(HERE)):
+        if not (fn.startswith("co_v_m8_") and fn.endswith(".csv")):
+            continue
+        with open(os.path.join(HERE, fn)) as fh:
+            for row in csv.DictReader(fh):
+                name = row["name"]
+                if "_m" not in name:
+                    continue
+                s, ms = name.rsplit("_m", 1)
+                if s != scen or row[col] in ("", "NaN"):
+                    continue
+                v[int(ms)] = float(row[col])
+    return v
+
+
 def fig3():
+    """MDA8 only (metric policy: d3_mean goes to SI); three curves that
+    isolate the two clean ladders: 8->12 adds CO (weak player), 8->16
+    refines the time axis (lifts the spectrum)."""
     fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.4), sharey=True)
     for ax, scen in zip(axes, ("r_sat", "r_lim1")):
-        v12 = load_oracle("co_v.csv", 12, scen=scen)
-        v16 = load_oracle("n16_v_%s_m8.csv" % scen, 16)
-        for v, n, lab in ((v12, 12, "n=12 (3 sectors x 4 windows)"),
-                          (v16, 16, "n=16 (2 sectors x 8 windows)")):
+        v16 = load_oracle("n16_v_%s_m8.csv" % scen, 16, col="v_mda8")
+        v12 = load_shards(scen, 12)
+        v8 = np.zeros(256)
+        for m in range(256):
+            v8[m] = v16[embed8(m)]
+        for v, n, lab in ((v8, 8, "n = 8 (2 sectors, 4 windows)"),
+                          (v12, 12, "n = 12 (+ CO, 3 sectors)"),
+                          (v16, 16, "n = 16 (2 sectors, 8 windows)")):
             mass = order_mass(v, n)
             ax.plot(range(1, n + 1), mass[1:], "o-", color=CN[n], label=lab)
         ax.set_yscale("log")
         ax.set_xlabel("interaction order k")
-        ax.set_title("scenario %s (d3_mean)" % scen, loc="left")
+        ax.set_title("scenario %s (MDA8)" % scen, loc="left")
         ax.legend(fontsize=7)
     axes[0].set_ylabel("spectral mass (k=1 normalised)")
     fig.tight_layout()

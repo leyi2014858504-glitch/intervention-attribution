@@ -115,13 +115,13 @@ winter periods from them.
 |---|---|---|
 | 1 | **待绘制**（示意图，手绘/矢量） | 无数据 |
 | 2 | [figs/fig2_truncation.png](figs/fig2_truncation.png)（**MDA8 单度量**；d3_mean 版进补充材料 [figs/figS1_truncation_d3.png](figs/figS1_truncation_d3.png)） | `_kppwork/spectrum_orders_m8.txt`（补充版用 `spectrum_orders.txt`） |
-| 3 | [figs/fig3_spectrum.png](figs/fig3_spectrum.png) | `co_v.csv` + `n16_v_r_*_m8.csv`（快 Möbius 现算） |
+| 3 | [figs/fig3_spectrum.png](figs/fig3_spectrum.png)（**MDA8**；三条曲线走两条干净阶梯：n=8→12 加 CO 谱不动、n=8→16 细化时间轴谱抬阶） | `co_v_m8_*.csv` 分片（n=12）+ `n16_v_r_*_m8.csv`（n=16；n=8 由其子格导出） |
 | 4 | [figs/fig4_cost.png](figs/fig4_cost.png)（(a) 带 seed 间 **IQR 阴影带**；(b) 双情景 d3 阶梯 + MDA8 1.5% 不可达注记） | `_kppwork/scaling_dual_metrics.txt`（q1/q3 列，2026-10-12 重导） |
 | 5 | [figs/fig5_signflip.png](figs/fig5_signflip.png) | `results_local_vs_global.txt`（MDA8 3h 段） |
 | 6 | [figs/fig6_lvg.png](figs/fig6_lvg.png) | 同上（24 窗三组柱） |
 | 7 | [figs/fig7_quota.png](figs/fig7_quota.png) | `results_quota.txt` |
 
-⚠️ 偏差记录：Fig 3 原计划 n=12 与 n=24 两格，但 **n=24 无精确谱**（2²⁴ 不可枚举，只有 φ 采样），现图用 n=12 与 n=16 的精确谱；n=24 的"重尾"证据由 Fig 4/采样 spread 承担。成图版式仍可再调，数字均已对账。
+⚠️ 偏差记录（2026-10-12 修订）：Fig 3 原计划 n=12 与 n=24 两格，但 **n=24 无精确谱**（2²⁴ 不可枚举，只有 φ 采样）；且 n=12 vs n=16 直接对比会**混掉两个轴**（部门+时间）。现图改为 **n=8/12/16 三曲线（MDA8）**，走两条干净阶梯——n=8 vs n=12 = 加 CO（弱玩家，谱形不动），n=8 vs n=16 = 细化时间轴（谱抬阶）——同时消除度量混用（旧版误用 d3_mean）。n=24 的"重尾"证据由 Fig 4/采样 spread 承担。
 
 ### Fig. 1 — 问题的重述（示意图，无数据）
 - **画什么**：左：领域现状——一个标量灵敏度 ∂O₃/∂NOx，在基点线性化。右：我们的对象——(部门 × 时间窗) 联盟格上的 2ⁿ 谱，Shapley/Owen 是它的线性泛函。
