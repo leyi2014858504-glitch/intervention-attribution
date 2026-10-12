@@ -101,6 +101,9 @@ evaluations** (= chemistry runs).
 | `results_local_vs_global.txt` | Fig. 5/6 + Table 2: local vs finite effects, three failure modes |
 | `results_scan_flips.txt` | Table 8: failure map over the 25-point EKMA grid (8/25 cells flip) |
 | `results_zero_effect.txt`, `results_ridge_delta.txt` | ridge zero-effect windows, delta-refinement verification |
+| `results_co12.txt` (from `_kppwork/exp_co12.py`) | Table 3: player-set robustness (8 vs 12 players; max per-player shift 0.10 ppb) |
+| `results_quota.txt` (from `_kppwork/exp_quota.py`) | Fig. 7: budget-constrained recipes flip across regimes |
+| `figs/` (from `_kppwork/make_figs.py`) | working-draft figures Fig 2-7, regenerated from the released result files (index in `paper_outline.md`); Fig 1 is a schematic, pending |
 | `results_fit_deerpark_2017s.txt`, `results_deerpark_lvg.txt`, `results_obs_*_cb05.csv`, `_kppwork/_deerpark_lvg.py` | Table 9 + L4: Deer Park anchored-slice out-of-sample test (limited side): all chord ratios 0.98-1.05, 0/24 sign flips -- "the failure disappears" reproduced |
 | `results_fit_dallas_2016w.txt`, `results_dallas_lvg.txt`, `_kppwork/_dallas_lvg.py` | Table 9 + L4: Dallas anchored-slice test (saturated side, 8-knob re-anchor cost 0.441): 0/24 sign flips, but NOx chord ratios 0.82-5.10 (4/8 windows >= 1.9x; VOC/CO ~1) -- the city-side amplitude failure. The pre-stated "saturated -> flips" expectation did not materialise; disclosed, not hidden |
 | `results_spinup_dallas.txt` | L4 + Methods: spin-up sufficiency (3-day vs 10-day last-day drift <= 0.4%) -- the 3-day window is a diurnal cycle |
