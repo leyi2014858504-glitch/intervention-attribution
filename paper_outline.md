@@ -109,6 +109,20 @@ winter periods from them.
 
 ## 三、图表清单
 
+### 图片索引（2026-10-12，由 `_kppwork/make_figs.py` 从发布结果文件生成）
+
+| Fig | 图片（工作稿） | 数据来源 |
+|---|---|---|
+| 1 | **待绘制**（示意图，手绘/矢量） | 无数据 |
+| 2 | [figs/fig2_truncation.png](figs/fig2_truncation.png) | `_kppwork/spectrum_orders{,_m8}.txt` |
+| 3 | [figs/fig3_spectrum.png](figs/fig3_spectrum.png) | `co_v.csv` + `n16_v_r_*_m8.csv`（快 Möbius 现算） |
+| 4 | [figs/fig4_cost.png](figs/fig4_cost.png) | `_kppwork/scaling_dual_metrics.txt` |
+| 5 | [figs/fig5_signflip.png](figs/fig5_signflip.png) | `results_local_vs_global.txt`（MDA8 3h 段） |
+| 6 | [figs/fig6_lvg.png](figs/fig6_lvg.png) | 同上（24 窗三组柱） |
+| 7 | [figs/fig7_quota.png](figs/fig7_quota.png) | `results_quota.txt` |
+
+⚠️ 偏差记录：Fig 3 原计划 n=12 与 n=24 两格，但 **n=24 无精确谱**（2²⁴ 不可枚举，只有 φ 采样），现图用 n=12 与 n=16 的精确谱；n=24 的"重尾"证据由 Fig 4/采样 spread 承担。成图版式仍可再调，数字均已对账。
+
 ### Fig. 1 — 问题的重述（示意图，无数据）
 - **画什么**：左：领域现状——一个标量灵敏度 ∂O₃/∂NOx，在基点线性化。右：我们的对象——(部门 × 时间窗) 联盟格上的 2ⁿ 谱，Shapley/Owen 是它的线性泛函。
 - **承载**：入口定义（不承载结果，但决定读者怎么读全文）
