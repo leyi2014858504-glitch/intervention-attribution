@@ -23,12 +23,10 @@ a host beyond the 0-D box.
 | path | what it is |
 |---|---|
 | `_kppwork/` | experiment engine: KPP/CB05 build, box-model driver, campaign sweeps, exact oracle tables, diagnostics and figure drivers |
-| `figs/` | figure outputs (`*.png`, `*.pdf`) |
+| `figs/` | the eight manuscript figures, as PNG and PDF |
 | `met_*.csv` | hourly meteorology per city-season (Open-Meteo): T2m, RH, pressure, wind, shortwave, boundary-layer height |
 | `obs_*_cb05.csv` | observation composites routed to CB05 species (PAMS speciated VOC + NOx/O3) per city-season |
 | `results_*.txt` | one file per reported diagnostic, written by the scripts below |
-| `paper_outline.md`, `npj_outline_zh.md` | claim / figure / table maps from earlier drafts |
-| `atmos_plan/` | legacy first-prototype tree, superseded by `_kppwork/` (kept for provenance) |
 | `_*`-prefixed files | scratch probes and one-off diagnostics; not part of the pipeline |
 
 ## Exact tables included
@@ -69,10 +67,11 @@ runs).
 |---|---|
 | `kpp_box.py` | box-model driver: config dict → namelist → KPP run → trajectory; scenario defaults, switch mechanics, MDA8 / d3_mean metric |
 | `build_kpp7.sh`, `cb05.kpp`, `cb05_sorg_aq.spc`, `cb05_sorg_aq.def`, `cb05_sorg_aq.eqn`, `cb05*_Main.f90` | CB05 mechanism and KPP build |
-| `gen_n16.py`, `gen_co_sweep.py`, `gen_hddm.py`, `gen_hddm_dp.py`, `gen_flipscan.py`, `gen_scale_masks.py`, `gen_scen_sweep.py`, `gen_sham.py` | namelist generators (synthetic games and auxiliary campaigns) |
+| `gen_n16.py`, `gen_co_sweep.py` | namelist generators for the synthetic n = 16 and n = 12 (CO) campaigns |
 | `_gen16_city.py`, `_gen_hddm_city.py` | city-anchored n = 16 namelists and Taylor coefficients (8-knob anchored base) |
-| `_make_co12_h.py`, `_make_tau2300.py` | n = 12 hourly shards; nocturnal-sink sensitivity build |
-| `sweep_n16.sh`, `sweep_co*.sh`, `sweep_hddm.sh`, `sweep_flips.sh`, `sweep_scale.sh`, `sweep_scen.sh`, `sweep_sham.sh` | parallel campaign runners |
+| `_hourly_tables.py`, `_hourly_core.py`, `_hourly_summary.py` | hourly tables and the `n16_vh_*_m8.csv` oracles written from them |
+| `_make_co12_h.py`, `_n12_hourly.py`, `_make_tau2300.py` | n = 12 hourly shards; nocturnal-sink sensitivity build |
+| `sweep_n16.sh`, `sweep_co_m8.sh`, `sweep_hddm_city_h.sh` | parallel campaign runners |
 
 ### Spectral and truncation diagnostics
 
@@ -93,7 +92,7 @@ runs).
 | `_frozen_window_check.py`, `_frozen_rho.py`, `_frozen_base.py` | validity of the frozen maximizing-window approximation |
 | `_error_structure.py`, `_single_vs_joint.py` | structure of the local error; single-window vs joint response |
 | `_optimal_plan.py` | exact budget-constrained optimum, greedy ranking and order-q truncated selection (writes `results_optimal_plan.*`, `figs/fig_optimal.*`) |
-| `attrib_oracle.py`, `attrib_samplers.py` | exact Shapley/Owen from enumeration; sampling arms (benchmark material, not used for the manuscript's exact claims) |
+| `attrib_oracle.py` | exact Shapley / Owen values from enumeration |
 | `_shapley_taylor.py` | k-truncated Shapley–Taylor values and their error |
 
 ### Robustness and audits
@@ -134,7 +133,8 @@ runs).
 1. Build the box model (`_kppwork/build_kpp7.sh`).
 2. Synthetic oracles: `gen_n16.py` + `sweep_n16.sh`; city oracles:
    `_gen16_city.py` + `sweep_n16.sh` (65,536 runs per game). City anchoring
-   itself is `_fit_anchor.py` → `results_fit_*.txt`.
+   itself is `_fit_anchor.py` → `results_fit_*.txt`; the 512-run Taylor sets are
+   `_gen_hddm_city.py` + `sweep_hddm_city_h.sh` → `hddm_h_v_*.csv`.
 3. Diagnostics: `_errv_full.py`, `_city_spectrum.py`, `_city_trunc.py`,
    `_optimal_plan.py`, `_hddm_cities.py` (each reads the released oracle tables,
    zero chemistry runs).
