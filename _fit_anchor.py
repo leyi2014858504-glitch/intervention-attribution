@@ -115,6 +115,8 @@ def make_cost(label, obs, scale, tmin, tmax, tau, verbose=False):
 def main():
     label = sys.argv[1]
     maxiter = int(sys.argv[2]) if len(sys.argv) > 2 else 40
+    fix_night = os.environ.get("FIX_NIGHT")       # pin KDIL_NIGHT (sink tests)
+    out_suf = os.environ.get("OUT_SUF", "")       # keep production files intact
 
     obs, scale = read_obs(label)
     tmin, tmax, tau = read_met(label)
@@ -131,6 +133,9 @@ def main():
     lo = [0.5, 0.5, 0.0, 1.0, 0.1 * tau, 86400.0, 5.0, 50.0]
     hi = [60.0, 200.0, 10.0, 600.0, tau, 30.0 * 86400.0, 60.0, 400.0]
     NP = 8
+    if fix_night:
+        # pin the nocturnal sink (index 5) for the dry-deposition-style test
+        x[5] = lo[5] = hi[5] = float(fix_night)
 
     best = cost(x)
     print(f"  start cost = {best:.5f}")
@@ -159,7 +164,7 @@ def main():
     print(f"FINAL x={x}")
     names = ["EMIS_NOX", "EMIS_VOC", "EMIS_ISO", "EMIS_CO",
              "KDIL_DAY", "KDIL_NIGHT", "BG_O3", "BG_CO"]
-    with open(os.path.join(D, f"results_fit_{label}.txt"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(D, f"results_fit_{label}{out_suf}.txt"), "w", encoding="utf-8") as fh:
         fh.write(f"label {label}\ncost {best:.6f}\ntau_BLH {tau:.0f} s\n\n")
         for n, v in zip(names, x):
             fh.write(f"  {n:<12} = {v:.4f}\n")
@@ -169,13 +174,17 @@ def main():
                    TMIN_K=tmin, TMAX_K=tmax)
         m = kpp_box.run_scenario(cfg, "fitbest", "anchor")
         traj = m["traj"]
+        # metrics() defaults to a 24 h cut; the campaign table's MDA8 is defined
+        # over windows ending at t >= 48 h, so report it with the same cut or the
+        # gate against the 2**16 table compares two different metrics.
+        mm = kpp_box.metrics(traj, spinup_h=48.0)
         fh.write("\n=== modelled vs observed diurnal composites ===\n")
         for col, _, _ in TARGETS:
             mod = kpp_box.diurnal(traj, col)
             fh.write(f"{col}  model " + " ".join(f"{mod[h]:8.3f}" for h in range(24)) + "\n")
             fh.write(f"{col}  obs   " + " ".join(f"{obs[col][h]:8.3f}" for h in range(24)) + "\n")
         fh.write("hour      " + " ".join(f"{h:>8d}" for h in range(24)) + "\n")
-        fh.write(f"\nmetrics {json.dumps({k: v for k, v in m.items() if k.startswith('d3') or k == 'mda8'})}\n")
+        fh.write(f"\nmetrics {json.dumps({k: v for k, v in mm.items() if k.startswith('d3') or k == 'mda8'})}\n")
     print(f"wrote results_fit_{label}.txt")
 
 

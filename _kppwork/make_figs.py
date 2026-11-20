@@ -92,9 +92,8 @@ def _fig2_panels(dat, metric_label, prefix, suptitle):
     for n in (8, 12, 16):
         t = dat["r_sat"]["mass"][n]
         ax.plot(list(t), [t[k] for k in t], "o-", color=CN[n], label="n=%d" % n)
-    ax.set_yscale("log")
     ax.set_xlabel("interaction order k")
-    ax.set_ylabel("spectral mass (k=1 normalised)")
+    ax.set_ylabel("order mass $\Sigma|m(A)|$ (k = 1 normalized)")
     ax.set_title("(b) spectrum by order (r_sat, %s)" % metric_label, loc="left")
     fig.tight_layout()
     save(fig, prefix)
@@ -145,7 +144,7 @@ def order_mass(v, n):
     m = mobius_fast(v, n)
     mass = np.zeros(n + 1)
     for mask in range(1, 1 << n):
-        mass[bin(mask).count("1")] += abs(m[mask]) / bin(mask).count("1")
+        mass[bin(mask).count("1")] += abs(m[mask])
     return mass / mass[1]
 
 
@@ -165,7 +164,7 @@ def load_shards(scen, n, col="v_mda8"):
     """co_v_m8_k.csv shards: name '<scen>_m<mask>' -> {mask: value}."""
     v = np.zeros(1 << n)
     for fn in sorted(os.listdir(HERE)):
-        if not (fn.startswith("co_v_m8_") and fn.endswith(".csv")):
+        if not (fn.startswith("co_vh_m8_") and fn.endswith(".csv")):
             continue
         with open(os.path.join(HERE, fn)) as fh:
             for row in csv.DictReader(fh):
@@ -185,7 +184,33 @@ def fig3():
     refines the time axis (lifts the spectrum)."""
     fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.4), sharey=True)
     for ax, scen in zip(axes, ("r_sat", "r_lim1")):
-        v16 = load_oracle("n16_v_%s_m8.csv" % scen, 16, col="v_mda8")
+        v16 = load_oracle("n16_vh_%s_m8.csv" % scen, 16, col="v_mda8")
+        v12 = load_shards(scen, 12)
+        v8 = np.zeros(256)
+        for m in range(256):
+            v8[m] = v16[embed8(m)]
+        for v, n, lab in ((v8, 8, "n = 8"),
+                          (v12, 12, "n = 12"),
+                          (v16, 16, "n = 16")):
+            mass = order_mass(v, n)
+            ax.plot(range(1, n + 1), mass[1:], "o-", color=CN[n], label=lab)
+        ax.set_yscale("log")
+        ax.set_ylim(0.05, 500)
+        ax.set_xlabel("interaction order k")
+        ax.set_title("scenario %s" % scen, loc="left")
+        ax.legend(fontsize=7)
+    axes[0].set_ylabel("order mass $\\Sigma|m(A)|$ (k = 1 normalized, log scale)")
+    fig.tight_layout()
+    save(fig, "fig3_spectrum")
+
+
+def fig3_supp_mass():
+    """SI companion to Fig 3: the Shapley-weighted order mass
+    W(k) = sum_{|A|=k}|m(A)|/|A|, the weighting whose tail bounds the Shapley
+    truncation error.  The main-text figures use the unweighted M(k)."""
+    fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.4), sharey=True)
+    for ax, scen in zip(axes, ("r_sat", "r_lim1")):
+        v16 = load_oracle("n16_vh_%s_m8.csv" % scen, 16, col="v_mda8")
         v12 = load_shards(scen, 12)
         v8 = np.zeros(256)
         for m in range(256):
@@ -193,15 +218,18 @@ def fig3():
         for v, n, lab in ((v8, 8, "n = 8 (2 sectors, 4 windows)"),
                           (v12, 12, "n = 12 (+ CO, 3 sectors)"),
                           (v16, 16, "n = 16 (2 sectors, 8 windows)")):
-            mass = order_mass(v, n)
+            m = mobius_fast(v, n)
+            mass = np.zeros(n + 1)
+            for mask in range(1, 1 << n):
+                mass[bin(mask).count("1")] += abs(m[mask]) / bin(mask).count("1")
+            mass /= mass[1]
             ax.plot(range(1, n + 1), mass[1:], "o-", color=CN[n], label=lab)
-        ax.set_yscale("log")
         ax.set_xlabel("interaction order k")
-        ax.set_title("scenario %s (MDA8)" % scen, loc="left")
+        ax.set_title("scenario %s" % scen, loc="left")
         ax.legend(fontsize=7)
-    axes[0].set_ylabel("spectral mass (k=1 normalised)")
+    axes[0].set_ylabel("Shapley-weighted mass (k = 1 normalized)")
     fig.tight_layout()
-    save(fig, "fig3_spectrum")
+    save(fig, "figS2_mass_weighted")
 
 
 # --------------------------------------------------------------- Fig 4
@@ -410,6 +438,7 @@ if __name__ == "__main__":
     fig2()
     fig2_supp()
     fig3()
+    fig3_supp_mass()
     fig4()
     fig5()
     fig6()
