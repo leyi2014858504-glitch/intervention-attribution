@@ -1,137 +1,151 @@
 # intervention-attribution
 
-Code and data companion for the manuscript *"Finite interventions, full
-spectra: where local ozone attribution fails, and what measuring the
-whole interaction spectrum costs"* (in preparation).
+Code and data companion for the manuscript **"Exact response tables reveal
+high-order interactions in time-resolved ozone control"** (submitted to
+*Advances in Atmospheric Sciences*).
 
-Sector-level ozone control is posed as a **finite cooperative game**:
-players are (sector x time-window) binary emission switches, the value
-function is the MDA8 response of a KPP-compiled CB05 box model, and the
-object of study is the full **Möbius (Harsanyi dividend) interaction
-spectrum**. Exact enumerations at n = 8 / 12 / 16 players provide the
-ground truth for every claim; two observationally anchored city-seasons
-(Dallas 2016 winter, Deer Park 2017 summer) provide the external checks.
+Sector-level ozone control is posed as a **finite cooperative game**. Players
+are (precursor sector x 3-h time-window) binary emission switches, the value
+function is the MDA8 change of a KPP-compiled CB05 box model, and the object of
+study is the full **Möbius (Harsanyi dividend) interaction spectrum**. Exhaustive
+enumeration of all 2^16 coalitions in four n = 16 games — two idealized synthetic
+scenarios (`r_sat`, `r_lim1`) and two observation-anchored city slices (Dallas
+2016 winter, Deer Park 2017 summer) — provides the exact reference against which
+low-order truncation, local derivatives (T1/T2, the DDM-1/HDDM-2 equivalents) and
+greedy budget allocation are judged.
 
-Three things this repo is *not* claiming: sampling recovery of the full
-spectrum from fewer than 2^n evaluations (the spectrum comes from
-enumeration only); a new sampler (the working sampler is standard
-antithetic permutation sampling — a structure-aware active sampler was
-developed, failed its pre-registered criterion, and is reported as
-such); anything beyond a 0-D host (the framework is host-agnostic; the
-nocturnal boundary-layer regime is explicitly out of scope).
+What this repository does **not** claim: sampling recovery of the spectrum from
+fewer than 2^n runs (the spectrum comes from enumeration only), a new sampler, or
+a host beyond the 0-D box.
 
 ## Repository layout
 
 | path | what it is |
 |---|---|
-| `_kppwork/` | the experiment engine: KPP/CB05 build, box-model driver, campaign sweeps, spectrum/benchmark analyses, oracle tables |
-| `aqs_sites_data/`, `data_aqs/` | raw AQS/PAMS downloads (site metadata, hourly data) |
-| `atmos_plan/` | legacy first-prototype tree, superseded by `_kppwork/` (kept for provenance) |
+| `_kppwork/` | experiment engine: KPP/CB05 build, box-model driver, campaign sweeps, exact oracle tables, diagnostics and figure drivers |
+| `figs/` | figure outputs (`*.png`, `*.pdf`) |
 | `met_*.csv` | hourly meteorology per city-season (Open-Meteo): T2m, RH, pressure, wind, shortwave, boundary-layer height |
 | `obs_*_cb05.csv` | observation composites routed to CB05 species (PAMS speciated VOC + NOx/O3) per city-season |
-| `results_*.txt` | one file per paper claim (map below) |
-| `paper_outline.md` | figure/table plan with the numbers behind every claim |
-| `RELEASE_NOTES.md` | release body for the submission snapshot (what is / is not in the archive, scope caveats). No licence is attached yet; add one before publishing a release. |
-| `methods_zh.md` | methods draft (Chinese working version) |
-| `vibecoding_prompt_atmos_mcts.md` | the original project prompt (early SAPRC-07/MCTS planning notes; historical, superseded by the CB05 box) |
-| everything `_*`-prefixed | scratch: probes, working logs, one-off diagnostics. Kept for provenance; not part of any pipeline. |
+| `results_*.txt` | one file per reported diagnostic, written by the scripts below |
+| `paper_outline.md`, `npj_outline_zh.md` | claim / figure / table maps from earlier drafts |
+| `atmos_plan/` | legacy first-prototype tree, superseded by `_kppwork/` (kept for provenance) |
+| `_*`-prefixed files | scratch probes and one-off diagnostics; not part of the pipeline |
 
-## The pipeline in one page
+## Exact tables included
+
+| file | content |
+|---|---|
+| `_kppwork/n16_vh_r_sat_m8.csv`, `..._r_lim1_m8.csv`, `..._dallas_2016w_m8.csv`, `..._deerpark_2017s_m8.csv` | the four n = 16 MDA8 oracles: 65,536 rows each, one row per coalition. Columns `name` (mask `m00000`–`m65535`; bits 0–7 = NOx windows 00–03 … 21–24, bits 8–15 = VOC windows), `v_ppb` (daily-mean surface O3, ppb) and `v_mda8` (MDA8, ppb), both absolute — game values are obtained by subtracting the all-on row `m00000` — plus `nfail`, `rc` |
+| `_kppwork/co_v_m8_*.csv` | n = 12 (NOx, VOC, CO at 6-h resolution) MDA8 shards behind the spectral ladder |
+| `_kppwork/n16_v_*.csv` | earlier n = 8 / n = 16 synthetic tables (d3_mean and MDA8 variants) |
+| `_kppwork/hddm_h_v_*.csv` | 512 central-difference runs per city slice (16 players × {1±δ}, plus 120 pairs × 4 corners, δ = 0.05), hourly MDA8 |
+| `results_three_kernels_players.csv` | Shapley / time-first Owen / species-first Owen per player, four games |
+| `results_optimal_plan.csv` | exact budget-constrained optimum per game and budget pair |
+
+## Pipeline in one page
 
 ```
-observations                game generation            campaigns                 analyses
--------------               -----------------           ----------------          ---------------
-AQS/PAMS (_aqs_*.py)        gen_*.py                   sweep_*.sh (12 workers)  exp_*.py / _*.py
-  -> obs_*_cb05.csv  ----->  namelists per   ------->   v_*.csv oracle  ------->  results_*.txt
-Open-Meteo (_met_pull.py)     coalition mask             tables (2^n rows)         (paper claims)
-  -> met_*.csv              gen via kpp_box.py          resumable, sharded        methods_zh.md
-anchors (_fit_anchor.py)     cfg_of(mask)                                         paper_outline.md
-  -> results_fit_*.txt
+observations                anchoring                 campaigns                 analyses
+-------------               ---------                 ---------                 --------
+AQS/PAMS (_aqs_*.py)        _fit_anchor.py            _gen16_city.py            _errv_full.py
+  -> obs_*_cb05.csv    --->  -> results_fit_*.txt ---> _gen_hddm_city.py   --->  _city_spectrum.py
+Open-Meteo (_met_pull.py)   _scan_anchor.py             + sweep_n16.sh            _city_trunc.py
+  -> met_*.csv              _diag_fit.py                (KPP workers)             _optimal_plan.py
+                                                                                 _fig_*.py
 ```
 
-Every campaign follows the same pattern: a `gen_*.py` writes one
-namelist per coalition (the switch-off is exact — window emission
-multipliers 1 -> 0), a `sweep_*.sh` runs them on sharded KPP build
-directories with crash-resume, and an analysis script reads the merged
-value table. The currency of all benchmarks is **distinct coalition
-evaluations** (= chemistry runs).
+Every campaign follows the same pattern: a `gen_*.py` writes one namelist per
+coalition (switch-off is exact: window emission multipliers 1 → 0, applied on all
+three simulated days), a `sweep_*.sh` runs the namelists on sharded KPP build
+directories with crash-resume, and an analysis script reads the merged table. The
+currency of all comparisons is **distinct coalition evaluations** (= chemistry
+runs).
 
-## Root scripts
+## Script map
+
+### Model, generation and campaigns (`_kppwork/`)
 
 | script | role |
 |---|---|
-| `_aqs_*.py` | AQS/PAMS acquisition suite: site screening, hourly pulls, PAMS live probes, parameter metadata (`results_aqs_pick.txt`, `results_sites_final.txt` document the site choice) |
-| `_met_pull.py` | Open-Meteo hourly meteorology per city-season -> `met_*.csv` |
-| `_blh_to_kdil.py` | boundary-layer height -> box dilution timescale (tau_BLH), the observation-bounded constraint used by anchoring |
-| `_voc_map.py` | PAMS species -> CB05 model species routing (audit trail: `results_voc_map.txt`, `results_aqs_voc_panel.txt`) |
-| `_voc_nc.py` | VOC netCDF ingest helper (early phase) |
-| `_obs_build.py`, `_obs_cb05.py` | observation composites -> `obs_*_cb05.csv` (24 h composites per city-season) |
-| `_fit_anchor.py` | city anchoring: 8 physical knobs fitted to observed composites with observation-bounded ranges (O3 and NOx carry weight 1.0 in the cost -- a fit, not a held-out check) -> `results_fit_*.txt` |
-| `_scan_anchor.py`, `_diag_fit.py` | anchor diagnostics; `_diag_fit.py` is the spin-up sufficiency check (3-day vs 10-day last-day composites) -> `results_spinup_dallas.txt` |
-| `_local_vs_global.py` | local-vs-global protocol driver: local central differences (delta=0.05) vs measured finite chords, both metrics -> `results_local_vs_global.txt` |
-| `regime_mcts.py` | early planning prototype (MCTS over coalitions; the negative result that seeded the planning benchmark) |
+| `kpp_box.py` | box-model driver: config dict → namelist → KPP run → trajectory; scenario defaults, switch mechanics, MDA8 / d3_mean metric |
+| `build_kpp7.sh`, `cb05.kpp`, `cb05_sorg_aq.spc`, `cb05_sorg_aq.def`, `cb05_sorg_aq.eqn`, `cb05*_Main.f90` | CB05 mechanism and KPP build |
+| `gen_n16.py`, `gen_co_sweep.py`, `gen_hddm.py`, `gen_hddm_dp.py`, `gen_flipscan.py`, `gen_scale_masks.py`, `gen_scen_sweep.py`, `gen_sham.py` | namelist generators (synthetic games and auxiliary campaigns) |
+| `_gen16_city.py`, `_gen_hddm_city.py` | city-anchored n = 16 namelists and Taylor coefficients (8-knob anchored base) |
+| `_make_co12_h.py`, `_make_tau2300.py` | n = 12 hourly shards; nocturnal-sink sensitivity build |
+| `sweep_n16.sh`, `sweep_co*.sh`, `sweep_hddm.sh`, `sweep_flips.sh`, `sweep_scale.sh`, `sweep_scen.sh`, `sweep_sham.sh` | parallel campaign runners |
 
-## Core files in `_kppwork/`
+### Spectral and truncation diagnostics
 
-| file | role |
+| script | role |
 |---|---|
-| `kpp_box.py` | **the box-model driver**: config dict -> namelist -> KPP run -> trajectory; scenario defaults (r_sat / r_lim1); all switch mechanics |
-| `build_kpp7.sh`, `cb05.kpp`, `cb05_Main.f90` | KPP/CB05 mechanism, build scripts, generated solver |
-| `gen_n16.py`, `gen_co_sweep.py`, `gen_hddm.py`, `gen_hddm_dp.py`, `gen_flipscan.py`, `gen_sham.py`, `gen_scale_masks.py`, `gen_scen_sweep.py`, `mk_dummy.py` | namelist generators, one per experiment |
-| `sweep_n16.sh`, `sweep_co*.sh`, `sweep_hddm.sh`, `sweep_flips.sh`, `sweep_sham.sh`, `sweep_scale.sh`, `sweep_mobius.sh`, `sweep_scen.sh`, `_sweep_dp.sh` | parallel campaign runners (sharded builds, crash-resume) |
-| `attrib_oracle.py`, `attrib_samplers.py` | exact attribution from enumeration; the sampling arms (perm, perm_anti, perm_strat, kernelshap, OURS) with the budget currency |
-| `exp_n16.py`, `exp_n16_bench.py` | n=16 game driver and benchmark rerun on the exact table |
-| `_n16_spectrum.py`, `_m8_spectrum.py` | Möbius spectrum, order masses, truncation-error curves (both metrics) |
-| `_local_vs_global` analyses: `_zero_effect.py`, `_ridge_delta.py`, `_flip_report.py` | three failure-mode statistics: near-zero chords on the ridge, delta-refinement Richardson check, ridge-safe flip report |
-| `_hddm_check.py`, `_hddm_coalitions.py`, `_dp_taylor.py`, `_deerpark_lvg.py` | Taylor-2 (HDDM) single-axis and coalition scoring; Deer Park anchored-slice versions |
-| `_dual_bench.py` | dual-metric (d3_mean + MDA8) re-derivation of every sampling exhibit, zero chemistry runs: builds the n=8/12/16 oracles for both metrics (n=8 MDA8 read off the n=16 table at union-of-pairs masks, licensed by a bit-exact v_ppb cross-check) and reruns the cost law and the five attribution arms |
-| `exp_attrib.py`, `exp_calib.py`, `exp_selfdiag.py`, `exp_planning_bench.py`, `exp_quota.py`, `exp_sham.py`, `exp_co12*.py`, `exp_scale.py`, `exp_mda8.py`, `exp_stoch_gap.py`, `exp_cost_frontier.py`, `exp_surrogate_opt.py` | the analysis suite (one experiment per paper claim) |
-| `v_*.csv` oracle tables | `n16_v_r_*.csv` / `n16_v_r_*_m8.csv` (n=16, both metrics), `co_v.csv` (n=12), `sham_v.csv`, `scen_v.csv`, `scale_v.csv`, `hddm_v_*.csv`, `dp_v_*.csv`, `flip_v_*.csv` |
-| `_mda8_wincheck.py`, `_grid_check.sh` | metric-convention checks (window containment -> `results_mda8_wincheck.txt`, 5-min grid facts) |
-| `_d3_conv.py` | 289- vs 288-point daily-mean convention, re-derived on the full n=8 game (256 runs, both conventions from the same trajectories) -> `results_d3_conv.txt` |
-| early-phase numerics gates | `exp_g4_kpp.py`, `g3_check.py`, `ab_compare.py`, `v1_regress.py`, `probe_ridge*.py`, `probe_isop.py` |
+| `_errv_full.py` | order mass M(k)/M(1), cumulative share R_q, response-level truncation err_v(q) on the exact n = 16 tables, both metrics |
+| `_city_spectrum.py`, `_city_trunc.py` | city-slice spectra and attribution-level trunc(q) |
+| `_n16_spectrum.py`, `_m8_spectrum.py` | Möbius spectrum / order masses for the synthetic games |
+| `_aw_complete.py`, `_aw_periods.py`, `_aw_spectrum.py`, `_aw_rank_check.py`, `_aw_tablecheck.py`, `_aw_trunc_max.py` | rolling 8-h mean A_w diagnostics behind the SI tables (additivity of the 24 windows, period sums, ranks) |
+| `_top_dividends.sh`, `_co_share.py`, `_cum_share.py` | named top dividends, CO-touching mass share, cumulative mass |
 
-## Results files -> paper claims
+### Local vs exact, allocation, optimisation
 
-| results file | claim / exhibit |
+| script | role |
 |---|---|
-| `_kppwork/sham_result.txt` | Table 1: L1 dummy-player gate (dividends ~1e-14) |
-| `_kppwork/spectrum_orders*.txt` | Fig. 2 + Table 6: truncation divergence (MDA8, n=16) |
-| `_kppwork/scaling_dual_metrics.txt` (from `_dual_bench.py`) | Fig. 4 + Table 5: sampling cost law, **both metrics** — the primary reference (the older `scaling_n16.txt` / `attrib_bench.txt` / `bench_n16.txt` are d3_mean-only; the pooled "1.6-1.8x per doubling" and "same accuracy 2.5-3x" statements are retired) |
-| `results_local_vs_global.txt` | Fig. 5/6 + Table 2: local vs finite effects, three failure modes |
-| `results_scan_flips.txt` | Table 8: failure map over the 25-point EKMA grid (8/25 cells flip) |
-| `results_zero_effect.txt`, `results_ridge_delta.txt` | ridge zero-effect windows, delta-refinement verification |
-| `results_co12.txt` (from `_kppwork/exp_co12.py`) | Table 3: player-set robustness (8 vs 12 players; max per-player shift 0.10 ppb) |
-| `results_quota.txt` (from `_kppwork/exp_quota.py`) | Fig. 7: budget-constrained recipes flip across regimes |
-| `figs/` (from `_kppwork/make_figs.py`) | working-draft figures Fig 2-7, regenerated from the released result files (index in `paper_outline.md`); Fig 1 is a schematic, pending |
-| `results_fit_deerpark_2017s.txt`, `results_deerpark_lvg.txt`, `results_obs_*_cb05.csv`, `_kppwork/_deerpark_lvg.py` | Table 9 + L4: Deer Park anchored-slice out-of-sample test (limited side): all chord ratios 0.98-1.05, 0/24 sign flips -- "the failure disappears" reproduced |
-| `results_fit_dallas_2016w.txt`, `results_dallas_lvg.txt`, `_kppwork/_dallas_lvg.py` | Table 9 + L4: Dallas anchored-slice test (saturated side, 8-knob re-anchor cost 0.441): 0/24 sign flips, but NOx chord ratios 0.82-5.10 (4/8 windows >= 1.9x; VOC/CO ~1) -- the city-side amplitude failure. The pre-stated "saturated -> flips" expectation did not materialise; disclosed, not hidden |
-| `results_spinup_dallas.txt` | L4 + Methods: spin-up sufficiency (3-day vs 10-day last-day drift <= 0.4%) -- the 3-day window is a diurnal cycle |
-| `results_surrogate.txt` (from `_kppwork/exp_surrogate.py`) | reduced-representation test on the exact oracles: GBM surrogate + exact (TreeSHAP-equivalent) Shapley vs perm_anti at equal budget -- the surrogate loses everywhere except a narrow n=16 MDA8 mid-budget band, and collapses to 100% error below B<=32 at n=8; fit-then-explain is not a substitute for unbiased sampling |
-| `results_co_share.txt`, `results_cum_share.txt`, `results_top_dividends.txt` | post-hoc spectrum diagnostics: CO-touching mass share f_CO(k) (5.9% total vs 33% of slots), cumulative mass share R_q, named top dividends behind the order-k peak |
-| `_kppwork/results_mda8_wincheck.txt` | Methods: MDA8 window containment (windows ending at t>=48 vs t>=56 bit-identical, 5 configurations) |
-| `_kppwork/results_d3_conv.txt` (+ `d3_conv_n8.csv`) | Methods: 289- vs 288-point daily-mean convention measured end to end (Shapley shifts <= 0.055 ppb = 0.33% of max|phi|) |
-| `results_hddm_check.txt`, `results_hddm_coalitions.txt`, `results_deerpark_taylor.txt` | Table 7d: Taylor-2 tail failure on the saturated side only |
-| `_kppwork/selfdiag*.txt`, `selfdiag_calib.txt` | Table 7a/7b: self-diagnosis flags; holdout calibration (e ~ 0.33 h) |
-| `results_kdil.txt` | Table 4: nocturnal validity diagnostics (scope gate) |
+| `_ddm_predictions.py`, `_ddm_step.py` | per-window T1 / T2 predictions from the 512 fractional runs; step-size check |
+| `_hddm_cities.py`, `_hddm_amplitude.py`, `_hddm_strata.py` | T1/T2 scored on every coalition of the city games; error dependence on package composition |
+| `_frozen_window_check.py`, `_frozen_rho.py`, `_frozen_base.py` | validity of the frozen maximizing-window approximation |
+| `_error_structure.py`, `_single_vs_joint.py` | structure of the local error; single-window vs joint response |
+| `_optimal_plan.py` | exact budget-constrained optimum, greedy ranking and order-q truncated selection (writes `results_optimal_plan.*`, `figs/fig_optimal.*`) |
+| `attrib_oracle.py`, `attrib_samplers.py` | exact Shapley/Owen from enumeration; sampling arms (benchmark material, not used for the manuscript's exact claims) |
+| `_shapley_taylor.py` | k-truncated Shapley–Taylor values and their error |
+
+### Robustness and audits
+
+| script | role |
+|---|---|
+| `_dt150_check.py` | outer-step convergence (150 / 300 / 600 s) of the all-on MDA8 |
+| `_night_sink_proxy.py`, `_sink_budget.py` | nocturnal sink / deposition budget and the halved nocturnal timescale refit |
+| `_realism_check.py` | synthetic scenarios inside the range spanned by the two anchored cities |
+| `_kernel_spread.py`, `_tail_impute.py`, `_mlmc.py`, `_mlmc_levels.py` | kernel discretisation spread, tail treatment, multi-level sampling arithmetic |
+| `_skill_audit.py`, `_surrogate_cv.py`, `_baselines_city.py`, `_sampler_city.py` | greedy/surrogate baselines and their cross-validated skill |
+| `_diurnal_audit.py`, `_mda8_wincheck.py`, `_grid_check.sh`, `_d3_conv.py` | metric-convention and spin-up checks (window containment, 5-min grid, 288 vs 289-point daily mean) |
+
+### Figures and manuscript build
+
+| script | output |
+|---|---|
+| `make_figs.py` | draft figure set from released tables; in the manuscript it produces `fig3_spectrum.png` |
+| `_fig_flip.py` | `fig_signflip_finite.png` (single-window shutdown effects, synthetic pair) |
+| `_fig3_with_cities.py` | `fig3b_cities.png` (spectral mass: synthetic vs anchored) |
+| `_fig_cities.py` | `fig_cities_24win.png` (single-window effects at the two cities) |
+| `_fig_trunc_cities.py` | `fig_trunc_cities.png` (truncation error, four games, both metrics) |
+| `_fig_cities_lvg_h.py` | `fig_cities_lvg.png` (T1 / T2 vs exact finite shutdown, hourly MDA8) |
+| `_fig_alloc.py` | `fig_alloc.png` (Shapley bars + Owen markers; needs `ATMOS_DIR` set to the repo root on Windows) |
+| `_build_aas.py`, `_build_aas_si.py` | assemble the AAS manuscript and SI from the npj-template source |
 
 ## Environment
 
-Windows host + WSL2 (Ubuntu). The KPP-compiled box builds live under
-`/root/kpp7*` inside WSL (built by `build_kpp7.sh`); campaign workers are
-sharded copies of that build. Python 3 with numpy/scipy; no other
-dependencies. Trajectories: 72 h integration, 5-minute output, first
-48 h equilibration; MDA8 by right-endpoint rectangle rule (96 samples =
-exactly 8.0 h); see `_kppwork/_grid_check.sh`.
+- Chemistry: WSL2 Ubuntu, gfortran + KPP 3.5.0; builds live in `/root/kpp7*`
+  (created by `build_kpp7.sh`), campaign workers are sharded copies.
+- Analysis: Python 3 with `numpy`, `scipy`, `matplotlib`; no other dependencies.
+- Manuscript: MiKTeX (pdflatex + bibtex) for the AAS template.
+- Integration: 3 simulated days, 300-s outer step, first 48 h spin-up; MDA8 from
+  hourly means with 8-h right-endpoint windows.
 
 ## Reproducing
 
-The repo is organised for *auditability* rather than one-command
-reproduction: every paper number traces to a results file, every
-results file to a script + oracle table, every oracle table to a
-campaign sweep over the boxed CB05 host. Start from
-`paper_outline.md` (the claim map), descend into the results file of
-interest, then find its driver by name.
+1. Build the box model (`_kppwork/build_kpp7.sh`).
+2. Synthetic oracles: `gen_n16.py` + `sweep_n16.sh`; city oracles:
+   `_gen16_city.py` + `sweep_n16.sh` (65,536 runs per game). City anchoring
+   itself is `_fit_anchor.py` → `results_fit_*.txt`.
+3. Diagnostics: `_errv_full.py`, `_city_spectrum.py`, `_city_trunc.py`,
+   `_optimal_plan.py`, `_hddm_cities.py` (each reads the released oracle tables,
+   zero chemistry runs).
+4. Figures: `make_figs.py` and the `_fig_*.py` drivers above; outputs go to
+   `figs/`.
+5. Manuscript: `_build_aas.py`, `_build_aas_si.py` (LaTeX sources are kept with
+   the submission, not in this repository).
+
+Every number in the manuscript traces to a `results_*.txt` written by one of
+these scripts; every such script reads either an included oracle table or an
+included observation product.
 
 ## Cite
 
