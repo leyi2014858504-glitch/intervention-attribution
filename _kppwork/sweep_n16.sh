@@ -14,16 +14,18 @@ W=/mnt/d/atmos/_kppwork
 ROOT=/root/nml16
 NW=12
 TAG=${2:-r_sat}
+SUF=${SUF:-}
 N=$ROOT/$TAG
 
 _prep () {
-  rm -f $W/n16_done_$TAG.txt
+  rm -f $W/n16_done_$TAG$SUF.txt
   ls $N > /root/n16_files_$TAG.txt
   echo "[$TAG] total tasks: $(wc -l < /root/n16_files_$TAG.txt)"
   for K in $(seq 1 $NW); do
     awk -v k=$K -v n=$NW 'NR % n == (k % n)' /root/n16_files_$TAG.txt > /root/n16_chunk_${TAG}_$K.txt
   done
   for K in $(seq 1 $NW); do
+    if [ "${REFRESH:-0}" = "1" ]; then rm -rf /root/kpp7n$K; fi
     [ -d /root/kpp7n$K ] || cp -r /root/kpp7 /root/kpp7n$K
   done
 }
@@ -53,10 +55,10 @@ D=/root/kpp7n$K
 # MDA8 campaign: outputs get an _m8 suffix so the original d3_mean-only
 # tables stay untouched -- v_ppb must reproduce them bit-for-bit (free
 # regression check on the driver), v_mda8 is the new primary metric.
-O=$W/n16_v_${TAG}_m8_$K.csv
-P=$W/n16_prog_${TAG}_m8_$K.txt
+O=$W/n16_v_${TAG}_m8${SUF}_$K.csv
+P=$W/n16_prog_${TAG}_m8${SUF}_$K.txt
 [ -f $O ] || echo "name,v_ppb,v_mda8,nfail,rc,nrow" > $O
-DONE=/root/n16_done_${TAG}_m8_$K.txt
+DONE=/root/n16_done_${TAG}_m8${SUF}_$K.txt
 grep -o '^m[0-9]*' $O | sort -u > $DONE 2>/dev/null || true
 n=0
 while read -r b; do

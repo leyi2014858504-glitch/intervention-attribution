@@ -30,10 +30,22 @@ with open(os.path.join(D, "met_deerpark_2017s.csv")) as fh:
             pass
 TMIN, TMAX = min(T) + 273.15, max(T) + 273.15
 
-BASE = dict(EMIS_NOX=0.5, EMIS_VOC=4.2406, EMIS_ISO=10.0, EMIS_CO=1.0,
-            KDIL_DAY=2233.674, KDIL_NIGHT=86400.0,
-            BG_O3=5.0, BG_CO=136.875,
-            BG_NO2=2.0, BG_NO=0.5, BG_VOC=20.0, BG_ISO=0.2,
+def read_anchor(label):
+    """8-knob anchor from the fit, so this check follows a refit."""
+    knobs = {}
+    with open(os.path.join(D, "results_fit_%s.txt" % label)) as fh:
+        for line in fh:
+            if "=" not in line:
+                continue
+            k, _, v = line.partition("=")
+            if k.strip() in ("EMIS_NOX", "EMIS_VOC", "EMIS_ISO", "EMIS_CO",
+                             "KDIL_DAY", "KDIL_NIGHT", "BG_O3", "BG_CO"):
+                knobs[k.strip()] = float(v)
+    return knobs
+
+
+BASE = read_anchor("deerpark_2017s")
+BASE.update(BG_NO2=2.0, BG_NO=0.5, BG_VOC=20.0, BG_ISO=0.2,
             TMIN_K=TMIN, TMAX_K=TMAX)
 
 CFGS = [

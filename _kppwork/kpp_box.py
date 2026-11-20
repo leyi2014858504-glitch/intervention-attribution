@@ -18,7 +18,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 #   dummy : /root/kpp5, cb05d_Main.f90 - the same forcing expressed as dummy
 #           reactions inside the mechanism (Möbius build)
 BACKENDS = {"split": "/root/kpp4", "dummy": "/root/kpp5", "co": "/root/kpp6",
-            "anchor": "/root/kppa", "scale": "/root/kpp7"}
+            "anchor": "/root/kppa", "scale": "/root/kpp7",
+            "tight": "/root/kppt"}
 DEFAULT_BACKEND = os.environ.get("KPP_BACKEND", "split")
 
 # RUNCFG keys understood by every backend ...

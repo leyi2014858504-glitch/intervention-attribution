@@ -31,14 +31,28 @@ SECTORS = ["NOXW", "VOCW", "COW"]
 NW = 8
 ALL1 = [1.0] * NW
 
-# from results_fit_deerpark_2017s.txt  PLUS the backgrounds the fit's cost
-# function sets (make_cost in _fit_anchor.py) -- omitting BG_NO2/BG_NO inflates
-# the steady-state O3 (45.2 vs 33.8 MDA8) because background NO2 feeds
-# O3 production.
-ANCHOR = dict(EMIS_NOX=0.5, EMIS_VOC=4.2406, EMIS_ISO=10.0, EMIS_CO=1.0,
-              KDIL_DAY=2233.674, KDIL_NIGHT=86400.0,
-              BG_O3=5.0, BG_CO=136.875,
-              BG_NO2=2.0, BG_NO=0.5, BG_VOC=20.0, BG_ISO=0.2)
+# anchor knobs are read from results_fit_deerpark_2017s.txt at run time, so a
+# refit propagates here instead of leaving a stale hard-coded slice behind.
+LABEL = "deerpark_2017s"
+KNOBS = ("EMIS_NOX", "EMIS_VOC", "EMIS_ISO", "EMIS_CO",
+         "KDIL_DAY", "KDIL_NIGHT", "BG_O3", "BG_CO")
+
+
+def read_anchor(label):
+    path = os.path.join(D, "results_fit_%s.txt" % label)
+    knobs = {}
+    with open(path) as fh:
+        for line in fh:
+            if "=" not in line:
+                continue
+            k, _, v = line.partition("=")
+            k = k.strip()
+            if k in KNOBS:
+                knobs[k] = float(v)
+    missing = [k for k in KNOBS if k not in knobs]
+    if missing:
+        raise SystemExit("%s is not an 8-knob anchor file; missing %s" % (path, missing))
+    return knobs
 
 
 def read_met_tminmax(label):
@@ -79,13 +93,17 @@ def _metrics(traj):
 
 
 def main():
-    tmin, tmax = read_met_tminmax("deerpark_2017s")
-    base_cfg = dict(ANCHOR)
-    base_cfg.update(TMIN_K=tmin, TMAX_K=tmax)
+    anchor = read_anchor(LABEL)
+    tmin, tmax = read_met_tminmax(LABEL)
+    # backgrounds the fit's cost function sets (make_cost in _fit_anchor.py);
+    # omitting BG_NO2/BG_NO inflates the steady-state O3.
+    base_cfg = dict(anchor)
+    base_cfg.update(BG_NO2=2.0, BG_NO=0.5, BG_VOC=20.0, BG_ISO=0.2,
+                    TMIN_K=tmin, TMAX_K=tmax)
     L = []
     add = L.append
     add("Deer Park 2017 summer: regime positioning at the anchored slice")
-    add("anchor: %s  (TMIN %.1f K, TMAX %.1f K)" % (ANCHOR, tmin, tmax))
+    add("anchor: %s  (TMIN %.1f K, TMAX %.1f K)" % (anchor, tmin, tmax))
     add("")
     base = run(base_cfg, "base")
     add("base v48 = %.4f  mda8 = %.4f" % base)
